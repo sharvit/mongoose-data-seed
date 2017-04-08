@@ -1,0 +1,27 @@
+{
+  "name": "mongoose-data-seed",
+  "version": "1.0.0",
+  "description": "Seed mongodb with data using mongoose models",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sharvit/mongoose-data-seed.git"
+  },
+  "keywords": [
+    "mongoose",
+    "seed",
+    "data",
+    "mongodb",
+    "seeder",
+    "mongoosejs"
+  ],
+  "author": "Avi Sharvit",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sharvit/mongoose-data-seed/issues"
+  },
+  "homepage": "https://github.com/sharvit/mongoose-data-seed#readme"
+}
