@@ -23,5 +23,11 @@
   "bugs": {
     "url": "https://github.com/sharvit/mongoose-data-seed/issues"
   },
-  "homepage": "https://github.com/sharvit/mongoose-data-seed#readme"
+  "homepage": "https://github.com/sharvit/mongoose-data-seed#readme",
+  "dependencies": {
+    "better-console": "^1.0.0",
+    "command-line-args": "^4.0.2",
+    "command-line-usage": "^4.0.0",
+    "mongoose": "^4.9.3"
+  }
 }
