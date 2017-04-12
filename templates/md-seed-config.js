@@ -1,17 +1,20 @@
-import mongooseLib from 'mongoose';
-mongooseLib.Promise = global.Promise;
+const mongooseLib = require('mongoose');
+mongooseLib.Promise = global.Promise || Promise;
 
-// export the mongoose lib
-export const mongoose = mongooseLib;
+module.exports = {
 
-// export the mongodb url
-export const mongoURL = process.env.MONGO_URL || 'mongodb://localhost:27017/dbname';
+  // export the mongoose lib
+  mongoose: mongooseLib,
 
-/*
-  Seeders List
-  ------
-  order is important
-*/
-export const seedersList = {
+  // export the mongodb url
+  mongoURL: process.env.MONGO_URL || 'mongodb://localhost:27017/dbname',
 
+  /*
+    Seeders List
+    ------
+    order is important
+  */
+  seedersList: {
+
+  }
 };

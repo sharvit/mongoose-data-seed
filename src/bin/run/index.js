@@ -80,6 +80,7 @@ function run({ mongoose, mongoURL, selectedSeeders, dropDatabase }) {
 
         console.log(`${logSymbols.error} ${name}`);
         console.log();
+        console.log(chalk.red('ERROR'));
         console.log(error.stack);
 
         process.exit(1);
