@@ -38,6 +38,7 @@
     "command-line-commands": "^2.0.0",
     "command-line-usage": "^4.0.0",
     "find-root": "^1.0.0",
+    "inquirer": "^3.0.6",
     "lodash": "^4.17.4",
     "log-symbols": "^1.0.2",
     "mem-fs": "^1.1.3",

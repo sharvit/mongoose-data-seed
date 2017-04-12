@@ -6,13 +6,11 @@ export const optionDefinitions = [
   {
     name: 'es6',
     type: Boolean,
-    defaultValue: false,
     description: 'Use es6 syntax, require babel'
   }, {
     name: 'seedersFolder',
     alias: 'f',
     type: String,
-    defaultValue: 'seeders',
     description: 'Seeders folder name'
   }, {
     name: 'help',

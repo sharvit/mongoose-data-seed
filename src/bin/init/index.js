@@ -4,6 +4,8 @@ import memFs from 'mem-fs';
 import editor from 'mem-fs-editor';
 import chalk from 'chalk';
 import logSymbols from 'log-symbols';
+import inquirer from 'inquirer';
+import _ from 'lodash';
 
 import getOptions from './options';
 import usageGuide from './usageGuide';
@@ -11,12 +13,44 @@ import config from '../../lib/config';
 
 
 export default function () {
-  const { es6, seedersFolder, helpWanted } = getOptions(process.argv);
+  let { es6, seedersFolder, helpWanted } = getOptions(process.argv);
 
   if (helpWanted) {
     console.log(usageGuide);
   } else {
-    return init({ es6, seedersFolder });
+    return Promise.resolve()
+      // Ask the user wheter to use es2015 syntax if not decided yet
+      .then(() => {
+        if (typeof es6 !== 'boolean') {
+          return inquirer.prompt([{
+            name: 'useES6',
+            type: 'confirm',
+            message: 'Would you like to use ES6/ES2015 syntax? (require babel)',
+            default: true,
+          }]).then(({ useES6 }) => {
+            es6 = useES6 === true;
+          });
+        }
+      })
+      // Ask the user wheter for the seeders folder name if not decided yet
+      .then(() => {
+        if ((typeof seedersFolder !== 'string') || (_.trim(seedersFolder).length < 3)) {
+          return inquirer.prompt([{
+            name: 'seedersFolderName',
+            type: 'input',
+            message: 'Choose your seeders folder name',
+            default: 'seeders',
+            filter: input => _.trim(input),
+            validate: input => input.length >= 3,
+          }]).then(({ seedersFolderName }) => {
+            seedersFolder = seedersFolderName;
+          });
+        }
+      })
+      .then(() => {
+        return init({ es6, seedersFolder });
+      })
+    ;
   }
 }
 
