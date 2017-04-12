@@ -1,13 +1,23 @@
-const runSeeders = async (seeders) => {
-  const seed = {};
+import { Observable } from 'rxjs/Observable';
 
-  for (let s in seeders) {
-    const seeder = new seeders[s]();
+const runSeeders = (seeders) => {
+  return Observable.create(async (observer) => {
 
-    seed[s] = await seeder.seed();
-  }
+    for (let name in seeders) {
+      observer.next({ name });
 
-  return seed;
+      try {
+        const seeder = new seeders[name]();
+        const results = await seeder.seed();
+
+        observer.next({ name, results });
+      } catch (error) {
+        observer.error({name, error });
+      }
+    }
+
+    observer.complete();
+  });
 };
 
 export default runSeeders;
