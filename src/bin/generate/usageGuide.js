@@ -8,9 +8,9 @@ const usageGuide = generateUsageGuide([
   }, {
     header: 'Synopsis',
     content: [
-      '$ md-seed generate users',
-      '$ md-seed g users',
-      '$ md-seed g --help',
+      '$ md-seed generate [underline]{seeder-name}',
+      '$ md-seed g [underline]{seeder-name}',
+      '$ md-seed g [bold]{--help}',
     ]
   }
 ]);

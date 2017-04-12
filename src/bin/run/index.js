@@ -39,11 +39,11 @@ function run({ mongoose, mongoURL, selectedSeeders, dropDatabase }) {
     spinner.stop();
 
     if (error) {
-      console.log(`${logSymbols.error}  Unable to connected to MongoDB: ${chalk.gray(mongoURL)}`);
+      console.log(`${logSymbols.error} Unable to connected to MongoDB: ${chalk.gray(mongoURL)}`);
       return process.exit(1);
     }
 
-    console.log(`${logSymbols.success}  Successfully connected to MongoDB: ${chalk.gray(mongoURL)}`);
+    console.log(`${logSymbols.success} Successfully connected to MongoDB: ${chalk.gray(mongoURL)}`);
 
     if (dropDatabase === true) {
       spinner.message(`Droping database...`);
@@ -52,7 +52,7 @@ function run({ mongoose, mongoURL, selectedSeeders, dropDatabase }) {
       mongoose.connection.db.dropDatabase();
 
       spinner.stop();
-      console.log(`${logSymbols.success}  Database dropped!`);
+      console.log(`${logSymbols.success} Database dropped!`);
     }
 
     console.log();
@@ -66,9 +66,9 @@ function run({ mongoose, mongoURL, selectedSeeders, dropDatabase }) {
           const { run, created } = results;
 
           if (run) {
-            console.log(`${logSymbols.success}  ${name}: ${chalk.gray(created)}`);
+            console.log(`${logSymbols.success} ${name}: ${chalk.gray(created)}`);
           } else {
-            console.log(`${logSymbols.error}  ${name}`);
+            console.log(`${logSymbols.error} ${name}`);
           }
         } else {
           spinner.message(name);
@@ -78,7 +78,7 @@ function run({ mongoose, mongoURL, selectedSeeders, dropDatabase }) {
       error: ({name, error}) => {
         spinner.stop();
 
-        console.log(`${logSymbols.error}  ${name}`);
+        console.log(`${logSymbols.error} ${name}`);
         console.log();
         console.log(error.stack);
 

@@ -5,10 +5,8 @@ export const optionDefinitions = [
     name: 'name',
     alias: 'n',
     type: String,
-    multiple: true,
-    defaultValue: [],
     defaultOption: true,
-    typeLabel: 'name ...',
+    typeLabel: 'name',
     description: 'Seeder name to generate'
   }, {
     name: 'help',
