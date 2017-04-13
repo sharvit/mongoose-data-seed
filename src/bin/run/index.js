@@ -1,15 +1,17 @@
-import 'babel-register';
-import 'babel-polyfill';
+#!/usr/bin/env node
+
+import 'babel-register';  // eslint-disable-line import/no-unassigned-import
+import 'babel-polyfill';  // eslint-disable-line import/no-unassigned-import
 
 import chalk from 'chalk';
 import logSymbols from 'log-symbols';
 import { Spinner } from 'clui';
 
-import { mustContainUserConfig } from '../../lib/utils'
-import getOptions from './options';
-import usageGuide from './usageGuide';
+import { mustContainUserConfig } from '../../lib/utils';
 import config from '../../lib/config';
 import seed from '../../lib/seed';
+import { getOptions } from './options';
+import usageGuide from './usage-guide';
 
 export default function () {
   mustContainUserConfig();
@@ -30,12 +32,11 @@ export default function () {
 }
 
 function run({ mongoose, mongoURL, selectedSeeders, dropDatabase }) {
-
   const spinner = new Spinner(`Trying to connect to MongoDB: ${mongoURL}`);
   spinner.start();
 
   // MongoDB Connection
-  mongoose.connect(mongoURL, (error) => {
+  mongoose.connect(mongoURL, error => {
     spinner.stop();
 
     if (error) {
@@ -59,7 +60,7 @@ function run({ mongoose, mongoURL, selectedSeeders, dropDatabase }) {
     console.log(`${chalk.cyan('Seeding Results:')}`);
 
     seed(selectedSeeders).subscribe({
-      next: ({name, results}) => {
+      next: ({ name, results }) => {
         spinner.stop();
 
         if (results) {
@@ -75,7 +76,7 @@ function run({ mongoose, mongoURL, selectedSeeders, dropDatabase }) {
           spinner.start();
         }
       },
-      error: ({name, error}) => {
+      error: ({ name, error }) => {
         spinner.stop();
 
         console.log(`${logSymbols.error} ${name}`);
@@ -85,7 +86,7 @@ function run({ mongoose, mongoURL, selectedSeeders, dropDatabase }) {
 
         process.exit(1);
       },
-      complete: () => process.exit(),
+      complete: () => process.exit()
     });
   });
-};
+}

@@ -1,7 +1,5 @@
 import commandLineArgs from 'command-line-args';
 
-const { argv } = process;
-
 export const optionDefinitions = [
   {
     name: 'seeders',

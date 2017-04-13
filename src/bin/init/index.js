@@ -1,16 +1,17 @@
+#!/usr/bin/env node
+
 import _fs from 'fs';
 import path from 'path';
 import memFs from 'mem-fs';
 import editor from 'mem-fs-editor';
 import chalk from 'chalk';
-import logSymbols from 'log-symbols';
 import inquirer from 'inquirer';
 import _ from 'lodash';
 
-import getOptions from './options';
-import usageGuide from './usageGuide';
 import config from '../../lib/config';
 
+import { getOptions } from './options';
+import usageGuide from './usage-guide';
 
 export default function () {
   let { es6, seedersFolder, helpWanted } = getOptions(process.argv);
@@ -26,7 +27,7 @@ export default function () {
             name: 'useES6',
             type: 'confirm',
             message: 'Would you like to use ES6/ES2015 syntax? (require babel)',
-            default: true,
+            default: true
           }]).then(({ useES6 }) => {
             es6 = useES6 === true;
           });
@@ -41,7 +42,7 @@ export default function () {
             message: 'Choose your seeders folder name',
             default: 'seeders',
             filter: input => _.trim(input),
-            validate: input => input.length >= 3,
+            validate: input => input.length >= 3
           }]).then(({ seedersFolderName }) => {
             seedersFolder = seedersFolderName;
           });
@@ -72,19 +73,19 @@ function init({ es6 = false, seedersFolder = 'seeders' }) {
 
     const generatorConfig = { es6, seedersFolder };
 
-    if (userGeneratorConfigExists !== true) {
-      fs.writeJSON(userGeneratorConfigFilepath, generatorConfig);
-
-      config.useEs6Generator = generatorConfig.es6;
-      config.userSeedersFolderName = generatorConfig.seedersFolder;
-      config.userSeedersFolderPath = path.join(projectRoot, generatorConfig.seedersFolder);
-
-      fs.commit(() => {
-        console.log(`${chalk.green('CREATED')} ${userGeneratorConfigFilename}`);
-      });
-    } else {
-      console.log(`${chalk.yellow('CONFLICT')} ${userGeneratorConfigFilename} are already exists`);
+    if (userGeneratorConfigExists === true) {
+      return console.log(`${chalk.yellow('CONFLICT')} ${userGeneratorConfigFilename} are already exists`);
     }
+
+    fs.writeJSON(userGeneratorConfigFilepath, generatorConfig);
+
+    config.useEs6Generator = generatorConfig.es6;
+    config.userSeedersFolderName = generatorConfig.seedersFolder;
+    config.userSeedersFolderPath = path.join(projectRoot, generatorConfig.seedersFolder);
+
+    fs.commit(() => {
+      console.log(`${chalk.green('CREATED')} ${userGeneratorConfigFilename}`);
+    });
   }
 
   function _createSeedersFolder() {
@@ -97,9 +98,9 @@ function init({ es6 = false, seedersFolder = 'seeders' }) {
     try {
       _fs.mkdirSync(userSeedersFolderPath);
       console.log(`${chalk.green('CREATED')} ${userSeedersFolderName}/`);
-    } catch (error) {
+    } catch (err) {
       console.log(`${chalk.red('ERROR')} ${userSeedersFolderName}/ unable to create folder`);
-      return console.log(error.stack);
+      return console.log(err.stack);
     }
   }
 
@@ -107,15 +108,16 @@ function init({ es6 = false, seedersFolder = 'seeders' }) {
     const { userConfigExists, userConfigFilename, userConfigFilepath, useEs6Generator } = config;
     const templatePath = useEs6Generator ?
       path.join(__dirname, '../../../templates/md-seed-config.es6.js') :
-      path.join(__dirname, '../../../templates/md-seed-config.js');
+      path.join(__dirname, '../../../templates/md-seed-config.js')
+    ;
 
-    if (userConfigExists !== true) {
-      fs.copy(templatePath, userConfigFilepath);
-      fs.commit(() => {
-        console.log(`${chalk.green('CREATED')} ${userConfigFilename}`);
-      });
-    } else {
-      console.log(`${chalk.yellow('CONFLICT')} ${userConfigFilename} are already exists`);
+    if (userConfigExists === true) {
+      return console.log(`${chalk.yellow('CONFLICT')} ${userConfigFilename} are already exists`);
     }
+
+    fs.copy(templatePath, userConfigFilepath);
+    fs.commit(() => {
+      console.log(`${chalk.green('CREATED')} ${userConfigFilename}`);
+    });
   }
 }

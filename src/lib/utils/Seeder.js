@@ -20,7 +20,7 @@ class Seeder {
   }
 
   async run() {
-    throw `Need to implement ${this.constructor.name} async run() function`;
+    throw new Error(`Need to implement ${this.constructor.name} async run() function`);
   }
 
   getStats(results) {
@@ -34,7 +34,7 @@ class Seeder {
   static extend(userSeederMethods) {
     class userSeeder extends Seeder { }
 
-    // add methods to the user seeder
+    // Add methods to the user seeder
     Object.keys(userSeederMethods).forEach(key => {
       userSeeder.prototype[key] = userSeederMethods[key];
     });

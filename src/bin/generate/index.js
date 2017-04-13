@@ -1,13 +1,15 @@
+#!/usr/bin/env node
+
 import path from 'path';
 import memFs from 'mem-fs';
 import editor from 'mem-fs-editor';
 import chalk from 'chalk';
 import _ from 'lodash';
 
-import { mustContainUserConfig } from '../../lib/utils'
-import getOptions from './options';
-import usageGuide from './usageGuide';
 import config from '../../lib/config';
+import { mustContainUserConfig } from '../../lib/utils';
+import { getOptions } from './options';
+import usageGuide from './usage-guide';
 
 export default function () {
   mustContainUserConfig();

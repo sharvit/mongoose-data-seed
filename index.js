@@ -1,7 +1,7 @@
-var seed = require('./dist/lib/seed').default;
-var Seeder = require('./dist/lib/utils/Seeder').default;
+const seed = require('./dist/lib/seed').default;
+const Seeder = require('./dist/lib/utils/Seeder').default;
 
 module.exports = {
-  seed: seed,
-  Seeder: Seeder
+  seed,
+  Seeder
 };

@@ -10,8 +10,11 @@ const usageGuide = generateUsageGuide([
     content: [
       '$ md-seed generate [underline]{seeder-name}',
       '$ md-seed g [underline]{seeder-name}',
-      '$ md-seed g [bold]{--help}',
+      '$ md-seed g [bold]{--help}'
     ]
+  }, {
+    header: 'Options',
+    optionList: optionDefinitions
   }
 ]);
 

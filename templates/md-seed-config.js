@@ -1,12 +1,13 @@
-const mongooseLib = require('mongoose');
+var mongooseLib = require('mongoose');
+
 mongooseLib.Promise = global.Promise || Promise;
 
 module.exports = {
 
-  // export the mongoose lib
+  // Export the mongoose lib
   mongoose: mongooseLib,
 
-  // export the mongodb url
+  // Export the mongodb url
   mongoURL: process.env.MONGO_URL || 'mongodb://localhost:27017/dbname',
 
   /*

@@ -19,7 +19,6 @@ const userConfigFilename = 'md-seed-config.js';
 const userConfigFilepath = path.join(projectRoot, userConfigFilename);
 const userConfigExists = fs.existsSync(userConfigFilepath);
 
-
 const userConfig = userConfigExists ? require(userConfigFilepath) : null;
 
 const config = {
@@ -29,12 +28,12 @@ const config = {
   userGeneratorConfigFilename,
   userGeneratorConfigFilepath,
   userGeneratorConfigExists,
-	userConfigFilename,
-	userConfigFilepath,
+  userConfigFilename,
+  userConfigFilepath,
   userSeedersFolderName,
   userSeedersFolderPath,
   userConfigExists,
-  userConfig,
+  userConfig
 };
 
 export default config;
