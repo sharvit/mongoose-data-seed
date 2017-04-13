@@ -1,3 +1,3 @@
 export { default as seed } from './seed';
-export config from './config';
+export { default as config } from './config';
 export * from './utils';
