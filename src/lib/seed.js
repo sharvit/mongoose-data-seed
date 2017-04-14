@@ -3,7 +3,7 @@ import _ from 'lodash';
 import config from './config';
 import { runSeeders, mustContainUserConfig, getObjectWithSelectedKeys } from './utils';
 
-const seed = selectedSeeders => {
+const seed = (selectedSeeders = {}) => {
   mustContainUserConfig();
 
   const { seedersList } = config.userConfig;
