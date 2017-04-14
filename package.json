@@ -5,12 +5,19 @@
   "main": "index.js",
   "scripts": {
     "build": "babel -d dist/ src/",
-    "test": "xo && ava"
+    "test": "nyc npm run test:run",
+    "test:run": "ava",
+    "test:watch": "npm run test -- --watch",
+    "test:check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "lint": "xo",
+    "clean": "rimraf dist",
+    "slate": "rimraf node_modules && npm install"
   },
   "bin": {
     "md-seed": "./dist/bin/index.js"
   },
   "pre-commit": [
+    "lint",
     "test"
   ],
   "ava": {
@@ -24,6 +31,19 @@
     "babel": "inherit",
     "require": [
       "./src/lib/utils/setup-test-env.js"
+    ]
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "src/**/*.spec.js"
+    ],
+    "reporter": [
+      "lcov",
+      "text",
+      "html"
     ]
   },
   "xo": {
@@ -82,7 +102,9 @@
     "babel-preset-stage-0": "^6.24.1",
     "eslint": "^3.19.0",
     "eslint-config-xo-space": "^0.16.0",
+    "nyc": "^10.2.0",
     "pre-commit": "^1.2.2",
+    "rimraf": "^2.6.1",
     "sinon": "^2.1.0",
     "xo": "^0.18.1"
   }
