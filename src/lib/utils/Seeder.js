@@ -1,4 +1,20 @@
+// Seeder is an Abstract base class
+// in order to use Seeder you need to
+// extend Seeder into your own class and implement async run() method
 class Seeder {
+  constructor() {
+    // Abstract class can not be constructed.
+    // Seeder class should be extended.
+    if (this.constructor === Seeder) {
+      throw new TypeError('Can not construct abstract class.');
+    }
+
+    // Check if run method are implemented.
+    if (this.run === Seeder.prototype.run) {
+      throw new TypeError('Please implement abstract method run.');
+    }
+  }
+
   async seed() {
     await this.beforeRun();
 
@@ -20,7 +36,7 @@ class Seeder {
   }
 
   async run() {
-    throw new Error(`Need to implement ${this.constructor.name} async run() function`);
+    throw new TypeError(`Need to implement ${this.constructor.name} async run() function`);
   }
 
   getStats(results) {
@@ -31,15 +47,15 @@ class Seeder {
     return { run: false, created: 0 };
   }
 
-  static extend(userSeederMethods) {
-    class userSeeder extends Seeder { }
+  static extend(userSeederMethods = {}) {
+    class UserSeeder extends Seeder { }
 
     // Add methods to the user seeder
     Object.keys(userSeederMethods).forEach(key => {
-      userSeeder.prototype[key] = userSeederMethods[key];
+      UserSeeder.prototype[key] = userSeederMethods[key];
     });
 
-    return userSeeder;
+    return UserSeeder;
   }
 }
 

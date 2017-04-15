@@ -1,4 +1,2 @@
-require('babel-register')({
-  plugins: ['babel-plugin-rewire']
-});
+require('babel-register'); // eslint-disable-line import/no-unassigned-import
 require('babel-polyfill'); // eslint-disable-line import/no-unassigned-import

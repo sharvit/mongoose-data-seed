@@ -12,7 +12,7 @@ test.beforeEach(t => {
     Seeder3: {}
   };
 
-  seedModuleRewireAPI.__Rewire__('config', { userConfig: { seedersList: t.context.seedersList } });
+  seedModuleRewireAPI.__Rewire__('config', { userConfigExists: true, userConfig: { seedersList: t.context.seedersList } });
   seedModuleRewireAPI.__Rewire__('mustContainUserConfig', t.context.mustContainUserConfig);
   seedModuleRewireAPI.__Rewire__('runSeeders', t.context.runSeeders);
 });

@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 
-const runSeeders = seeders => {
+const runSeeders = (seeders = {}) => {
   return Observable.create(async observer => {
     for (const name of Object.keys(seeders)) {
       observer.next({ name });
