@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import 'babel-register';  // eslint-disable-line import/no-unassigned-import
 import 'babel-polyfill';  // eslint-disable-line import/no-unassigned-import
 
@@ -13,80 +11,82 @@ import seed from '../../lib/seed';
 import { getOptions } from './options';
 import usageGuide from './usage-guide';
 
-export default function () {
+export default function (argv) {
   mustContainUserConfig();
 
   const { mongoose, mongoURL } = config.userConfig;
-  const { selectedSeeders, dropDatabase, helpWanted } = getOptions(process.argv);
+  const { selectedSeeders, dropDatabase, helpWanted } = getOptions(argv);
 
   if (helpWanted) {
     console.log(usageGuide);
-  } else {
-    run({
-      mongoose,
-      mongoURL,
-      selectedSeeders,
-      dropDatabase
-    });
+    return Promise.resolve();
   }
+
+  return run({
+    mongoose,
+    mongoURL,
+    selectedSeeders,
+    dropDatabase
+  });
 }
 
 function run({ mongoose, mongoURL, selectedSeeders, dropDatabase }) {
   const spinner = new Spinner(`Trying to connect to MongoDB: ${mongoURL}`);
   spinner.start();
 
-  // MongoDB Connection
-  mongoose.connect(mongoURL, error => {
-    spinner.stop();
-
-    if (error) {
-      console.log(`${logSymbols.error} Unable to connected to MongoDB: ${chalk.gray(mongoURL)}`);
-      return process.exit(1);
-    }
-
-    console.log(`${logSymbols.success} Successfully connected to MongoDB: ${chalk.gray(mongoURL)}`);
-
-    if (dropDatabase === true) {
-      spinner.message(`Droping database...`);
-      spinner.start();
-
-      mongoose.connection.db.dropDatabase();
-
+  return new Promise((resolve, reject) => {
+    // MongoDB Connection
+    mongoose.connect(mongoURL, error => {
       spinner.stop();
-      console.log(`${logSymbols.success} Database dropped!`);
-    }
 
-    console.log();
-    console.log(`${chalk.cyan('Seeding Results:')}`);
+      if (error) {
+        return reject(new Error(`${logSymbols.error} Unable to connected to MongoDB: ${chalk.gray(mongoURL)}`));
+      }
 
-    seed(selectedSeeders).subscribe({
-      next: ({ name, results }) => {
+      console.log(`${logSymbols.success} Successfully connected to MongoDB: ${chalk.gray(mongoURL)}`);
+
+      if (dropDatabase === true) {
+        spinner.message(`Droping database...`);
+        spinner.start();
+
+        mongoose.connection.db.dropDatabase();
+
         spinner.stop();
+        console.log(`${logSymbols.success} Database dropped!`);
+      }
 
-        if (results) {
-          const { run, created } = results;
+      console.log();
+      console.log(`${chalk.cyan('Seeding Results:')}`);
 
-          if (run) {
-            console.log(`${logSymbols.success} ${name}: ${chalk.gray(created)}`);
+      seed(selectedSeeders).subscribe({
+        next: ({ name, results }) => {
+          spinner.stop();
+
+          if (results) {
+            const { run, created } = results;
+
+            if (run) {
+              console.log(`${logSymbols.success} ${name}: ${chalk.gray(created)}`);
+            } else {
+              console.log(`${logSymbols.error} ${name}`);
+            }
           } else {
-            console.log(`${logSymbols.error} ${name}`);
+            spinner.message(name);
+            spinner.start();
           }
-        } else {
-          spinner.message(name);
-          spinner.start();
-        }
-      },
-      error: ({ name, error }) => {
-        spinner.stop();
+        },
+        error: ({ name, error }) => {
+          spinner.stop();
 
-        console.log(`${logSymbols.error} ${name}`);
-        console.log();
-        console.log(chalk.red('ERROR'));
-        console.log(error.stack);
+          console.log(`${logSymbols.error} ${name}`);
+          console.log();
+          console.log(chalk.red('ERROR'));
+          console.log(error.stack);
 
-        process.exit(1);
-      },
-      complete: () => process.exit()
+          reject();
+        },
+        complete: () => resolve()
+      });
     });
   });
 }

@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import path from 'path';
 import memFs from 'mem-fs';
 import editor from 'mem-fs-editor';
@@ -11,10 +9,10 @@ import { mustContainUserConfig } from '../../lib/utils';
 import { getOptions } from './options';
 import usageGuide from './usage-guide';
 
-export default function () {
+export default function (argv) {
   mustContainUserConfig();
 
-  const { seederName, helpWanted } = getOptions(process.argv);
+  const { seederName, helpWanted } = getOptions(argv);
 
   if (helpWanted) {
     console.log(usageGuide);
@@ -23,7 +21,8 @@ export default function () {
       console.log(`${chalk.red('ERROR')} Please choose a seeder name`);
       console.log();
       console.log(usageGuide);
-      return process.exit(1);
+
+      throw new Error('exit');
     }
 
     generateSeeder(seederName);
@@ -47,7 +46,7 @@ function generateSeeder(name) {
 
   if (fs.exists(seederFilePath)) {
     console.log(`${chalk.red('ERROR')} ${seederFileRelativePath} are already exists`);
-    return process.exit(0);
+    throw new Error('exit');
   }
 
   fs.copyTpl(templatePath, seederFilePath, { seederName });

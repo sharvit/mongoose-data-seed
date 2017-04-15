@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import _fs from 'fs';
 import path from 'path';
 import memFs from 'mem-fs';
@@ -13,8 +11,8 @@ import config from '../../lib/config';
 import { getOptions } from './options';
 import usageGuide from './usage-guide';
 
-export default function () {
-  let { es6, seedersFolder, helpWanted } = getOptions(process.argv);
+export default function (argv) {
+  let { es6, seedersFolder, helpWanted } = getOptions(argv);
 
   if (helpWanted) {
     console.log(usageGuide);
