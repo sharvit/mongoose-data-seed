@@ -41,7 +41,8 @@
     ],
     "exclude": [
       "**/*.spec.js",
-      "./src/lib/utils/setup-test-env.js"
+      "src/lib/config.js",
+      "src/lib/utils/setup-test-env.js"
     ],
     "reporter": [
       "lcov",
