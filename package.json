@@ -10,9 +10,10 @@
     "test": "cross-env NODE_ENV=test node_modules/.bin/nyc --no-cache node --harmony-proxies node_modules/.bin/ava",
     "test:watch": "npm run test -- --watch",
     "test:check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
-    "test:coveralls": "nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls",
+    "coveralls": "nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls",
     "lint": "xo",
-    "slate": "rimraf node_modules && npm install"
+    "slate": "rimraf node_modules && npm install",
+    "ci": "npm run test && npm run build"
   },
   "bin": {
     "md-seed": "./dist/bin/index.js"
