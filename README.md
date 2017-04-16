@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/sharvit/mongoose-data-seed.svg?branch=master)](https://travis-ci.org/sharvit/mongoose-data-seed)
 [![Coverage Status](https://coveralls.io/repos/github/sharvit/mongoose-data-seed/badge.svg?branch=master)](https://coveralls.io/github/sharvit/mongoose-data-seed?branch=master)
+[![dependencies Status](https://david-dm.org/sharvit/mongoose-data-seed/status.svg)](https://david-dm.org/sharvit/mongoose-data-seed)
+[![devDependencies Status](https://david-dm.org/sharvit/mongoose-data-seed/dev-status.svg)](https://david-dm.org/sharvit/mongoose-data-seed?type=dev)
 
 # mongoose-data-seed
 Seed mongodb with data using mongoose models
