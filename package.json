@@ -13,7 +13,7 @@
     "coveralls": "nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls",
     "lint": "xo",
     "slate": "rimraf node_modules && npm install",
-    "ci": "npm run test && npm run build"
+    "prepublish": "npm run build"
   },
   "bin": {
     "md-seed": "./dist/bin/index.js"
@@ -76,7 +76,7 @@
     "seeder",
     "mongoosejs"
   ],
-  "author": "Avi Sharvit",
+  "author": "Avi Sharvit <sharvita@gmail.com> (https://sharvit.github.io)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sharvit/mongoose-data-seed/issues"

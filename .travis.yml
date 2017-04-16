@@ -1,19 +1,14 @@
 language: node_js
 node_js:
-- iojs
-- node
-- '7'
 - '6'
-- '5'
-- '4'
-script: npm run ci
+script: npm run test
 after_success:
-  - 'npm run coveralls'
-# deploy:
-#   provider: npm
-#   email: sharvita@gmail.com
-#   api_key:
-#     secure: NHQS+V1baUs1Q127Mne925+iEJ7xt1ESRj/4nLUNXeMgGqqTDEitXOw3KDFqdPfwPju2PUzBhHA2i6sLkgwYtU7ZjQXWZjLX/GiPlHXdJZbtC+2SN2Ibb6W6NL1/eZtURVbl9dYUSwizbgJ9QbVdzZDIJ9gjB69bpZz03xeIjF+XJMtIOmTM9KDSJ2MYg2Wu5oW7IiOWm5MkMC8VEbrd+Yv1IsHR/XcH69cVXCmeB+/0vwRR+LUrtOW3QVq6I3BT/k0Yg0AC8C0Pdr7rErdJHtVviA6ATzPWezRSNaJ+lsqJgrPN/UKHamS6WM7M//p576X6APdhPJE6mrylQweNVhdBLpUCVDoDJlAUvIgaAYLpeEmulLKPRKXXQ5UMLClmaUrTil1WZmWFznY+/b/8JCp1BwawTy5v2hSRc0y7FuJ0D7fVKsuICUmhpXFYisOHPo0a9PFbE9pR8jpQMbcvmaSOeTmoyf8rasdSPakSDjhhy8WhqLqHP+hklKI6HuPEBTD7Anwrrkzk9BW9HYhNUwdrjdsAZNen39L23iGOGBrOzMOW/AFwe17afIGz2Zuue6qcogy3GnemUl03pJILOCZAkgswTP3bwzjfZq3RS2aEhlkjv28vIEDHOOI7X7VG6zf6USLhOD+wHybnmfoVc+gJxaIPrQFYQ67gW/zSCyI=
-#   on:
-#     tags: true
-#     repo: sharvit/mongoose-data-seed
+  - npm run coveralls
+deploy:
+  provider: npm
+  email: sharvita@gmail.com
+  api_key:
+    secure: NHQS+V1baUs1Q127Mne925+iEJ7xt1ESRj/4nLUNXeMgGqqTDEitXOw3KDFqdPfwPju2PUzBhHA2i6sLkgwYtU7ZjQXWZjLX/GiPlHXdJZbtC+2SN2Ibb6W6NL1/eZtURVbl9dYUSwizbgJ9QbVdzZDIJ9gjB69bpZz03xeIjF+XJMtIOmTM9KDSJ2MYg2Wu5oW7IiOWm5MkMC8VEbrd+Yv1IsHR/XcH69cVXCmeB+/0vwRR+LUrtOW3QVq6I3BT/k0Yg0AC8C0Pdr7rErdJHtVviA6ATzPWezRSNaJ+lsqJgrPN/UKHamS6WM7M//p576X6APdhPJE6mrylQweNVhdBLpUCVDoDJlAUvIgaAYLpeEmulLKPRKXXQ5UMLClmaUrTil1WZmWFznY+/b/8JCp1BwawTy5v2hSRc0y7FuJ0D7fVKsuICUmhpXFYisOHPo0a9PFbE9pR8jpQMbcvmaSOeTmoyf8rasdSPakSDjhhy8WhqLqHP+hklKI6HuPEBTD7Anwrrkzk9BW9HYhNUwdrjdsAZNen39L23iGOGBrOzMOW/AFwe17afIGz2Zuue6qcogy3GnemUl03pJILOCZAkgswTP3bwzjfZq3RS2aEhlkjv28vIEDHOOI7X7VG6zf6USLhOD+wHybnmfoVc+gJxaIPrQFYQ67gW/zSCyI=
+  on:
+    tags: true
+    repo: sharvit/mongoose-data-seed
