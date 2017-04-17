@@ -106,5 +106,10 @@ export const seedersList = {
 };
 ```
 
+## Examples
+
+1. [md-seed-example-es2015-babel](https://github.com/sharvit/mongoose-data-seed/tree/master/examples/md-seed-example-es2015-babel)
+2. [md-seed-example-es5](https://github.com/sharvit/mongoose-data-seed/tree/master/examples/md-seed-example-es5)
+
 ## License
 MIT
