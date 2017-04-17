@@ -33,7 +33,7 @@ function generateSeeder(name) {
   const { useEs6Generator, userSeedersFolderName, userSeedersFolderPath } = config;
 
   const seederName = _.upperFirst(_.camelCase(name));
-  const seederFileName = `${seederName}.seeder.js`;
+  const seederFileName = `${_.kebabCase(name)}.seeder.js`;
   const seederFilePath = path.join(userSeedersFolderPath, seederFileName);
   const seederFileRelativePath = path.join(userSeedersFolderName, seederFileName);
   const templatePath = useEs6Generator ?
