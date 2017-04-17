@@ -10,6 +10,8 @@
 # mongoose-data-seed
 Seed mongodb with data using mongoose models
 
+![cli example using md-seed run](md-seed-run-example.gif)
+
 ## Install
 
 ```shell
