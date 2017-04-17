@@ -17,7 +17,7 @@ npm install --save mongoose-data-seed
 md-seed init
 ```
 
-`md-seed init` will ask tou to choose a folder for your seeders and whether to use ES6/2015 syntax.
+`md-seed init` will ask you to choose a folder for your seeders and whether to use ES6/2015 syntax.
 ES6/2015 reqruire babel.
 `md-seed init` will create the `seeders` folder, generate `md-seed-config.js` and `md-seed-generator.json`.
 
