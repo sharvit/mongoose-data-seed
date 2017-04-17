@@ -4,7 +4,9 @@ import { optionDefinitions } from './options';
 const usageGuide = generateUsageGuide([
   {
     header: 'Initialize mongoose-data-seed',
-    content: 'Generate md-seed-config.js, md-seed-generator.js and create seeders folder'
+    content:
+      `Install mongoose-data-seed into your project.
+      Generate md-seed-config.js, md-seed-generator.js and create seeders folder`
   }, {
     header: 'Synopsis',
     content: [
