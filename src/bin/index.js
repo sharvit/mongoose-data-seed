@@ -30,7 +30,7 @@ try {
         .then(
           () => process.exit(),
           err => {
-            if (err.message) {
+            if (err && err.message) {
               console.log(err.message);
             }
 
