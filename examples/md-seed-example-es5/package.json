@@ -1,0 +1,18 @@
+{
+  "name": "md-seed-example-es5",
+  "version": "1.0.0",
+  "description": "Example of using mongoose-data-seed with ES5 syntax",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Avi Sharvit <sharvita@gmail.com> (https://sharvit.github.io)",
+  "license": "MIT",
+  "dependencies": {
+    "crypto": "0.0.3",
+    "faker": "^4.1.0",
+    "mongoose": "^4.9.5",
+    "uid2": "0.0.3"
+  },
+  "devDependencies": {}
+}

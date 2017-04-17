@@ -1,10 +1,10 @@
-import crypto from 'crypto';
-import uid from 'uid2';
-import mongoose from 'mongoose';
+var crypto = require('crypto');
+var uid = require('uid2');
+var mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+var userSchema = new Schema({
 
   email: {
     type: String,
@@ -96,27 +96,27 @@ userSchema.pre('validate', function (next) {
  */
 userSchema.methods = {
 
-  authenticate(password) {
+  authenticate: function(password) {
     return this.encryptPassword(password) === this.hashedPassword;
   },
 
-  encryptPassword(password) {
+  encryptPassword: function(password) {
     return this
       .constructor
       .encryptPasswordWithSalt(password, this.salt)
     ;
   },
 
-  updateAccessToken() {
+  updateAccessToken: function() {
     this.accessToken = uid(256);
   },
 
-  signOut() {
+  signOut: function() {
     this.updateAccessToken();
 
     return this
       .save()
-      .then(() => null)
+      .then(function () { return null; })
     ;
   }
 };
@@ -126,7 +126,7 @@ userSchema.methods = {
  */
 userSchema.statics = {
 
-  signUp(email, password, passwordConfirmation) {
+  signUp: function(email, password, passwordConfirmation) {
     const User = this;
 
     const newUser = new User({ email, password, passwordConfirmation });
@@ -134,14 +134,14 @@ userSchema.statics = {
     return newUser.save();
   },
 
-  signIn(email, password) {
+  signIn: function(email, password) {
     const User = this;
 
     return User
       .load({
         criteria: { email }
       })
-      .then(user => {
+      .then(function (user) {
         if (!user) {
           return Promise.reject(new Error({ email: { WrongEmail: 'wrong email address' } }));
         }
@@ -156,7 +156,7 @@ userSchema.statics = {
     ;
   },
 
-  authorize(accessToken) {
+  authorize: function(accessToken) {
     const User = this;
 
     if (typeof accessToken !== 'string' || accessToken.length < 10) {
@@ -168,7 +168,7 @@ userSchema.statics = {
     });
   },
 
-  encryptPasswordWithSalt(password, salt) {
+  encryptPasswordWithSalt: function(password, salt) {
     if (!password) {
       return '';
     }
@@ -184,17 +184,19 @@ userSchema.statics = {
     }
   },
 
-  generateSalt() {
+  generateSalt: function() {
     return `${Math.round((new Date().valueOf() * Math.random()))}`;
   },
 
-  load({ criteria, select } = {}) {
+  load: function(options) {
+    options = options || {};
+
     return this
-      .findOne(criteria)
-      .select(select)
+      .findOne(options.criteria)
+      .select(options.select)
       .exec()
     ;
   }
 };
 
-export default mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);

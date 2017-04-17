@@ -10,9 +10,6 @@
   "license": "MIT",
   "xo": {
     "extends": "xo-space",
-    "ignores": [
-      "templates/*"
-    ],
     "rules": {
       "object-curly-spacing": [
         "error",

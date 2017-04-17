@@ -3,7 +3,7 @@ import faker from 'faker/locale/en_US';
 import { Seeder } from '../../../';
 import { Post, User } from '../server/models';
 
-const tags = ['tag1', 'tag2', 'tag3', 'tag4', 'tag5'];
+const TAGS = ['tag1', 'tag2', 'tag3', 'tag4', 'tag5'];
 
 class PostsSeeder extends Seeder {
 
@@ -27,7 +27,7 @@ class PostsSeeder extends Seeder {
       const randomTagsCount = faker.random.number({ min: 0, max: 5, precision: 1 });
       const randomTags = Array
         .apply(null, Array(randomTagsCount))
-        .map(() => faker.random.arrayElement(tags))
+        .map(() => faker.random.arrayElement(TAGS))
         .join(',')
       ;
 

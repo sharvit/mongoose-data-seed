@@ -55,7 +55,8 @@
   "xo": {
     "extends": "xo-space",
     "ignores": [
-      "templates/*"
+      "templates/**/*",
+      "examples/**/*"
     ],
     "rules": {
       "object-curly-spacing": [
