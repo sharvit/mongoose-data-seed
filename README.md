@@ -1,7 +1,10 @@
 [![Build Status](https://travis-ci.org/sharvit/mongoose-data-seed.svg?branch=master)](https://travis-ci.org/sharvit/mongoose-data-seed)
 [![Coverage Status](https://coveralls.io/repos/github/sharvit/mongoose-data-seed/badge.svg?branch=master)](https://coveralls.io/github/sharvit/mongoose-data-seed?branch=master)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![dependencies Status](https://david-dm.org/sharvit/mongoose-data-seed/status.svg)](https://david-dm.org/sharvit/mongoose-data-seed)
 [![devDependencies Status](https://david-dm.org/sharvit/mongoose-data-seed/dev-status.svg)](https://david-dm.org/sharvit/mongoose-data-seed?type=dev)
+[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
+
 
 # mongoose-data-seed
 Seed mongodb with data using mongoose models
