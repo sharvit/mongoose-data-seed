@@ -40,6 +40,13 @@ Or run specific seeders
 md-seed run users posts comments
 ```
 
+## Options
+
+Drop the database before seeding
+```shell
+md-seed run --dropdb
+```
+
 ## Seeder Example
 
 ```javascript
