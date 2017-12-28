@@ -8,7 +8,7 @@ test('should be completed with no values when suplying no seeders', t => {
   runSeeders().subscribe({
     next: () => t.fail(),
     error: () => t.fail(),
-    complete: () => t.pass()
+    complete: () => t.pass(),
   });
 });
 
@@ -16,7 +16,9 @@ test('should be completed with values and no erros', t => {
   t.plan(4);
 
   const seeders = {
-    Seeder1: Seeder.extend({ run: sinon.stub().returns(Promise.resolve(['', ''])) })
+    Seeder1: Seeder.extend({
+      run: sinon.stub().returns(Promise.resolve(['', ''])),
+    }),
   };
 
   return new Promise((resolve, reject) => {
@@ -34,7 +36,7 @@ test('should be completed with values and no erros', t => {
       complete: () => {
         t.pass();
         resolve();
-      }
+      },
     });
   });
 });
@@ -43,8 +45,10 @@ test('should run 2 seeders while last is failed', t => {
   t.plan(5);
 
   const seeders = {
-    Seeder1: Seeder.extend({ run: sinon.stub().returns(Promise.resolve([''])) }),
-    Seeder2: Seeder.extend({})
+    Seeder1: Seeder.extend({
+      run: sinon.stub().returns(Promise.resolve([''])),
+    }),
+    Seeder2: Seeder.extend({}),
   };
 
   return new Promise(resolve => {
@@ -78,7 +82,7 @@ test('should run 2 seeders while last is failed', t => {
       complete: () => {
         t.pass();
         resolve();
-      }
+      },
     });
   });
 });

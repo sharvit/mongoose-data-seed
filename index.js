@@ -3,5 +3,5 @@ const Seeder = require('./dist/lib/utils/seeder').default;
 
 module.exports = {
   seed,
-  Seeder
+  Seeder,
 };

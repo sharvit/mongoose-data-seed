@@ -7,18 +7,22 @@ export const optionDefinitions = [
     type: String,
     defaultOption: true,
     typeLabel: 'name',
-    description: 'Seeder name to generate'
-  }, {
+    description: 'Seeder name to generate',
+  },
+  {
     name: 'help',
     alias: 'h',
     type: Boolean,
     defaultValue: false,
-    description: 'Show usage guide'
-  }
+    description: 'Show usage guide',
+  },
 ];
 
 export const getOptions = argv => {
-  const { name: seederName, help: helpWanted } = commandLineArgs(optionDefinitions, { argv });
+  const { name: seederName, help: helpWanted } = commandLineArgs(
+    optionDefinitions,
+    { argv }
+  );
 
   return { seederName, helpWanted };
 };

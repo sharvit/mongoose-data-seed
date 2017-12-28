@@ -4,14 +4,15 @@ import { Seeder } from '../../../';
 import { User, Post } from '../server/models';
 
 class CommentsSeeder extends Seeder {
-
   async beforeRun() {
     this.users = await User.find({}).exec();
     this.posts = await Post.find({}).exec();
   }
 
   async shouldRun() {
-    return Post.count({ comments: { $gt: 0 } }).exec().then(count => count === 0);
+    return Post.count({ comments: { $exists: false } })
+      .exec()
+      .then(count => count === 0);
   }
 
   async run() {
@@ -31,12 +32,15 @@ class CommentsSeeder extends Seeder {
   }
 
   _generateCommentList() {
-    const randomCommentsCount = faker.random.number({ min: 0, max: 10, precision: 1 });
+    const randomCommentsCount = faker.random.number({
+      min: 0,
+      max: 10,
+      precision: 1,
+    });
 
-    return Array
-      .apply(null, Array(randomCommentsCount))
-      .map(() => this._generateCommentItem())
-    ;
+    return Array.apply(null, Array(randomCommentsCount)).map(() =>
+      this._generateCommentItem()
+    );
   }
 
   _generateCommentItem() {
@@ -45,7 +49,7 @@ class CommentsSeeder extends Seeder {
 
     return {
       author,
-      body
+      body,
     };
   }
 }

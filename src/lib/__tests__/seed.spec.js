@@ -9,11 +9,17 @@ test.beforeEach(t => {
   t.context.seedersList = {
     Seeder1: {},
     Seeder2: {},
-    Seeder3: {}
+    Seeder3: {},
   };
 
-  seedModuleRewireAPI.__Rewire__('config', { userConfigExists: true, userConfig: { seedersList: t.context.seedersList } });
-  seedModuleRewireAPI.__Rewire__('mustContainUserConfig', t.context.mustContainUserConfig);
+  seedModuleRewireAPI.__Rewire__('config', {
+    userConfigExists: true,
+    userConfig: { seedersList: t.context.seedersList },
+  });
+  seedModuleRewireAPI.__Rewire__(
+    'mustContainUserConfig',
+    t.context.mustContainUserConfig
+  );
   seedModuleRewireAPI.__Rewire__('runSeeders', t.context.runSeeders);
 });
 

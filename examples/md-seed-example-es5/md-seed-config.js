@@ -9,7 +9,6 @@ var CommentsSeeder = require('./seeders/comments.seeder');
 mongooseLib.Promise = global.Promise || Promise;
 
 module.exports = {
-
   // Export the mongoose lib
   mongoose: mongooseLib,
 
@@ -24,6 +23,6 @@ module.exports = {
   seedersList: {
     Users: UsersSeeder,
     Posts: PostsSeeder,
-    Comments: CommentsSeeder
-  }
+    Comments: CommentsSeeder,
+  },
 };

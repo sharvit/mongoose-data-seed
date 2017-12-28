@@ -6,23 +6,23 @@ var User = require('../server/models').User;
 var Post = require('../server/models').Post;
 
 var CommentsSeeder = Seeder.extend({
-  beforeRun: function () {
+  beforeRun: function() {
     var _this = this;
 
-    return Promise
-      .resolve()
-      .then(function () {
+    return Promise.resolve()
+      .then(function() {
         return _this._loadUsers();
       })
-      .then(function () {
+      .then(function() {
         return _this._loadPosts();
-      })
-    ;
+      });
   },
-  shouldRun: function () {
-    return Post.count({ comments: { $gt: 0 } }).exec().then(count => count === 0);
+  shouldRun: function() {
+    return Post.count({ comments: { $gt: 0 } })
+      .exec()
+      .then(count => count === 0);
   },
-  run: function () {
+  run: function() {
     var results = [];
 
     for (var postsIndex = 0; postsIndex < this.posts.length; postsIndex++) {
@@ -30,7 +30,11 @@ var CommentsSeeder = Seeder.extend({
 
       var comments = this._generateCommentList();
 
-      for (var commentsIndex = 0; commentsIndex < comments.length; commentsIndex++) {
+      for (
+        var commentsIndex = 0;
+        commentsIndex < comments.length;
+        commentsIndex++
+      ) {
         var comment = comments[commentsIndex];
 
         const result = post.addComment(comment);
@@ -41,32 +45,32 @@ var CommentsSeeder = Seeder.extend({
 
     return Promise.all(results);
   },
-  _loadUsers: function () {
+  _loadUsers: function() {
     var _this = this;
 
-    return User
-      .find({})
+    return User.find({})
       .exec()
-      .then(function (users) {
+      .then(function(users) {
         _this.users = users;
-      })
-    ;
+      });
   },
-  _loadPosts: function () {
+  _loadPosts: function() {
     var _this = this;
 
-    return Post
-      .find({})
+    return Post.find({})
       .exec()
-      .then(function (posts) {
+      .then(function(posts) {
         _this.posts = posts;
-      })
-    ;
+      });
   },
-  _generateCommentList: function () {
+  _generateCommentList: function() {
     var comments = [];
 
-    var randomCommentsCount = faker.random.number({ min: 0, max: 10, precision: 1 });
+    var randomCommentsCount = faker.random.number({
+      min: 0,
+      max: 10,
+      precision: 1,
+    });
 
     for (var i = 0; i < randomCommentsCount; i++) {
       comments.push(this._generateCommentItem());
@@ -74,12 +78,12 @@ var CommentsSeeder = Seeder.extend({
 
     return comments;
   },
-  _generateCommentItem: function () {
+  _generateCommentItem: function() {
     return {
       author: faker.random.arrayElement(this.users),
-      body: faker.lorem.sentence()
+      body: faker.lorem.sentence(),
     };
-  }
+  },
 });
 
 module.exports = CommentsSeeder;

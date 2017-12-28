@@ -6,7 +6,7 @@ test('should get similar object with the selected keys', t => {
   const testObj = {
     key1: '',
     key2: '',
-    key3: ''
+    key3: '',
   };
 
   const results = getObjectWithSelectedKeys(testObj, ['key1', 'key3']);

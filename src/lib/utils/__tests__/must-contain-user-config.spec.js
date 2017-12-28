@@ -1,6 +1,9 @@
 import test from 'ava';
 
-import { default as mustContainUserConfig, __RewireAPI__ as moduleRewireAPI } from '../must-contain-user-config'; // eslint-disable-line import/named
+import {
+  default as mustContainUserConfig,
+  __RewireAPI__ as moduleRewireAPI,
+} from '../must-contain-user-config'; // eslint-disable-line import/named
 
 test.serial('should not throw error if user config exists', async t => {
   moduleRewireAPI.__Rewire__('config', { userConfigExists: true });

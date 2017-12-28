@@ -9,7 +9,7 @@ import { mustContainUserConfig } from '../../lib/utils';
 import { getOptions } from './options';
 import usageGuide from './usage-guide';
 
-export default function (argv) {
+export default function(argv) {
   mustContainUserConfig();
 
   const { seederName, helpWanted } = getOptions(argv);
@@ -17,7 +17,7 @@ export default function (argv) {
   if (helpWanted) {
     console.log(usageGuide);
   } else {
-    if ((typeof seederName !== 'string') || (_.trim(seederName).length < 3)) {
+    if (typeof seederName !== 'string' || _.trim(seederName).length < 3) {
       console.log(`${chalk.red('ERROR')} Please choose a seeder name`);
       console.log();
       console.log(usageGuide);
@@ -30,22 +30,30 @@ export default function (argv) {
 }
 
 function generateSeeder(name) {
-  const { useEs6Generator, userSeedersFolderName, userSeedersFolderPath } = config;
+  const {
+    useEs6Generator,
+    userSeedersFolderName,
+    userSeedersFolderPath,
+  } = config;
 
   const seederName = _.upperFirst(_.camelCase(name));
   const seederFileName = `${_.kebabCase(name)}.seeder.js`;
   const seederFilePath = path.join(userSeedersFolderPath, seederFileName);
-  const seederFileRelativePath = path.join(userSeedersFolderName, seederFileName);
-  const templatePath = useEs6Generator ?
-    path.join(__dirname, '../../../templates/seeder.es6.js') :
-    path.join(__dirname, '../../../templates/seeder.js')
-  ;
+  const seederFileRelativePath = path.join(
+    userSeedersFolderName,
+    seederFileName
+  );
+  const templatePath = useEs6Generator
+    ? path.join(__dirname, '../../../templates/seeder.es6.js')
+    : path.join(__dirname, '../../../templates/seeder.js');
 
   const store = memFs.create();
   const fs = editor.create(store);
 
   if (fs.exists(seederFilePath)) {
-    console.log(`${chalk.red('ERROR')} ${seederFileRelativePath} are already exists`);
+    console.log(
+      `${chalk.red('ERROR')} ${seederFileRelativePath} are already exists`
+    );
     throw new Error('exit');
   }
 
@@ -55,4 +63,3 @@ function generateSeeder(name) {
     console.log(`${chalk.green('CREATED')} ${seederFileRelativePath}`);
   });
 }
-

@@ -1,5 +1,5 @@
-import 'babel-register';  // eslint-disable-line import/no-unassigned-import
-import 'babel-polyfill';  // eslint-disable-line import/no-unassigned-import
+import 'babel-register';
+import 'babel-polyfill';
 
 import chalk from 'chalk';
 import logSymbols from 'log-symbols';
@@ -11,7 +11,7 @@ import seed from '../../lib/seed';
 import { getOptions } from './options';
 import usageGuide from './usage-guide';
 
-export default function (argv) {
+export default function(argv) {
   mustContainUserConfig();
 
   const { mongoose, mongoURL } = config.userConfig;
@@ -26,7 +26,7 @@ export default function (argv) {
     mongoose,
     mongoURL,
     selectedSeeders,
-    dropDatabase
+    dropDatabase,
   });
 }
 
@@ -40,10 +40,20 @@ function run({ mongoose, mongoURL, selectedSeeders, dropDatabase }) {
       spinner.stop();
 
       if (error) {
-        return reject(new Error(`${logSymbols.error} Unable to connected to MongoDB: ${chalk.gray(mongoURL)}`));
+        return reject(
+          new Error(
+            `${logSymbols.error} Unable to connected to MongoDB: ${chalk.gray(
+              mongoURL
+            )}`
+          )
+        );
       }
 
-      console.log(`${logSymbols.success} Successfully connected to MongoDB: ${chalk.gray(mongoURL)}`);
+      console.log(
+        `${logSymbols.success} Successfully connected to MongoDB: ${chalk.gray(
+          mongoURL
+        )}`
+      );
 
       if (dropDatabase === true) {
         spinner.message(`Droping database...`);
@@ -66,7 +76,9 @@ function run({ mongoose, mongoURL, selectedSeeders, dropDatabase }) {
             const { run, created } = results;
 
             if (run) {
-              console.log(`${logSymbols.success} ${name}: ${chalk.gray(created)}`);
+              console.log(
+                `${logSymbols.success} ${name}: ${chalk.gray(created)}`
+              );
             } else {
               console.log(`${logSymbols.error} ${name}`);
             }
@@ -83,9 +95,9 @@ function run({ mongoose, mongoURL, selectedSeeders, dropDatabase }) {
           console.log(chalk.red('ERROR'));
           console.log(error.stack);
 
-          reject();
+          reject(error);
         },
-        complete: () => resolve()
+        complete: () => resolve(),
       });
     });
   });

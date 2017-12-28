@@ -4,18 +4,20 @@ import { optionDefinitions } from './options';
 const usageGuide = generateUsageGuide([
   {
     header: 'Generate Seeder',
-    content: 'Generate new seeder file into the seeder folder.'
-  }, {
+    content: 'Generate new seeder file into the seeder folder.',
+  },
+  {
     header: 'Synopsis',
     content: [
       '$ md-seed generate [underline]{seeder-name}',
       '$ md-seed g [underline]{seeder-name}',
-      '$ md-seed g [bold]{--help}'
-    ]
-  }, {
+      '$ md-seed g [bold]{--help}',
+    ],
+  },
+  {
     header: 'Options',
-    optionList: optionDefinitions
-  }
+    optionList: optionDefinitions,
+  },
 ]);
 
 export default usageGuide;

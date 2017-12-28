@@ -6,11 +6,14 @@ const workingDir = process.cwd();
 const projectRoot = findRoot(workingDir);
 
 const userGeneratorConfigFilename = 'md-seed-generator.json';
-const userGeneratorConfigFilepath = path.join(projectRoot, userGeneratorConfigFilename);
+const userGeneratorConfigFilepath = path.join(
+  projectRoot,
+  userGeneratorConfigFilename
+);
 const userGeneratorConfigExists = fs.existsSync(userGeneratorConfigFilepath);
 const {
   es6: useEs6Generator = true,
-  seedersFolder: userSeedersFolderName = 'seeders'
+  seedersFolder: userSeedersFolderName = 'seeders',
 } = userGeneratorConfigExists ? require(userGeneratorConfigFilepath) : {};
 
 const userSeedersFolderPath = path.join(projectRoot, userSeedersFolderName);
@@ -33,7 +36,7 @@ const config = {
   userSeedersFolderName,
   userSeedersFolderPath,
   userConfigExists,
-  userConfig
+  userConfig,
 };
 
 export default config;

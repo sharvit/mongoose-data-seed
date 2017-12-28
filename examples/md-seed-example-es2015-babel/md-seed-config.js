@@ -22,5 +22,5 @@ export const mongoURL = config.mongoURL;
 export const seedersList = {
   Users,
   Posts,
-  Comments
+  Comments,
 };

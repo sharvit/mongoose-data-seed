@@ -43,10 +43,11 @@ test('getStats should return stats when providing results args', t => {
 
 test('static extend method should create a new class based on the Seeder class with the given methods', async t => {
   const MySeeder = Seeder.extend({
-    run: sinon.stub().returns(Promise.resolve('run work'))
+    run: sinon.stub().returns(Promise.resolve('run work')),
   });
 
-  const baseClassName = Object.getPrototypeOf(MySeeder.prototype.constructor).name;
+  const baseClassName = Object.getPrototypeOf(MySeeder.prototype.constructor)
+    .name;
 
   t.is(baseClassName, 'Seeder');
   t.is(await MySeeder.prototype.run(), 'run work');
@@ -57,7 +58,8 @@ test('static extend method should create a new class based on the Seeder class w
 
   MySeeder.prototype.run = sinon.stub().returns(Promise.resolve('run work'));
 
-  const baseClassName = Object.getPrototypeOf(MySeeder.prototype.constructor).name;
+  const baseClassName = Object.getPrototypeOf(MySeeder.prototype.constructor)
+    .name;
 
   t.is(baseClassName, 'Seeder');
   t.is(await MySeeder.prototype.run(), 'run work');
