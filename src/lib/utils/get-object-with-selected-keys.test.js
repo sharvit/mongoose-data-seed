@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import getObjectWithSelectedKeys from '../get-object-with-selected-keys';
+import getObjectWithSelectedKeys from './get-object-with-selected-keys';
 
 test('should get similar object with the selected keys', t => {
   const testObj = {

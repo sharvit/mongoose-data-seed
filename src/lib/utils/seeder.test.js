@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import { default as Seeder } from '../seeder';
+import { default as Seeder } from './seeder';
 
 test('should throw error when trying to create new instance of Seeder', t => {
   t.throws(() => new Seeder(), TypeError);

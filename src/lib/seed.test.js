@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import { default as seed, __RewireAPI__ as seedModuleRewireAPI } from '../seed'; // eslint-disable-line import/named
+import { default as seed, __RewireAPI__ as seedModuleRewireAPI } from './seed'; // eslint-disable-line import/named
 
 test.beforeEach(t => {
   t.context.mustContainUserConfig = sinon.spy();
