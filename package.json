@@ -4,16 +4,16 @@
   "description": "Seed mongodb with data using mongoose models",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build:clean && npm run build:dist",
+    "build": "yarn build:clean && yarn build:dist",
     "build:clean": "rimraf dist",
     "build:dist": "babel src/ --out-dir dist/ --ignore 'src/**/*.spec.js'",
     "test": "cross-env NODE_ENV=test nyc --no-cache ava",
-    "test:watch": "npm run test -- --watch",
+    "test:watch": "yarn test --watch",
     "test:check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint --max-warnings 0 .",
     "slate": "rimraf node_modules && yarn",
-    "prepare": "npm run build"
+    "prepare": "yarn build"
   },
   "bin": {
     "md-seed": "./dist/bin/index.js"
@@ -32,7 +32,8 @@
     "failFast": true,
     "babel": "inherit",
     "require": [
-      "./src/lib/utils/setup-test-env.js"
+      "babel-register",
+      "babel-polyfill"
     ]
   },
   "nyc": {
