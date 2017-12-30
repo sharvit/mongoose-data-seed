@@ -1,8 +1,8 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import runSeeders from '../run-seeders';
-import Seeder from '../seeder';
+import runSeeders from './run-seeders';
+import Seeder from './seeder';
 
 test('should be completed with no values when suplying no seeders', t => {
   runSeeders().subscribe({

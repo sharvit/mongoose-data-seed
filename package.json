@@ -6,7 +6,7 @@
   "scripts": {
     "build": "yarn build:clean && yarn build:dist",
     "build:clean": "rimraf dist",
-    "build:dist": "babel src/ --out-dir dist/ --ignore 'src/**/*.spec.js'",
+    "build:dist": "babel src/ --out-dir dist/ --ignore 'src/**/*.test.js'",
     "test": "cross-env NODE_ENV=test nyc --no-cache ava",
     "test:watch": "yarn test --watch",
     "test:check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
@@ -24,7 +24,7 @@
   ],
   "ava": {
     "files": [
-      "src/lib/**/*.spec.js"
+      "src/lib/**/*.test.js"
     ],
     "source": [
       "src/lib/**/*.js"
@@ -43,9 +43,8 @@
       "src/**/*.js"
     ],
     "exclude": [
-      "**/*.spec.js",
-      "src/lib/config.js",
-      "src/lib/utils/setup-test-env.js"
+      "**/*.test.js",
+      "src/lib/config.js"
     ],
     "reporter": [
       "lcov",
