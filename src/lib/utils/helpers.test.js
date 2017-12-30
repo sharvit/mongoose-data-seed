@@ -1,9 +1,23 @@
 import test from 'ava';
 
 import {
-  default as mustContainUserConfig,
+  getObjectWithSelectedKeys,
+  mustContainUserConfig,
   __RewireAPI__ as moduleRewireAPI,
-} from './must-contain-user-config'; // eslint-disable-line import/named
+} from './helpers'; // eslint-disable-line import/named
+
+test('should get similar object with the selected keys', t => {
+  const testObj = {
+    key1: '',
+    key2: '',
+    key3: '',
+  };
+
+  const results = getObjectWithSelectedKeys(testObj, ['key1', 'key3']);
+  const expectedResults = { key1: testObj.key1, key3: testObj.key3 };
+
+  t.deepEqual(results, expectedResults);
+});
 
 test.serial('should not throw error if user config exists', async t => {
   moduleRewireAPI.__Rewire__('config', { userConfigExists: true });
