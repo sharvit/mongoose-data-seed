@@ -36,7 +36,7 @@ function run({ mongoose, mongoURL, selectedSeeders, dropDatabase }) {
 
   return new Promise((resolve, reject) => {
     // MongoDB Connection
-    mongoose.connect(mongoURL, error => {
+    mongoose.connect(mongoURL, { useMongoClient: true }, error => {
       spinner.stop();
 
       if (error) {
