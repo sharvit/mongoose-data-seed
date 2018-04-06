@@ -3,7 +3,7 @@ import _ from 'lodash';
 import config from './config';
 import {
   runSeeders,
-  mustContainUserConfig,
+  validateUserConfig,
   getObjectWithSelectedKeys,
 } from './utils';
 
@@ -12,7 +12,7 @@ const seed = selectedSeeders => {
     selectedSeeders = [];
   }
 
-  mustContainUserConfig();
+  validateUserConfig();
 
   const { seedersList } = config.userConfig;
 

@@ -1,6 +1,4 @@
-import commandLineArgs from 'command-line-args';
-
-export const optionDefinitions = [
+const optionDefinitions = [
   {
     name: 'seeders',
     alias: 's',
@@ -27,14 +25,4 @@ export const optionDefinitions = [
   },
 ];
 
-export const getOptions = argv => {
-  const {
-    seeders: selectedSeeders,
-    dropdb: dropDatabase,
-    help: helpWanted,
-  } = commandLineArgs(optionDefinitions, { argv });
-
-  return { selectedSeeders, dropDatabase, helpWanted };
-};
-
-export default getOptions;
+export default optionDefinitions;
