@@ -6,4 +6,4 @@ npm-debug.log
 .env
 .coveralls.yml
 .DS_Store
-
+package-lock.json

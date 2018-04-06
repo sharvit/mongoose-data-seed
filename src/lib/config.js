@@ -24,6 +24,20 @@ const userConfigExists = fs.existsSync(userConfigFilepath);
 
 const userConfig = userConfigExists ? require(userConfigFilepath) : null;
 
+const seederTemplate = useEs6Generator
+  ? path.join(__dirname, '../../templates/seeder.es6.js')
+  : path.join(__dirname, '../../templates/seeder.js');
+
+const es6ConfigTemplate = path.join(
+  __dirname,
+  '../../templates/md-seed-config.es6.js'
+);
+
+const es5ConfigTemplate = path.join(
+  __dirname,
+  '../../templates/md-seed-config.js'
+);
+
 const config = {
   workingDir,
   projectRoot,
@@ -37,6 +51,9 @@ const config = {
   userSeedersFolderPath,
   userConfigExists,
   userConfig,
+  seederTemplate,
+  es6ConfigTemplate,
+  es5ConfigTemplate,
 };
 
 export default config;

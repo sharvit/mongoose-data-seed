@@ -24,6 +24,10 @@ const usageGuide = generateUsageGuide([
         command: 'run',
         description: 'Run seeders.',
       },
+      {
+        command: 'h, help',
+        description: 'Show help',
+      },
     ],
   },
 ]);

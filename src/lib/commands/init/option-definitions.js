@@ -1,6 +1,4 @@
-import commandLineArgs from 'command-line-args';
-
-export const optionDefinitions = [
+const optionDefinitions = [
   {
     name: 'es6',
     type: Boolean,
@@ -21,13 +19,4 @@ export const optionDefinitions = [
   },
 ];
 
-export const getOptions = argv => {
-  const { es6, seedersFolder, help: helpWanted } = commandLineArgs(
-    optionDefinitions,
-    { argv }
-  );
-
-  return { es6, seedersFolder, helpWanted };
-};
-
-export default getOptions;
+export default optionDefinitions;

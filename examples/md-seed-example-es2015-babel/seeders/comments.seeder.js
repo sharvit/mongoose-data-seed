@@ -12,7 +12,7 @@ class CommentsSeeder extends Seeder {
   async shouldRun() {
     return Post.countDocuments({ comments: { $exists: false } })
       .exec()
-      .then(count => count === 0);
+      .then(count => count > 0);
   }
 
   async run() {

@@ -1,5 +1,9 @@
 {
   "presets": ["env"],
+  "plugins": [
+    "transform-object-rest-spread",
+    "transform-class-properties"
+  ],
   "env": {
     "test": {
       "plugins": ["istanbul", "rewire"]
