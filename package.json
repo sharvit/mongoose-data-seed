@@ -6,7 +6,7 @@
   "scripts": {
     "build": "yarn build:clean && yarn build:dist",
     "build:clean": "rimraf dist",
-    "build:dist": "babel src/ --out-dir dist/ --ignore 'src/**/*.test.js','src/**/__mocks__/*','src/lib/utils/test-helpers.js'",
+    "build:dist": "babel src/ --out-dir dist/ --ignore 'src/**/*.test.js','src/e2e/*','src/**/__mocks__/*','src/lib/utils/test-helpers.js'",
     "test": "cross-env NODE_ENV=test nyc --no-cache ava",
     "test:watch": "yarn test --watch",
     "test:check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
@@ -23,7 +23,8 @@
   ],
   "ava": {
     "files": [
-      "src/**/*.test.js"
+      "src/e2e/*.e2e.js",
+      "src/lib/**/*.test.js"
     ],
     "source": [
       "src/**/*.js"
@@ -44,6 +45,7 @@
     "exclude": [
       "**/*.test.js",
       "**/__mocks__/**/*",
+      "src/e2e/**/*",
       "src/lib/config.js",
       "src/lib/utils/test-helpers.js"
     ],
@@ -108,6 +110,8 @@
     "eslint-plugin-node": "^5.2.1",
     "eslint-plugin-prettier": "^2.4.0",
     "eslint-plugin-promise": "^3.6.0",
+    "mongoose": "^5.0.16",
+    "ncp": "^2.0.0",
     "nyc": "^11.0.3",
     "pre-commit": "^1.2.2",
     "prettier": "^1.12.1",
