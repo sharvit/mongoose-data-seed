@@ -86,7 +86,9 @@ export default class SeederGenerator {
   }
 
   _copySeederTemplate() {
-    const { seederName, seederTemplate, seederFilePath } = this;
+    const { seederName, seederFilePath } = this;
+    const { seederTemplate } = this.options;
+
     const templateArgs = { seederName };
 
     this.fs.copyTpl(seederTemplate, seederFilePath, templateArgs);

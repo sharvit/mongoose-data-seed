@@ -218,7 +218,12 @@ test('should copy seeder template', async t => {
   const { seederName, seederTemplate, seederFilePath } = helperData;
 
   const fs = { copyTpl: sinon.spy() };
-  const context = { fs, seederName, seederTemplate, seederFilePath };
+  const context = {
+    fs,
+    seederName,
+    seederFilePath,
+    options: { seederTemplate },
+  };
 
   SeederGenerator.prototype._copySeederTemplate.call(context);
 

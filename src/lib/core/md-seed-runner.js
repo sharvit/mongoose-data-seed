@@ -85,7 +85,7 @@ export default class MdSeedRunner {
       await new Promise((resolve, reject) =>
         this.mongoose.connect(
           mongoURL,
-          { useMongoClient: true },
+          {},
           error => (error ? reject(error) : resolve())
         )
       );
