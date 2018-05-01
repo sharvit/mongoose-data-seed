@@ -12,9 +12,11 @@ test.beforeEach(t => {
     Seeder3: {},
   };
 
+  const userConfig = { seedersList: t.context.seedersList };
+
   seedModuleRewireAPI.__Rewire__('config', {
     userConfigExists: true,
-    userConfig: { seedersList: t.context.seedersList },
+    loadUserConfig: () => userConfig,
   });
   seedModuleRewireAPI.__Rewire__(
     'validateUserConfig',

@@ -8,7 +8,7 @@ export default async ({ selectedSeeders = [], dropDatabase = false } = {}) => {
   validateUserConfig();
 
   // get relevant user-config
-  const { mongoose, mongoURL, seedersList } = config.userConfig;
+  const { mongoose, mongoURL, seedersList } = config.loadUserConfig();
 
   // create logger
   const logger = new RunLogger();

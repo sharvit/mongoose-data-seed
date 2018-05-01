@@ -14,7 +14,7 @@ const seed = selectedSeeders => {
 
   validateUserConfig();
 
-  const { seedersList } = config.userConfig;
+  const { seedersList } = config.loadUserConfig();
 
   const seeders =
     selectedSeeders.length > 0

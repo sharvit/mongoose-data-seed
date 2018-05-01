@@ -9,12 +9,14 @@ import RunLogger from './__mocks__/run-logger';
 
 import run, { __RewireAPI__ as moduleRewireAPI } from './run';
 
+const userConfig = {
+  mongoose: 'some-mongoose',
+  mongoURL: 'some-url',
+  seedersList: 'some-seeders-list',
+};
+
 const config = {
-  userConfig: {
-    mongoose: 'some-mongoose',
-    mongoURL: 'some-url',
-    seedersList: 'some-seeders-list',
-  },
+  loadUserConfig: () => userConfig,
 };
 
 test.beforeEach('mock imports', t => {
@@ -43,7 +45,7 @@ test('Should run', async t => {
 
   t.true(validateUserConfig.called);
 
-  t.true(MdSeedRunner.calledWith(config.userConfig));
+  t.true(MdSeedRunner.calledWith(userConfig));
   t.true(
     MdSeedRunner.prototype.run.calledWith({
       selectedSeeders: [],
@@ -71,7 +73,7 @@ test('Should run with args', async t => {
 
   t.true(validateUserConfig.called);
 
-  t.true(MdSeedRunner.calledWith(config.userConfig));
+  t.true(MdSeedRunner.calledWith(userConfig));
   t.true(
     MdSeedRunner.prototype.run.calledWith({
       selectedSeeders,
