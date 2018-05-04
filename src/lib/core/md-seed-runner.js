@@ -1,6 +1,9 @@
 import { Subject } from 'rxjs/Subject';
 
-import { getObjectWithSelectedKeys, normalizeSeederName } from '../utils';
+import {
+  getObjectWithSelectedKeys,
+  normalizeSeederName,
+} from '../utils/helpers';
 import MdSeedRunnerError from './md-seed-runner-error';
 
 export default class MdSeedRunner {

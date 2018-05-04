@@ -1,6 +1,6 @@
 import config from '../../config';
 import { MdSeedRunner } from '../../core';
-import { validateUserConfig } from '../../utils';
+import { validateUserConfig } from '../../utils/helpers';
 
 import RunLogger from './run-logger';
 
