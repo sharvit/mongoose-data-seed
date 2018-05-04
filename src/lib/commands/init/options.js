@@ -1,6 +1,6 @@
 import commandLineArgs from 'command-line-args';
 
-import { validateSeedersFolderName } from '../../utils';
+import { validateSeedersFolderName } from '../../utils/helpers';
 import { promptUseBabel, promptSeedersFolder } from './prompts';
 import optionDefinitions from './option-definitions';
 

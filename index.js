@@ -1,7 +1,9 @@
-const seed = require('./dist/lib/seed').default;
-const Seeder = require('./dist/lib/utils/seeder').default;
+const lib = require('./dist/lib');
 
 module.exports = {
-  seed,
-  Seeder,
+  Seeder: lib.Seeder,
+  config: lib.config,
+  Installer: lib.Installer,
+  SeederGenerator: lib.SeederGenerator,
+  MdSeedRunner: lib.MdSeedRunner,
 };
