@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 
 import { SeederGenerator } from '../../core';
-import { validateUserConfig } from '../../utils';
+import { validateUserConfig } from '../../utils/helpers';
 import config from '../../config';
 
 const generateSeeder = async name => {

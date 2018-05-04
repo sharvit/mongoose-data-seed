@@ -8,7 +8,7 @@ import {
   getFolderNameFromPath,
   normalizeSeederName,
   normalizeSeederFileName,
-} from '../utils';
+} from '../utils/helpers';
 
 export default class SeederGenerator {
   constructor({ name, seederTemplate, userSeedersFolderPath }) {
