@@ -10,8 +10,8 @@ import RunLogger from './__mocks__/run-logger';
 import run, { __RewireAPI__ as moduleRewireAPI } from './run';
 
 const userConfig = {
-  mongoose: 'some-mongoose',
-  mongoURL: 'some-url',
+  connect: sinon.stub().resolves(),
+  dropdb: sinon.stub().resolves(),
   seedersList: 'some-seeders-list',
 };
 
