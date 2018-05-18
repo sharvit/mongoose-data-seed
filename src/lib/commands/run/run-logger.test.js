@@ -56,9 +56,8 @@ test('Should log MONGOOSE_CONNECT_START', t => {
   const logger = createMockedLogger();
 
   const type = 'MONGOOSE_CONNECT_START';
-  const payload = { mongoURL: 'some-url' };
 
-  logger.next({ type, payload });
+  logger.next({ type });
 
   t.true(logger.spinner.stop.calledOnce);
   t.true(logger.spinner.message.calledOnce);
@@ -69,15 +68,13 @@ test('Should log MONGOOSE_CONNECT_SUCCESS', t => {
   const logger = createMockedLogger();
 
   const type = 'MONGOOSE_CONNECT_SUCCESS';
-  const payload = { mongoURL: 'some-url' };
 
-  logger.next({ type, payload });
+  logger.next({ type });
 
   t.true(logger.spinner.stop.calledOnce);
   t.true(
     console.log.calledWith(sinon.match(/Successfully connected to MongoDB/))
   );
-  t.true(console.log.calledWith(sinon.match(payload.mongoURL)));
 });
 
 test('Should log MONGOOSE_DROP_START', t => {
@@ -132,25 +129,34 @@ test('Should log SEEDER_START', t => {
 test('Should log SEEDER_SUCCESS', t => {
   const logger = createMockedLogger();
 
-  const payload = { name: 'some-name', results: '10' };
+  const payload = { name: 'some-name', results: { run: true, created: '10' } };
 
   logger.next({ type: 'SEEDER_SUCCESS', payload });
 
   t.true(logger.spinner.stop.calledOnce);
   t.true(console.log.calledWith(sinon.match(payload.name)));
-  t.true(console.log.calledWith(sinon.match(payload.results)));
+  t.true(console.log.calledWith(sinon.match(payload.results.created)));
+});
+
+test('Should log SEEDER_SUCCESS with run=false', t => {
+  const logger = createMockedLogger();
+
+  const payload = { name: 'some-name', results: { run: false, created: '0' } };
+
+  logger.next({ type: 'SEEDER_SUCCESS', payload });
+
+  t.true(logger.spinner.stop.calledOnce);
+  t.true(console.log.calledWith(sinon.match(payload.name)));
+  t.true(console.log.calledWith(sinon.match(payload.results.created)));
 });
 
 test('Should log MONGOOSE_CONNECT_ERROR', t => {
   const logger = createMockedLogger();
 
-  const payload = { mongoURL: 'some-url' };
-
-  logger.error({ type: 'MONGOOSE_CONNECT_ERROR', payload });
+  logger.error({ type: 'MONGOOSE_CONNECT_ERROR' });
 
   t.true(logger.spinner.stop.calledOnce);
   t.true(console.log.calledWith(sinon.match(/Unable to connected to MongoDB/)));
-  t.true(console.log.calledWith(sinon.match(payload.mongoURL)));
 });
 
 test('Should log MONGOOSE_DROP_ERROR', t => {
