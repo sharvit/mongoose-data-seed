@@ -1,26 +1,28 @@
-import mongooseLib from 'mongoose';
-
-import config from './server/config';
+import mongoose from 'mongoose';
 
 import Users from './seeders/users.seeder';
 import Posts from './seeders/posts.seeder';
 import Comments from './seeders/comments.seeder';
 
-mongooseLib.Promise = global.Promise;
+const mongoURL = process.env.MONGO_URL || 'mongodb://localhost:27017/dbname';
 
-// Export the mongoose lib
-export const mongoose = mongooseLib;
-
-// Export the mongodb url
-export const mongoURL = config.mongoURL;
-
-/*
-  Seeders List
-  ------
-  order is important
-*/
+/**
+ * Seeders List
+ * order is important
+ * @type {Object}
+ */
 export const seedersList = {
   Users,
   Posts,
   Comments,
 };
+/**
+ * Connect to mongodb implementation
+ * @return {Promise}
+ */
+export const connect = async () => await mongoose.connect(mongoURL);
+/**
+ * Drop/Clear the database implementation
+ * @return {Promise}
+ */
+export const dropdb = async () => mongoose.connection.db.dropDatabase();

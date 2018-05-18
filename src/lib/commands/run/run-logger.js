@@ -17,17 +17,11 @@ export default class RunLogger extends BaseLogger {
 
     switch (type) {
       case MdSeedRunner.operations.MONGOOSE_CONNECT_START:
-        this.spinner.message(
-          `Trying to connect to MongoDB: ${payload.mongoURL}`
-        );
+        this.spinner.message('Trying to connect to MongoDB...');
         this.spinner.start();
         break;
       case MdSeedRunner.operations.MONGOOSE_CONNECT_SUCCESS:
-        console.log(
-          `${
-            logSymbols.success
-          } Successfully connected to MongoDB: ${chalk.gray(payload.mongoURL)}`
-        );
+        console.log(`${logSymbols.success} Successfully connected to MongoDB!`);
         break;
       case MdSeedRunner.operations.MONGOOSE_DROP_START:
         this.spinner.message('Droping database...');
@@ -49,11 +43,15 @@ export default class RunLogger extends BaseLogger {
         this.spinner.start();
         break;
       case MdSeedRunner.operations.SEEDER_SUCCESS:
-        console.log(
-          `${logSymbols.success} ${payload.name}: ${chalk.gray(
-            payload.results
-          )}`
-        );
+        if (payload.results && payload.results.run) {
+          console.log(
+            `${logSymbols.success} ${payload.name}: ${chalk.gray(
+              payload.results.created
+            )}`
+          );
+        } else {
+          console.log(`${chalk.gray('-')} ${payload.name}: ${chalk.gray(0)}`);
+        }
         break;
     }
   }
@@ -63,11 +61,7 @@ export default class RunLogger extends BaseLogger {
 
     switch (type) {
       case MdSeedRunner.operations.MONGOOSE_CONNECT_ERROR:
-        console.log(
-          `${logSymbols.error} Unable to connected to MongoDB: ${chalk.gray(
-            payload.mongoURL
-          )}`
-        );
+        console.log(`${logSymbols.error} Unable to connected to MongoDB!`);
         break;
       case MdSeedRunner.operations.MONGOOSE_DROP_ERROR:
         console.log(`${logSymbols.error} Unable to drop database!`);

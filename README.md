@@ -55,28 +55,27 @@ md-seed run --dropdb
 ## Seeder Example
 
 ```javascript
-import { Seeder } from "mongoose-data-seed";
-import { User } from "../server/models";
+import { Seeder } from 'mongoose-data-seed';
+import { User } from '../server/models';
 
 const data = [
   {
-    email: "user1@gmail.com",
-    password: "123123",
-    password_confirmation: "123123",
+    email: 'user1@gmail.com',
+    password: '123123',
+    passwordConfirmation: '123123',
     isAdmin: true
   },
   {
-    email: "user2@gmail.com",
-    password: "123123",
-    password_confirmation: "123123",
+    email: 'user2@gmail.com',
+    password: '123123',
+    passwordConfirmation: '123123',
     isAdmin: false
   }
 ];
 
 class UsersSeeder extends Seeder {
   async shouldRun() {
-    return User.count()
-      .exec()
+    return User.count().exec()
       .then(count => count === 0);
   }
 
@@ -86,44 +85,50 @@ class UsersSeeder extends Seeder {
 }
 
 export default UsersSeeder;
+
 ```
 
 ### md-seed-config.js
 
 `md-seed` excepting to get 3 values from `md-seed-config.js`
 
-1. `mongoose` - The mongoose library (so `md-seed` will use the same version as your project)
-2. `mongoURL` - Url to your mongodb
-3. `seedersList` - A key/value list of all your seeders,
+1. `seedersList` - A key/value list of all your seeders,
    `md-seed` will run your seeders as they ordered in the list.
+1. `connect` - Connect to mongodb implementation (should return promise).
+2. `dropdb` - Drop/Clear the database implementation (should return promise).
 
 #### Example
 
 ```javascript
-import mongooseLib from "mongoose";
-mongooseLib.Promise = global.Promise;
+import mongoose from 'mongoose';
 
-import Users from "./seeders/users.seeder";
-import Posts from "./seeders/posts.seeder";
-import Comments from "./seeders/comments.seeder";
+import Users from './seeders/users.seeder';
+import Posts from './seeders/posts.seeder';
+import Comments from './seeders/comments.seeder';
 
-// Export the mongoose lib
-export const mongoose = mongooseLib;
+const mongoURL = process.env.MONGO_URL || 'mongodb://localhost:27017/dbname';
 
-// Export the mongodb url
-export const mongoURL =
-  process.env.MONGO_URL || "mongodb://localhost:27017/dbname";
-
-/*
-  Seeders List
-  ------
-  order is important
-*/
+/**
+ * Seeders List
+ * order is important
+ * @type {Object}
+ */
 export const seedersList = {
   Users,
   Posts,
-  Comments
+  Comments,
 };
+/**
+ * Connect to mongodb implementation
+ * @return {Promise}
+ */
+export const connect = async () => await mongoose.connect(mongoURL);
+/**
+ * Drop/Clear the database implementation
+ * @return {Promise}
+ */
+export const dropdb = async () => mongoose.connection.db.dropDatabase();
+
 ```
 
 ## Examples

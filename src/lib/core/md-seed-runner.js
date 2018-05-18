@@ -24,9 +24,16 @@ export default class MdSeedRunner {
     SEEDER_ERROR: 'SEEDER_ERROR',
   };
 
-  constructor({ mongoose, mongoURL, seedersList }) {
-    this.mongoose = mongoose;
-    this.config = { mongoURL, seedersList };
+  /**
+   * Creates MdSeedRunner
+   * @param {AsyncFunction} connect     Connect to mongodb implementation
+   * @param {AsyncFunction} dropdb      Drop/Clear the database implementation
+   * @param {Object}        seedersList key=Seeder name | value=Seeder implementation
+   */
+  constructor({ connect, dropdb, seedersList }) {
+    this.connect = connect;
+    this.dropdb = dropdb;
+    this.seedersList = seedersList;
     this.subject = new Subject();
   }
 
@@ -77,32 +84,14 @@ export default class MdSeedRunner {
       MONGOOSE_CONNECT_ERROR,
     } = MdSeedRunner.operations;
 
-    const { mongoURL } = this.config;
-
     try {
-      this.subject.next({
-        type: MONGOOSE_CONNECT_START,
-        payload: { mongoURL },
-      });
+      this.subject.next({ type: MONGOOSE_CONNECT_START });
 
-      await new Promise((resolve, reject) =>
-        this.mongoose.connect(
-          mongoURL,
-          {},
-          error => (error ? reject(error) : resolve())
-        )
-      );
+      await this.connect();
 
-      this.subject.next({
-        type: MONGOOSE_CONNECT_SUCCESS,
-        payload: { mongoURL },
-      });
+      this.subject.next({ type: MONGOOSE_CONNECT_SUCCESS });
     } catch (error) {
-      throw new MdSeedRunnerError({
-        type: MONGOOSE_CONNECT_ERROR,
-        payload: { mongoURL },
-        error,
-      });
+      throw new MdSeedRunnerError({ type: MONGOOSE_CONNECT_ERROR, error });
     }
   }
 
@@ -116,7 +105,7 @@ export default class MdSeedRunner {
     try {
       this.subject.next({ type: MONGOOSE_DROP_START });
 
-      this.mongoose.connection.db.dropDatabase();
+      await this.dropdb();
 
       this.subject.next({ type: MONGOOSE_DROP_SUCCESS });
     } catch (error) {
@@ -173,11 +162,11 @@ export default class MdSeedRunner {
   _loadSelectedSeeders(selectedSeeders) {
     if (selectedSeeders && selectedSeeders.length > 0) {
       return getObjectWithSelectedKeys(
-        this.config.seedersList,
+        this.seedersList,
         selectedSeeders.map(name => normalizeSeederName(name))
       );
     }
 
-    return this.config.seedersList;
+    return this.seedersList;
   }
 }

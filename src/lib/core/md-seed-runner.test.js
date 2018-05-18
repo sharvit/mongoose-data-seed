@@ -13,8 +13,8 @@ import MdSeedRunner, {
 } from './md-seed-runner';
 
 const helpData = {
-  mongoose: 'some-mongoose',
-  mongoURL: 'some-url',
+  connect: sinon.stub().resolves(),
+  dropdb: sinon.stub().resolves(),
   seedersList: {
     Users: 'users-seeder',
     Posts: 'posts-seeder',
@@ -41,9 +41,9 @@ test.afterEach('unmock imports', t => {
 test('Should create a run-logger instance', t => {
   const seedRunner = new MdSeedRunner({ ...helpData });
 
-  t.is(seedRunner.mongoose, helpData.mongoose);
-  t.is(seedRunner.config.mongoURL, helpData.mongoURL);
-  t.is(seedRunner.config.seedersList, helpData.seedersList);
+  t.is(seedRunner.connect, helpData.connect);
+  t.is(seedRunner.dropdb, helpData.dropdb);
+  t.is(seedRunner.seedersList, helpData.seedersList);
   t.is(typeof seedRunner.run, 'function');
 });
 
@@ -183,11 +183,7 @@ test('Should _run and fail with type and payload', async t => {
 test('Should _connectToMongodb', async t => {
   t.plan(2);
 
-  const mongoose = {
-    connect: sinon.stub().callsArg(2),
-  };
-
-  const seedRunner = new MdSeedRunner({ ...helpData, mongoose });
+  const seedRunner = new MdSeedRunner({ ...helpData });
 
   seedRunner.subject
     .asObservable()
@@ -199,17 +195,18 @@ test('Should _connectToMongodb', async t => {
 
   seedRunner.subject.complete();
 
-  t.true(mongoose.connect.called);
+  t.true(helpData.connect.called);
 });
 
 test('Should _connectToMongodb and fail', async t => {
   t.plan(3);
 
-  const mongoose = {
-    connect: sinon.stub().callsArgWith(2, new Error('some-error')),
+  const data = {
+    ...helpData,
+    connect: sinon.stub().rejects(new Error('some-error')),
   };
 
-  const seedRunner = new MdSeedRunner({ ...helpData, mongoose });
+  const seedRunner = new MdSeedRunner({ ...data });
 
   seedRunner.subject
     .asObservable()
@@ -225,21 +222,13 @@ test('Should _connectToMongodb and fail', async t => {
 
   seedRunner.subject.complete();
 
-  t.true(mongoose.connect.called);
+  t.true(data.connect.called);
 });
 
 test('Should _dropDatabase', async t => {
   t.plan(2);
 
-  const mongoose = {
-    connection: {
-      db: {
-        dropDatabase: sinon.stub(),
-      },
-    },
-  };
-
-  const seedRunner = new MdSeedRunner({ ...helpData, mongoose });
+  const seedRunner = new MdSeedRunner({ ...helpData });
 
   seedRunner.subject
     .asObservable()
@@ -251,21 +240,18 @@ test('Should _dropDatabase', async t => {
 
   seedRunner.subject.complete();
 
-  t.true(mongoose.connection.db.dropDatabase.called);
+  t.true(helpData.dropdb.called);
 });
 
 test('Should _dropDatabase and fail', async t => {
   t.plan(3);
 
-  const mongoose = {
-    connection: {
-      db: {
-        dropDatabase: sinon.stub().throws(new Error('some-error')),
-      },
-    },
+  const data = {
+    ...helpData,
+    dropdb: sinon.stub().rejects(new Error('some-error')),
   };
 
-  const seedRunner = new MdSeedRunner({ ...helpData, mongoose });
+  const seedRunner = new MdSeedRunner({ ...data });
 
   seedRunner.subject
     .asObservable()
@@ -281,7 +267,7 @@ test('Should _dropDatabase and fail', async t => {
 
   seedRunner.subject.complete();
 
-  t.true(mongoose.connection.db.dropDatabase.called);
+  t.true(data.dropdb.called);
 });
 
 test('Should _runSeeders', async t => {

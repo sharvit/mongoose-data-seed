@@ -8,13 +8,13 @@ export default async ({ selectedSeeders = [], dropDatabase = false } = {}) => {
   validateUserConfig();
 
   // get relevant user-config
-  const { mongoose, mongoURL, seedersList } = config.loadUserConfig();
+  const { connect, dropdb, seedersList } = config.loadUserConfig();
 
   // create logger
   const logger = new RunLogger();
 
   // create runner
-  const runner = new MdSeedRunner({ mongoose, mongoURL, seedersList });
+  const runner = new MdSeedRunner({ connect, dropdb, seedersList });
 
   // run seeders
   const observable = runner.run({ selectedSeeders, dropDatabase });
