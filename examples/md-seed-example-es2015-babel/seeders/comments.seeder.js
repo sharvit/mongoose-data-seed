@@ -22,13 +22,13 @@ class CommentsSeeder extends Seeder {
       const comments = this._generateCommentList();
 
       for (const comment of comments) {
-        const result = post.addComment(comment);
+        const result = await post.addComment(comment);
 
         results.push(result);
       }
     }
 
-    return Promise.all(results);
+    return results;
   }
 
   _generateCommentList() {

@@ -1,8 +1,7 @@
 {
   "name": "md-seed-example-es2015-babel",
   "version": "1.0.0",
-  "description":
-    "Example of using mongoose-data-seed with babel and ES2015 syntax",
+  "description": "Example of using mongoose-data-seed with babel and ES2015 syntax",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +11,7 @@
   "dependencies": {
     "crypto": "0.0.3",
     "faker": "^4.1.0",
-    "mongoose": "^4.9.5",
+    "mongoose": "^5.0.0",
     "uid2": "0.0.3"
   },
   "devDependencies": {
