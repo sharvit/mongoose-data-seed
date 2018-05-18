@@ -30,13 +30,23 @@ export default function(argv) {
   });
 }
 
+function connectToMongoose(mongoose, mongoURL, callback) {
+  const mongooseMajorVersion = mongoose.version.split('.')[0];
+
+  if (mongooseMajorVersion === '4') {
+    return mongoose.connect(mongoURL, { useMongoClient: true }, callback);
+  }
+
+  return mongoose.connect(mongoURL, callback);
+}
+
 function run({ mongoose, mongoURL, selectedSeeders, dropDatabase }) {
   const spinner = new Spinner(`Trying to connect to MongoDB: ${mongoURL}`);
   spinner.start();
 
   return new Promise((resolve, reject) => {
     // MongoDB Connection
-    mongoose.connect(mongoURL, { useMongoClient: true }, error => {
+    connectToMongoose(mongoose, mongoURL, error => {
       spinner.stop();
 
       if (error) {
