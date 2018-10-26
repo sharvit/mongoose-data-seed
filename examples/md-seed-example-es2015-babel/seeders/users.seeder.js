@@ -36,7 +36,7 @@ const data = [
 
 class UsersSeeder extends Seeder {
   async shouldRun() {
-    return User.count()
+    return User.countDocuments()
       .exec()
       .then(count => count === 0);
   }

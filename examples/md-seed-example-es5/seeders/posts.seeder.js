@@ -19,7 +19,7 @@ var PostsSeeder = Seeder.extend({
       });
   },
   shouldRun: function() {
-    return Post.count()
+    return Post.countDocuments()
       .exec()
       .then(count => count === 0);
   },

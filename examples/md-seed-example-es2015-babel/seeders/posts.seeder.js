@@ -12,7 +12,7 @@ class PostsSeeder extends Seeder {
   }
 
   async shouldRun() {
-    return Post.count()
+    return Post.countDocuments()
       .exec()
       .then(count => count === 0);
   }

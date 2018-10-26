@@ -18,7 +18,7 @@ var CommentsSeeder = Seeder.extend({
       });
   },
   shouldRun: function() {
-    return Post.count({ comments: { $gt: 0 } })
+    return Post.countDocuments({ comments: { $gt: 0 } })
       .exec()
       .then(count => count === 0);
   },

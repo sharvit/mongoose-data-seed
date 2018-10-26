@@ -8,7 +8,7 @@ const data = [{
 class <%= seederName %>Seeder extends Seeder {
 
   async shouldRun() {
-    return Model.count().exec().then(count => count === 0);
+    return Model.countDocuments().exec().then(count => count === 0);
   }
 
   async run() {
