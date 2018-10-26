@@ -36,7 +36,7 @@ var data = [
 
 var UsersSeeder = Seeder.extend({
   shouldRun: function() {
-    return User.count()
+    return User.countDocuments()
       .exec()
       .then(count => count === 0);
   },
