@@ -34,7 +34,11 @@ function connectToMongoose(mongoose, mongoURL, callback) {
   const mongooseMajorVersion = mongoose.version.split('.')[0];
 
   if (mongooseMajorVersion === '4') {
-    return mongoose.connect(mongoURL, { useMongoClient: true, useNewUrlParser: true }, callback);
+    return mongoose.connect(
+      mongoURL,
+      { useMongoClient: true, useNewUrlParser: true },
+      callback
+    );
   }
 
   return mongoose.connect(mongoURL, { useNewUrlParser: true }, callback);
