@@ -1,6 +1,6 @@
 {
   "name": "mongoose-data-seed",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Seed mongodb with data using mongoose models",
   "main": "index.js",
   "scripts": {
