@@ -1,8 +1,6 @@
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/toArray';
-
 import test from 'ava';
 import sinon from 'sinon';
+import { toArray, toPromise } from 'rxjs/operators';
 
 import { mockImports, resetImports } from '../utils/test-helpers';
 
@@ -88,7 +86,7 @@ test('Should _run', async t => {
 
   seedRunner.subject
     .asObservable()
-    .toArray()
+    .pipe(toArray())
     .toPromise()
     .then(results => t.snapshot(results));
 
@@ -113,7 +111,7 @@ test('Should _run and drop database', async t => {
 
   seedRunner.subject
     .asObservable()
-    .toArray()
+    .pipe(toArray())
     .toPromise()
     .then(results => t.snapshot(results));
 
@@ -138,7 +136,7 @@ test('Should _run and fail', async t => {
 
   seedRunner.subject
     .asObservable()
-    .toArray()
+    .pipe(toArray())
     .toPromise()
     .catch(error => t.snapshot(error));
 
@@ -169,7 +167,7 @@ test('Should _run and fail with type and payload', async t => {
 
   seedRunner.subject
     .asObservable()
-    .toArray()
+    .pipe(toArray())
     .toPromise()
     .catch(error => t.snapshot(error));
 
@@ -187,7 +185,7 @@ test('Should _connectToMongodb', async t => {
 
   seedRunner.subject
     .asObservable()
-    .toArray()
+    .pipe(toArray())
     .toPromise()
     .then(results => t.snapshot(results));
 
@@ -210,7 +208,7 @@ test('Should _connectToMongodb and fail', async t => {
 
   seedRunner.subject
     .asObservable()
-    .toArray()
+    .pipe(toArray())
     .toPromise()
     .then(results => t.snapshot(results, 'observable results'));
 
@@ -232,7 +230,7 @@ test('Should _dropDatabase', async t => {
 
   seedRunner.subject
     .asObservable()
-    .toArray()
+    .pipe(toArray())
     .toPromise()
     .then(results => t.snapshot(results));
 
@@ -255,7 +253,7 @@ test('Should _dropDatabase and fail', async t => {
 
   seedRunner.subject
     .asObservable()
-    .toArray()
+    .pipe(toArray())
     .toPromise()
     .then(results => t.snapshot(results, 'observable results'));
 
@@ -285,7 +283,7 @@ test('Should _runSeeders', async t => {
 
   seedRunner.subject
     .asObservable()
-    .toArray()
+    .pipe(toArray())
     .toPromise()
     .then(results => t.snapshot(results, 'observable results'));
 
@@ -308,7 +306,7 @@ test('Should _runSeeder', async t => {
 
   seedRunner.subject
     .asObservable()
-    .toArray()
+    .pipe(toArray())
     .toPromise()
     .then(results => t.snapshot(results, 'observable results'));
 
@@ -331,7 +329,7 @@ test('Should _runSeeder and fail', async t => {
 
   seedRunner.subject
     .asObservable()
-    .toArray()
+    .pipe(toArray())
     .toPromise()
     .then(results => t.snapshot(results, 'observable results'));
 

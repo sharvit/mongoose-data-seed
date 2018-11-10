@@ -1,5 +1,5 @@
 import generateUsageGuide from 'command-line-usage';
-import { optionDefinitions } from './options';
+import optionDefinitions from './option-definitions';
 
 const usageGuide = generateUsageGuide([
   {
@@ -10,8 +10,8 @@ const usageGuide = generateUsageGuide([
   {
     header: 'Synopsis',
     content: [
-      '$ md-seed init [[bold]{--seedersFolder}=[underline]{folder-name}]',
-      '$ md-seed init [bold]{--help}',
+      '$ md-seed init [{bold --seedersFolder}={underline folder-name}]',
+      '$ md-seed init {bold --help}',
     ],
   },
   {
