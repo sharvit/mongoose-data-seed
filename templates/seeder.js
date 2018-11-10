@@ -1,17 +1,19 @@
-var Seeder = require('mongoose-data-seed').Seeder;
-var Model = require('../server/models');
+import { Seeder } from 'mongoose-data-seed';
+import { Model } from '../server/models';
 
-var data = [{
+const data = [{
 
 }];
 
-var <%= seederName %>Seeder = Seeder.extend({
-  shouldRun: function () {
+class <%= seederName %>Seeder extends Seeder {
+
+  async shouldRun() {
     return Model.countDocuments().exec().then(count => count === 0);
-  },
-  run: function () {
+  }
+
+  async run() {
     return Model.create(data);
   }
-});
+}
 
-module.exports = <%= seederName %>Seeder;
+export default <%= seederName %>Seeder;

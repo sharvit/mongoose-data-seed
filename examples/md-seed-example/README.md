@@ -1,6 +1,6 @@
-# md-seed-example-es5
+# md-seed-example
 
-Example using mongoose-data-seed with ES5
+Example using mongoose-data-seed
 
 ## Install
 

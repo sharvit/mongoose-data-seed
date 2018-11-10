@@ -5,8 +5,7 @@ import Seeder2 from './seeders/seeder-2.seeder';
 import Seeder3 from './seeders/seeder-3.seeder';
 
 const mongoURL =
-  process.env.MONGO_URL ||
-  'mongodb://localhost:27017/md-seed-run-sandbox-es2015';
+  process.env.MONGO_URL || 'mongodb://localhost:27017/md-seed-run-sandbox-1';
 
 /**
  * Seeders List

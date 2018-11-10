@@ -4,13 +4,13 @@ import InstallerLogger from './installer-logger';
 
 export default async (options = {}) => {
   // get relevat config and options
-  const { babel: es6, seedersFolder } = await promptMissingOptions(options);
+  const { seedersFolder } = await promptMissingOptions(options);
 
   // create logger
   const logger = new InstallerLogger();
 
   // create installer
-  const installer = new Installer({ es6, seedersFolder });
+  const installer = new Installer({ seedersFolder });
 
   // run seeders
   const observable = installer.install();

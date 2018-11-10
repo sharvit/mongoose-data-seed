@@ -8,14 +8,12 @@ import FilesSandbox from './utils/files-sandbox';
 import { runCommand } from '../lib/commands/helpers';
 import config from '../lib/config';
 
-const createSandbox = (es6 = false) => {
+const createSandbox = () => {
   const sandbox = new FilesSandbox('generate-');
 
   const { sandboxPath } = sandbox;
 
-  const examplesFolderName = es6
-    ? 'md-seed-example-es2015-babel'
-    : 'md-seed-example-es5';
+  const examplesFolderName = 'md-seed-example';
 
   fs.copyFileSync(
     path.join(
@@ -72,21 +70,8 @@ test.serial(
   }
 );
 
-test.serial('md-seed generate some-seeder (es2015)', async t => {
-  const sandbox = createSandbox(true);
-
-  await t.notThrows(runCommand('generate', 'some-name'));
-
-  const files = getFilesForSnapshot(sandbox);
-
-  sandbox.clean();
-
-  t.snapshot(console.log.args, 'log results');
-  t.snapshot(files, 'sandbox content');
-});
-
-test.serial('md-seed generate some-seeder (es5)', async t => {
-  const sandbox = createSandbox(false);
+test.serial('md-seed generate some-seeder', async t => {
+  const sandbox = createSandbox();
 
   await t.notThrows(runCommand('generate', 'some-name'));
 

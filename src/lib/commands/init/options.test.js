@@ -17,7 +17,6 @@ test.beforeEach('mock imports', t => {
     optionDefinitions: 'some option definitions',
     commandLineArgs: sinon.stub(),
     validateSeedersFolderName: sinon.stub(),
-    promptUseBabel: sinon.stub(),
     promptSeedersFolder: sinon.stub(),
   };
 
@@ -41,9 +40,9 @@ test('should get user options from the cli', t => {
 
   commandLineArgs
     .withArgs(optionDefinitions, { argv })
-    .returns({ seedersFolder, help: false, es6: true });
+    .returns({ seedersFolder, help: false });
 
-  const expectedOptions = { seedersFolder, helpWanted: false, babel: true };
+  const expectedOptions = { seedersFolder, helpWanted: false };
   const recivedOptions = getOptions(argv);
 
   t.true(commandLineArgs.calledWith(optionDefinitions, { argv }));
@@ -51,13 +50,9 @@ test('should get user options from the cli', t => {
 });
 
 test('promptMissingOptions should not prompt when suplying valid options', async t => {
-  const options = { babel: true, seedersFolder: 'folder-name' };
+  const options = { seedersFolder: 'folder-name' };
 
-  const {
-    validateSeedersFolderName,
-    promptUseBabel,
-    promptSeedersFolder,
-  } = t.context.mocks;
+  const { validateSeedersFolderName, promptSeedersFolder } = t.context.mocks;
 
   validateSeedersFolderName.withArgs(options.seedersFolder).returns(true);
 
@@ -65,27 +60,20 @@ test('promptMissingOptions should not prompt when suplying valid options', async
 
   t.deepEqual(results, options);
   t.true(validateSeedersFolderName.calledWith(options.seedersFolder));
-  t.false(promptUseBabel.called);
   t.false(promptSeedersFolder.called);
 });
 
 test('promptMissingOptions should prompt all when not supplying options', async t => {
-  const expectedResults = { babel: true, seedersFolder: 'folder-name' };
+  const expectedResults = { seedersFolder: 'folder-name' };
 
-  const {
-    validateSeedersFolderName,
-    promptUseBabel,
-    promptSeedersFolder,
-  } = t.context.mocks;
+  const { validateSeedersFolderName, promptSeedersFolder } = t.context.mocks;
 
   validateSeedersFolderName.returns(false);
-  promptUseBabel.returns(expectedResults.babel);
   promptSeedersFolder.returns(expectedResults.seedersFolder);
 
   const results = await promptMissingOptions();
 
   t.deepEqual(results, expectedResults);
   t.true(validateSeedersFolderName.called);
-  t.true(promptUseBabel.called);
   t.true(promptSeedersFolder.called);
 });

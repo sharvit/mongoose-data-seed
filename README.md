@@ -20,7 +20,7 @@ npm install --save mongoose-data-seed
 md-seed init
 ```
 
-`md-seed init` will ask you to choose a folder for your seeders and whether to use ES6/2015 syntax which require babel.
+`md-seed init` will ask you to choose a folder for your seeders.
 
 `md-seed init` will create the `seeders` folder, generate `md-seed-config.js` and `md-seed-generator.json`.
 
@@ -134,8 +134,7 @@ export const dropdb = async () => mongoose.connection.db.dropDatabase();
 
 ## Examples
 
-1. [md-seed-example-es2015-babel](https://github.com/sharvit/mongoose-data-seed/tree/master/examples/md-seed-example-es2015-babel)
-2. [md-seed-example-es5](https://github.com/sharvit/mongoose-data-seed/tree/master/examples/md-seed-example-es5)
+1. [md-seed-example](https://github.com/sharvit/mongoose-data-seed/tree/master/examples/md-seed-example)
 
 ## License
 

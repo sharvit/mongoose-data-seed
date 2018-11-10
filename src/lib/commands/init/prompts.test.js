@@ -2,7 +2,6 @@ import test from 'ava';
 import sinon from 'sinon';
 
 import {
-  promptUseBabel,
   promptSeedersFolder,
   __RewireAPI__ as moduleRewireAPI,
 } from './prompts';
@@ -30,16 +29,6 @@ test.afterEach('unmock imports', t => {
   for (const name of Object.keys(t.context.mocks)) {
     moduleRewireAPI.__ResetDependency__(name);
   }
-});
-
-test('should prompt to use babel', async t => {
-  const { inquirer } = t.context.mocks;
-
-  inquirer.prompt.resolves({ useBabel: true });
-
-  const result = await promptUseBabel();
-
-  t.true(result);
 });
 
 test('should prompt to enter seeders-folder-name', async t => {

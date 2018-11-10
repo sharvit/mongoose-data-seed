@@ -11,7 +11,6 @@ const config = {
   clean() {
     delete this.workingDir;
     delete this.projectRoot;
-    delete this.useEs6Generator;
     delete this.userGeneratorConfigFilename;
     delete this.userGeneratorConfigFilepath;
     delete this.userGeneratorConfigExists;
@@ -22,8 +21,7 @@ const config = {
     delete this.userConfigExists;
     delete this.userConfig;
     delete this.seederTemplate;
-    delete this.es6ConfigTemplate;
-    delete this.es5ConfigTemplate;
+    delete this.configTemplate;
   },
 
   update(projectRoot = getProjectRoot()) {
@@ -36,7 +34,6 @@ const config = {
       userGeneratorConfigFilepath
     );
     const {
-      es6: useEs6Generator = true,
       seedersFolder: userSeedersFolderName = 'seeders',
     } = userGeneratorConfigExists ? require(userGeneratorConfigFilepath) : {};
 
@@ -46,22 +43,13 @@ const config = {
     const userConfigFilepath = path.join(projectRoot, userConfigFilename);
     const userConfigExists = fs.existsSync(userConfigFilepath);
 
-    const seederTemplate = useEs6Generator
-      ? path.join(__dirname, '../../templates/seeder.es6.js')
-      : path.join(__dirname, '../../templates/seeder.js');
-
-    const es6ConfigTemplate = path.join(
-      __dirname,
-      '../../templates/md-seed-config.es6.js'
-    );
-
-    const es5ConfigTemplate = path.join(
+    const seederTemplate = path.join(__dirname, '../../templates/seeder.js');
+    const configTemplate = path.join(
       __dirname,
       '../../templates/md-seed-config.js'
     );
 
     this.projectRoot = projectRoot;
-    this.useEs6Generator = useEs6Generator;
     this.userGeneratorConfigFilename = userGeneratorConfigFilename;
     this.userGeneratorConfigFilepath = userGeneratorConfigFilepath;
     this.userGeneratorConfigExists = userGeneratorConfigExists;
@@ -71,8 +59,7 @@ const config = {
     this.userSeedersFolderPath = userSeedersFolderPath;
     this.userConfigExists = userConfigExists;
     this.seederTemplate = seederTemplate;
-    this.es6ConfigTemplate = es6ConfigTemplate;
-    this.es5ConfigTemplate = es5ConfigTemplate;
+    this.configTemplate = configTemplate;
   },
 
   loadUserConfig() {
