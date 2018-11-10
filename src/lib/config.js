@@ -2,6 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import findRoot from 'find-root';
 
+const defaultUserGeneratorConfig = {
+  seedersFolder: './seeders',
+};
+
 const getProjectRoot = () => {
   const workingDir = process.cwd();
   return findRoot(workingDir);
@@ -11,9 +15,6 @@ const config = {
   clean() {
     delete this.workingDir;
     delete this.projectRoot;
-    delete this.userGeneratorConfigFilename;
-    delete this.userGeneratorConfigFilepath;
-    delete this.userGeneratorConfigExists;
     delete this.userConfigFilename;
     delete this.userConfigFilepath;
     delete this.userSeedersFolderName;
@@ -24,19 +25,24 @@ const config = {
     delete this.configTemplate;
   },
 
-  update(projectRoot = getProjectRoot()) {
-    const userGeneratorConfigFilename = 'md-seed-generator.json';
-    const userGeneratorConfigFilepath = path.join(
-      projectRoot,
-      userGeneratorConfigFilename
-    );
-    const userGeneratorConfigExists = fs.existsSync(
-      userGeneratorConfigFilepath
-    );
-    const {
-      seedersFolder: userSeedersFolderName = 'seeders',
-    } = userGeneratorConfigExists ? require(userGeneratorConfigFilepath) : {};
+  getConfigFromPackageJson(projectRoot = getProjectRoot()) {
+    const packageJsonPath = path.join(projectRoot, 'package.json');
+    const { mdSeed = {} } = require(packageJsonPath);
 
+    return mdSeed;
+  },
+
+  getUserGeneratorConfig(projectRoot = getProjectRoot()) {
+    return {
+      ...defaultUserGeneratorConfig,
+      ...this.getConfigFromPackageJson(projectRoot),
+    };
+  },
+
+  update(projectRoot = getProjectRoot()) {
+    const userGeneratorConfig = this.getUserGeneratorConfig(projectRoot);
+
+    const userSeedersFolderName = userGeneratorConfig.seedersFolder;
     const userSeedersFolderPath = path.join(projectRoot, userSeedersFolderName);
 
     const userConfigFilename = 'md-seed-config.js';
@@ -50,9 +56,6 @@ const config = {
     );
 
     this.projectRoot = projectRoot;
-    this.userGeneratorConfigFilename = userGeneratorConfigFilename;
-    this.userGeneratorConfigFilepath = userGeneratorConfigFilepath;
-    this.userGeneratorConfigExists = userGeneratorConfigExists;
     this.userConfigFilename = userConfigFilename;
     this.userConfigFilepath = userConfigFilepath;
     this.userSeedersFolderName = userSeedersFolderName;

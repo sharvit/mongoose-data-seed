@@ -6,13 +6,8 @@ import { Installer } from '../../core';
 export default class InstallerLogger extends BaseLogger {
   next({ type, payload }) {
     switch (type) {
-      case Installer.operations.WRITE_USER_GENERETOR_CONFIG_SKIP_FILE_EXISTS:
-        console.log(
-          `${chalk.yellow('SKIP')} ${payload.filename} are already exists`
-        );
-        break;
       case Installer.operations.WRITE_USER_GENERETOR_CONFIG_SUCCESS:
-        console.log(`${chalk.green('CREATED')} ${payload.filename}`);
+        console.log(`${chalk.green('UPDATED')} package.json`);
         break;
 
       case Installer.operations.CREARE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS:

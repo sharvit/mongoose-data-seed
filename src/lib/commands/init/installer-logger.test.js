@@ -34,29 +34,14 @@ test('Should return observer', t => {
   t.is(typeof observer.error, 'function');
 });
 
-test('Should log WRITE_USER_GENERETOR_CONFIG_SKIP_FILE_EXISTS', t => {
-  const logger = createMockedLogger();
-
-  const type = 'WRITE_USER_GENERETOR_CONFIG_SKIP_FILE_EXISTS';
-  const payload = { filename: 'some-filename' };
-
-  logger.next({ type, payload });
-
-  t.true(console.log.calledWith(sinon.match(/SKIP/)));
-  t.true(console.log.calledWith(sinon.match(/are already exists/)));
-  t.true(console.log.calledWith(sinon.match(payload.filename)));
-});
-
 test('Should log WRITE_USER_GENERETOR_CONFIG_SUCCESS', t => {
   const logger = createMockedLogger();
 
   const type = 'WRITE_USER_GENERETOR_CONFIG_SUCCESS';
-  const payload = { filename: 'some-filename' };
+  logger.next({ type });
 
-  logger.next({ type, payload });
-
-  t.true(console.log.calledWith(sinon.match(/CREATED/)));
-  t.true(console.log.calledWith(sinon.match(payload.filename)));
+  t.true(console.log.calledWith(sinon.match(/UPDATED/)));
+  t.true(console.log.calledWith(sinon.match(/package.json/)));
 });
 
 test('Should log CREARE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS', t => {
