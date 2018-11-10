@@ -3,7 +3,7 @@ import path from 'path';
 import memFs from 'mem-fs';
 import editor from 'mem-fs-editor';
 import chalk from 'chalk';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 import config from '../config';
 

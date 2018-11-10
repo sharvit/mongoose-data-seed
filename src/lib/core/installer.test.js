@@ -1,6 +1,3 @@
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/toArray';
-
 import test from 'ava';
 import sinon from 'sinon';
 import path from 'path';
