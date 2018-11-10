@@ -3,6 +3,7 @@ import 'rxjs/add/operator/toArray';
 
 import test from 'ava';
 import sinon from 'sinon';
+import path from 'path';
 
 import Subject from '../../__mocks__/rxjs-subject';
 import fs, { alreadyExistsPath, throwableMkdirPath } from '../../__mocks__/fs';
@@ -23,9 +24,6 @@ const helpData = {
 
 const defaultConfig = {
   projectRoot: '/project/root',
-  userGeneratorConfigExists: true,
-  userGeneratorConfigFilename: 'generator-config-filename.json',
-  userGeneratorConfigFilepath: '/project/root/generator-config-filename.json',
   userConfigExists: true,
   userConfigFilename: 'config-filename.js',
   userConfigFilepath: '/project/root/config-filename.js',
@@ -136,7 +134,7 @@ test('Should getGeneratorConfig', t => {
 
 test('Should _install and success', async t => {
   const context = {
-    _writeUserGeneratorConfig: sinon.stub().resolves(),
+    _writeUserGeneratorConfigToPackageJson: sinon.stub().resolves(),
     _createSeedersFolder: sinon.stub().resolves(),
     _writeUserConfig: sinon.stub().resolves(),
     subject: {
@@ -149,7 +147,7 @@ test('Should _install and success', async t => {
 
   await _install();
 
-  t.true(context._writeUserGeneratorConfig.called);
+  t.true(context._writeUserGeneratorConfigToPackageJson.called);
   t.true(context._createSeedersFolder.called);
   t.true(context._writeUserConfig.called);
   t.true(context.subject.next.calledWith({ type: 'START' }));
@@ -161,7 +159,7 @@ test('Should _install and success', async t => {
 test('Should _install and fail', async t => {
   const error = new Error('some-error');
   const context = {
-    _writeUserGeneratorConfig: sinon.stub().resolves(),
+    _writeUserGeneratorConfigToPackageJson: sinon.stub().resolves(),
     _createSeedersFolder: sinon.stub().rejects(error),
     _writeUserConfig: sinon.stub().resolves(),
     subject: {
@@ -174,7 +172,7 @@ test('Should _install and fail', async t => {
 
   await _install();
 
-  t.true(context._writeUserGeneratorConfig.called);
+  t.true(context._writeUserGeneratorConfigToPackageJson.called);
   t.true(context._createSeedersFolder.called);
   t.false(context._writeUserConfig.called);
   t.true(context.subject.next.calledWith({ type: 'START' }));
@@ -192,7 +190,7 @@ test('Should _install and fail with InstallerError', async t => {
 
   const error = new InstallerError({ type, payload, error: baseError });
   const context = {
-    _writeUserGeneratorConfig: sinon.stub().resolves(),
+    _writeUserGeneratorConfigToPackageJson: sinon.stub().resolves(),
     _createSeedersFolder: sinon.stub().rejects(error),
     _writeUserConfig: sinon.stub().resolves(),
     subject: {
@@ -205,7 +203,7 @@ test('Should _install and fail with InstallerError', async t => {
 
   await _install();
 
-  t.true(context._writeUserGeneratorConfig.called);
+  t.true(context._writeUserGeneratorConfigToPackageJson.called);
   t.true(context._createSeedersFolder.called);
   t.false(context._writeUserConfig.called);
   t.true(context.subject.next.calledWith({ type: 'START' }));
@@ -232,17 +230,13 @@ test('Should _commitMemFsChanges', async t => {
   t.true(context.memFsEditor.commit.called);
 });
 
-test('Should _writeUserGeneratorConfig and success', async t => {
+test('Should _writeUserGeneratorConfigToPackageJson and success', async t => {
   const config = {
-    userGeneratorConfigExists: false,
-    userGeneratorConfigFilename: 'filename.js',
-    userGeneratorConfigFilepath: '/file/path',
+    userPackageJsonPath: path.join(__dirname, './__mocks__/package.json'),
   };
   const generatorConfig = { seedersFolder: '/some/folder' };
   const payload = {
-    fileExists: config.userGeneratorConfigExists,
-    filename: config.userGeneratorConfigFilename,
-    filepath: config.userGeneratorConfigFilepath,
+    packageJsonPath: config.userPackageJsonPath,
   };
   const subject = new Subject();
   const context = {
@@ -252,21 +246,15 @@ test('Should _writeUserGeneratorConfig and success', async t => {
     memFsEditor: { writeJSON: sinon.stub() },
     getGeneratorConfig: () => generatorConfig,
   };
-  const _writeUserGeneratorConfig = Installer.prototype._writeUserGeneratorConfig.bind(
+  const _writeUserGeneratorConfigToPackageJson = Installer.prototype._writeUserGeneratorConfigToPackageJson.bind(
     context
   );
 
-  await t.notThrows(_writeUserGeneratorConfig());
+  await t.notThrows(_writeUserGeneratorConfigToPackageJson());
 
   t.true(
     subject.next.calledWith({
       type: 'WRITE_USER_GENERETOR_CONFIG_START',
-      payload,
-    })
-  );
-  t.false(
-    subject.next.calledWith({
-      type: 'WRITE_USER_GENERETOR_CONFIG_SKIP_FILE_EXISTS',
       payload,
     })
   );
@@ -277,70 +265,20 @@ test('Should _writeUserGeneratorConfig and success', async t => {
     })
   );
   t.true(
-    context.memFsEditor.writeJSON.calledWith(payload.filepath, generatorConfig)
+    context.memFsEditor.writeJSON.calledWith(payload.packageJsonPath, {
+      mdSeed: generatorConfig,
+    })
   );
   t.true(context._commitMemFsChanges.called);
 });
 
-test('Should _writeUserGeneratorConfig and skip', async t => {
+test('Should _writeUserGeneratorConfigToPackageJson and fail', async t => {
   const config = {
-    userGeneratorConfigExists: true,
-    userGeneratorConfigFilename: 'filename.js',
-    userGeneratorConfigFilepath: '/file/path',
+    userPackageJsonPath: path.join(__dirname, './__mocks__/package.json'),
   };
   const generatorConfig = { seedersFolder: '/some/folder' };
   const payload = {
-    fileExists: config.userGeneratorConfigExists,
-    filename: config.userGeneratorConfigFilename,
-    filepath: config.userGeneratorConfigFilepath,
-  };
-  const subject = new Subject();
-  const context = {
-    subject,
-    config,
-    _commitMemFsChanges: sinon.stub().resolves(),
-    memFsEditor: { writeJSON: sinon.stub() },
-    getGeneratorConfig: () => generatorConfig,
-  };
-  const _writeUserGeneratorConfig = Installer.prototype._writeUserGeneratorConfig.bind(
-    context
-  );
-
-  await t.notThrows(_writeUserGeneratorConfig());
-
-  t.true(
-    subject.next.calledWith({
-      type: 'WRITE_USER_GENERETOR_CONFIG_START',
-      payload,
-    })
-  );
-  t.true(
-    subject.next.calledWith({
-      type: 'WRITE_USER_GENERETOR_CONFIG_SKIP_FILE_EXISTS',
-      payload,
-    })
-  );
-  t.false(
-    subject.next.calledWith({
-      type: 'WRITE_USER_GENERETOR_CONFIG_SUCCESS',
-      payload,
-    })
-  );
-  t.false(context.memFsEditor.writeJSON.called);
-  t.false(context._commitMemFsChanges.called);
-});
-
-test('Should _writeUserGeneratorConfig and fail', async t => {
-  const config = {
-    userGeneratorConfigExists: false,
-    userGeneratorConfigFilename: 'filename.js',
-    userGeneratorConfigFilepath: '/file/path',
-  };
-  const generatorConfig = { seedersFolder: '/some/folder' };
-  const payload = {
-    fileExists: config.userGeneratorConfigExists,
-    filename: config.userGeneratorConfigFilename,
-    filepath: config.userGeneratorConfigFilepath,
+    packageJsonPath: config.userPackageJsonPath,
   };
   const subject = new Subject();
   const error = new Error('some-error');
@@ -351,23 +289,19 @@ test('Should _writeUserGeneratorConfig and fail', async t => {
     memFsEditor: { writeJSON: sinon.stub() },
     getGeneratorConfig: () => generatorConfig,
   };
-  const _writeUserGeneratorConfig = Installer.prototype._writeUserGeneratorConfig.bind(
+  const _writeUserGeneratorConfigToPackageJson = Installer.prototype._writeUserGeneratorConfigToPackageJson.bind(
     context
   );
 
-  const rejectionError = await t.throws(_writeUserGeneratorConfig());
+  const rejectionError = await t.throws(
+    _writeUserGeneratorConfigToPackageJson()
+  );
 
   t.is(rejectionError.type, 'WRITE_USER_GENERETOR_CONFIG_ERROR');
   t.deepEqual(rejectionError.payload, { ...payload, error });
   t.true(
     subject.next.calledWith({
       type: 'WRITE_USER_GENERETOR_CONFIG_START',
-      payload,
-    })
-  );
-  t.false(
-    subject.next.calledWith({
-      type: 'WRITE_USER_GENERETOR_CONFIG_SKIP_FILE_EXISTS',
       payload,
     })
   );

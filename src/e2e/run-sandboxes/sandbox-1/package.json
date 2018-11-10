@@ -1,0 +1,20 @@
+{
+  "name": "md-seed-example",
+  "version": "2.0.0",
+  "description": "Example of using mongoose-data-seed",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Avi Sharvit <sharvita@gmail.com> (https://sharvit.github.io)",
+  "license": "MIT",
+  "dependencies": {
+    "crypto": "0.0.3",
+    "faker": "^4.1.0",
+    "mongoose": "^5.0.0",
+    "uid2": "0.0.3"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1"
+  }
+}

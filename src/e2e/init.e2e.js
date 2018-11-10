@@ -1,10 +1,29 @@
 import test from 'ava';
 import sinon from 'sinon';
+import path from 'path';
+import fs from 'fs';
 
 import FilesSandbox from './utils/files-sandbox';
 
 import { runCommand } from '../lib/commands/helpers';
 import config from '../lib/config';
+
+const createSandbox = () => {
+  const sandbox = new FilesSandbox('init-');
+
+  const { sandboxPath } = sandbox;
+
+  const examplesFolderName = 'md-seed-example';
+
+  fs.copyFileSync(
+    path.join(__dirname, `../../examples/${examplesFolderName}/package.json`),
+    path.join(sandboxPath, 'package.json')
+  );
+
+  config.update(sandboxPath);
+
+  return sandbox;
+};
 
 test.beforeEach('mock', t => {
   sinon.stub(console, 'log');
@@ -27,8 +46,7 @@ test.serial('md-seed init --help', async t => {
 test.serial('md-seed init --seedersFolder=folder-name', async t => {
   const argv = '--seedersFolder=folder-name'.split(' ');
 
-  const sandbox = new FilesSandbox('init-');
-  config.update(sandbox.sandboxPath);
+  const sandbox = createSandbox();
 
   await t.notThrows(runCommand('init', argv));
 

@@ -22,7 +22,7 @@ md-seed init
 
 `md-seed init` will ask you to choose a folder for your seeders.
 
-`md-seed init` will create the `seeders` folder, generate `md-seed-config.js` and `md-seed-generator.json`.
+`md-seed init` will create the `seeders` folder, generate `md-seed-config.js` and update your `package.json`.
 
 ## Use
 
@@ -131,6 +131,15 @@ export const connect = async () => await mongoose.connect(mongoURL);
 export const dropdb = async () => mongoose.connection.db.dropDatabase();
 
 ```
+
+### Configurations
+
+`mongoose-data-seed` configurations will get loaded from the `mdSeed` field in your `package.json` file.
+
+Field           | Default Value | Description
+----------------|---------------|--------------------------------------------------------------------------
+`seedersFolder` | `'./seeders'` | Path for your seeders-folder, seeders will be generated into this folder.
+
 
 ## Examples
 

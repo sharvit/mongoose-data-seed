@@ -18,8 +18,6 @@ export default class Installer {
     WRITE_USER_GENERETOR_CONFIG_START: 'WRITE_USER_GENERETOR_CONFIG_START',
     WRITE_USER_GENERETOR_CONFIG_SUCCESS: 'WRITE_USER_GENERETOR_CONFIG_SUCCESS',
     WRITE_USER_GENERETOR_CONFIG_ERROR: 'WRITE_USER_GENERETOR_CONFIG_ERROR',
-    WRITE_USER_GENERETOR_CONFIG_SKIP_FILE_EXISTS:
-      'WRITE_USER_GENERETOR_CONFIG_SKIP_FILE_EXISTS',
 
     CREARE_SEEDERS_FOLDER_START: 'CREARE_SEEDERS_FOLDER_START',
     CREARE_SEEDERS_FOLDER_SUCCESS: 'CREARE_SEEDERS_FOLDER_SUCCESS',
@@ -66,11 +64,9 @@ export default class Installer {
    */
   _initConfig({ seedersFolder }) {
     this.config = {
+      userPackageJsonPath: path.join(config.projectRoot, './package.json'),
       userSeedersFolderName: seedersFolder,
       userSeedersFolderPath: path.join(config.projectRoot, seedersFolder),
-      userGeneratorConfigExists: config.userGeneratorConfigExists,
-      userGeneratorConfigFilename: config.userGeneratorConfigFilename,
-      userGeneratorConfigFilepath: config.userGeneratorConfigFilepath,
       userConfigExists: config.userConfigExists,
       userConfigFilename: config.userConfigFilename,
       userConfigFilepath: config.userConfigFilepath,
@@ -94,7 +90,7 @@ export default class Installer {
     try {
       this.subject.next({ type: START });
 
-      await this._writeUserGeneratorConfig();
+      await this._writeUserGeneratorConfigToPackageJson();
       await this._createSeedersFolder();
       await this._writeUserConfig();
 
@@ -119,42 +115,33 @@ export default class Installer {
     });
   }
   /**
-   * Write the `md-seed-generator.json` into the root folder
+   * Write the config into the user package.json
    */
-  async _writeUserGeneratorConfig() {
+  async _writeUserGeneratorConfigToPackageJson() {
     const {
       WRITE_USER_GENERETOR_CONFIG_START,
       WRITE_USER_GENERETOR_CONFIG_SUCCESS,
       WRITE_USER_GENERETOR_CONFIG_ERROR,
-      WRITE_USER_GENERETOR_CONFIG_SKIP_FILE_EXISTS,
     } = Installer.operations;
 
-    const {
-      userGeneratorConfigExists: fileExists,
-      userGeneratorConfigFilename: filename,
-      userGeneratorConfigFilepath: filepath,
-    } = this.config;
+    const { userPackageJsonPath: packageJsonPath } = this.config;
 
-    const payload = { fileExists, filename, filepath };
+    const payload = { packageJsonPath };
 
     try {
       this.subject.next({ type: WRITE_USER_GENERETOR_CONFIG_START, payload });
 
-      if (fileExists) {
-        this.subject.next({
-          type: WRITE_USER_GENERETOR_CONFIG_SKIP_FILE_EXISTS,
-          payload,
-        });
-      } else {
-        this.memFsEditor.writeJSON(filepath, this.getGeneratorConfig());
+      const packageJson = require(packageJsonPath);
+      packageJson.mdSeed = this.getGeneratorConfig();
 
-        await this._commitMemFsChanges();
+      this.memFsEditor.writeJSON(packageJsonPath, packageJson);
 
-        this.subject.next({
-          type: WRITE_USER_GENERETOR_CONFIG_SUCCESS,
-          payload,
-        });
-      }
+      await this._commitMemFsChanges();
+
+      this.subject.next({
+        type: WRITE_USER_GENERETOR_CONFIG_SUCCESS,
+        payload,
+      });
     } catch (error) {
       throw new InstallerError({
         type: WRITE_USER_GENERETOR_CONFIG_ERROR,

@@ -16,11 +16,8 @@ const createSandbox = () => {
   const examplesFolderName = 'md-seed-example';
 
   fs.copyFileSync(
-    path.join(
-      __dirname,
-      `../../examples/${examplesFolderName}/md-seed-generator.json`
-    ),
-    path.join(sandboxPath, 'md-seed-generator.json')
+    path.join(__dirname, `../../examples/${examplesFolderName}/package.json`),
+    path.join(sandboxPath, 'package.json')
   );
   fs.copyFileSync(
     path.join(
@@ -39,8 +36,7 @@ const getFilesForSnapshot = sandbox =>
   sandbox
     .readFiles()
     .filter(
-      ({ name }) =>
-        name !== 'md-seed-config.js' && name !== 'md-seed-generator.json'
+      ({ name }) => name !== 'md-seed-config.js' && name !== 'package.json'
     );
 
 test.beforeEach('mock', t => {
