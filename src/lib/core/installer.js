@@ -33,9 +33,9 @@ export default class Installer {
     WRITE_USER_CONFIG_SKIP_FILE_EXISTS: 'WRITE_USER_CONFIG_SKIP_FILE_EXISTS',
   };
 
-  constructor({ es6 = false, seedersFolder = 'seeders' } = {}) {
+  constructor({ seedersFolder = 'seeders' } = {}) {
     this.subject = new Subject();
-    this._initConfig({ es6, seedersFolder });
+    this._initConfig({ seedersFolder });
     this._initMemFs();
   }
   /**
@@ -51,12 +51,9 @@ export default class Installer {
    * config to write into `md-seed-config.json`
    */
   getGeneratorConfig() {
-    const {
-      useEs6Generator: es6,
-      userSeedersFolderName: seedersFolder,
-    } = this.config;
+    const { userSeedersFolderName: seedersFolder } = this.config;
 
-    return { es6, seedersFolder };
+    return { seedersFolder };
   }
 
   /*
@@ -65,16 +62,10 @@ export default class Installer {
 
   /**
    * Initiate this.config
-   * @param  {[type]} es6           should use es6 config?
-   * @param  {[type]} seedersFolder seeders folder destination
+   * @param  {string} seedersFolder seeders folder destination
    */
-  _initConfig({ es6, seedersFolder }) {
-    const configTemplatePath = es6
-      ? config.es6ConfigTemplate
-      : config.es5ConfigTemplate;
-
+  _initConfig({ seedersFolder }) {
     this.config = {
-      useEs6Generator: es6,
       userSeedersFolderName: seedersFolder,
       userSeedersFolderPath: path.join(config.projectRoot, seedersFolder),
       userGeneratorConfigExists: config.userGeneratorConfigExists,
@@ -83,7 +74,7 @@ export default class Installer {
       userConfigExists: config.userConfigExists,
       userConfigFilename: config.userConfigFilename,
       userConfigFilepath: config.userConfigFilepath,
-      configTemplatePath,
+      configTemplatePath: config.configTemplate,
     };
   }
   /**

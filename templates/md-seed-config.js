@@ -1,31 +1,22 @@
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-var mongoURL = process.env.MONGO_URL || 'mongodb://localhost:27017/dbname';
+const mongoURL = process.env.MONGO_URL || 'mongodb://localhost:27017/dbname';
 
-module.exports = {
-  /**
-   * Seeders List
-   * order is important
-   * @type {Object}
-   */
-  seedersList: {
+/**
+ * Seeders List
+ * order is important
+ * @type {Object}
+ */
+export const seedersList = {
 
-  },
-  /**
-   * Connect to mongodb implementation
-   * @return {Promise}
-   */
-  connect: function() {
-    return mongoose.connect(mongoURL);
-  },
-  /**
-   * Drop/Clear the database implementation
-   * @return {Promise}
-   */
-  dropdb: function() {
-    return new Promise(function(resolve, reject) {
-      mongoose.connection.db.dropDatabase();
-      resolve();
-    });
-  }
 };
+/**
+ * Connect to mongodb implementation
+ * @return {Promise}
+ */
+export const connect = async () => await mongoose.connect(mongoURL);
+/**
+ * Drop/Clear the database implementation
+ * @return {Promise}
+ */
+export const dropdb = async () => mongoose.connection.db.dropDatabase();

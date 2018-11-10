@@ -13,16 +13,15 @@ import InstallerLogger from './__mocks__/installer-logger';
 const testInstaller = async (t, options) => {
   const { Installer, promptMissingOptions } = t.context.mocks;
 
-  const babel = (options && options.babel) || 'some-babel';
   const seedersFolder =
     (options && options.seedersFolder) || 'some-seeder-folder';
 
-  promptMissingOptions.resolves({ babel, seedersFolder });
+  promptMissingOptions.resolves({ seedersFolder });
 
   await runInstaller(options);
 
   t.true(promptMissingOptions.calledWith(options || {}));
-  t.true(Installer.calledWith({ seedersFolder, es6: babel }));
+  t.true(Installer.calledWith({ seedersFolder }));
   t.true(Installer.prototype.install.called);
   t.true(
     Installer.stubbedOvservable.subscribe.calledWith(
@@ -59,7 +58,6 @@ test.serial('should run installer', t => testInstaller(t));
 
 test.serial('should run installer with options', t =>
   testInstaller(t, {
-    babel: 'some-babel',
     seedersFolder: 'some-seeders-folder',
   })
 );

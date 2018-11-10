@@ -18,7 +18,6 @@ import InstallerError from './installer-error';
 import Installer, { __RewireAPI__ as moduleRewireAPI } from './installer';
 
 const helpData = {
-  es6: true,
   seedersFolder: 'seeders-folder',
 };
 
@@ -30,8 +29,7 @@ const defaultConfig = {
   userConfigExists: true,
   userConfigFilename: 'config-filename.js',
   userConfigFilepath: '/project/root/config-filename.js',
-  es6ConfigTemplate: '/template/folder/es6-config-template.js',
-  es5ConfigTemplate: '/template/folder/es5-config-template.js',
+  configTemplate: '/template/folder/config-template.js',
 };
 
 test.beforeEach('mock imports', t => {
@@ -64,9 +62,7 @@ test('Should create a installer instance', t => {
 
   t.truthy(installer.subject);
   t.is(typeof installer.install, 'function');
-  t.true(
-    installer._initConfig.calledWith({ es6: false, seedersFolder: 'seeders' })
-  );
+  t.true(installer._initConfig.calledWith({ seedersFolder: 'seeders' }));
   t.true(installer._initMemFs.called);
 
   Installer.prototype._initConfig.restore();
@@ -92,16 +88,7 @@ test('Should _initConfig', t => {
   const context = {};
   const _initConfig = Installer.prototype._initConfig.bind(context);
 
-  _initConfig({ ...helpData, es6: false });
-
-  t.snapshot(context);
-});
-
-test('Should _initConfig with es6 flag', t => {
-  const context = {};
-  const _initConfig = Installer.prototype._initConfig.bind(context);
-
-  _initConfig({ ...helpData, es6: true });
+  _initConfig({ ...helpData });
 
   t.snapshot(context);
 });
@@ -135,7 +122,6 @@ test('Should install', t => {
 test('Should getGeneratorConfig', t => {
   const context = {
     config: {
-      useEs6Generator: true,
       userSeedersFolderName: 'foldername',
     },
   };
@@ -145,7 +131,7 @@ test('Should getGeneratorConfig', t => {
 
   const results = getGeneratorConfig();
 
-  t.deepEqual(results, { es6: true, seedersFolder: 'foldername' });
+  t.deepEqual(results, { seedersFolder: 'foldername' });
 });
 
 test('Should _install and success', async t => {
@@ -252,7 +238,7 @@ test('Should _writeUserGeneratorConfig and success', async t => {
     userGeneratorConfigFilename: 'filename.js',
     userGeneratorConfigFilepath: '/file/path',
   };
-  const generatorConfig = { es6: true, seedersFolder: '/some/folder' };
+  const generatorConfig = { seedersFolder: '/some/folder' };
   const payload = {
     fileExists: config.userGeneratorConfigExists,
     filename: config.userGeneratorConfigFilename,
@@ -302,7 +288,7 @@ test('Should _writeUserGeneratorConfig and skip', async t => {
     userGeneratorConfigFilename: 'filename.js',
     userGeneratorConfigFilepath: '/file/path',
   };
-  const generatorConfig = { es6: true, seedersFolder: '/some/folder' };
+  const generatorConfig = { seedersFolder: '/some/folder' };
   const payload = {
     fileExists: config.userGeneratorConfigExists,
     filename: config.userGeneratorConfigFilename,
@@ -350,7 +336,7 @@ test('Should _writeUserGeneratorConfig and fail', async t => {
     userGeneratorConfigFilename: 'filename.js',
     userGeneratorConfigFilepath: '/file/path',
   };
-  const generatorConfig = { es6: true, seedersFolder: '/some/folder' };
+  const generatorConfig = { seedersFolder: '/some/folder' };
   const payload = {
     fileExists: config.userGeneratorConfigExists,
     filename: config.userGeneratorConfigFilename,

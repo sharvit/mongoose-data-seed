@@ -1,10 +1,5 @@
 const optionDefinitions = [
   {
-    name: 'es6',
-    type: Boolean,
-    description: 'Use es6 syntax, require babel',
-  },
-  {
     name: 'seedersFolder',
     alias: 'f',
     type: String,

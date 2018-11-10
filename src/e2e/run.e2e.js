@@ -8,7 +8,7 @@ import FilesSandbox from './utils/files-sandbox';
 import { runCommand } from '../lib/commands/helpers';
 import config from '../lib/config';
 
-const getSandboxExamplePath = (exampleName = 'sandbox-es2015') =>
+const getSandboxExamplePath = (exampleName = 'sandbox-1') =>
   path.join(__dirname, `./run-sandboxes/${exampleName}`);
 
 const copyFolder = (source, destination) =>
@@ -48,8 +48,8 @@ test.serial('md-seed run --help', async t => {
   t.snapshot(results);
 });
 
-test.serial('md-seed run (es2015)', async t => {
-  const sandbox = await createSandbox(getSandboxExamplePath('sandbox-es2015'));
+test.serial('md-seed run', async t => {
+  const sandbox = await createSandbox(getSandboxExamplePath('sandbox-1'));
 
   await runCommand('run', []);
 
@@ -60,8 +60,8 @@ test.serial('md-seed run (es2015)', async t => {
   t.snapshot(results);
 });
 
-test.serial('md-seed run --dropdb (es2015)', async t => {
-  const sandbox = await createSandbox(getSandboxExamplePath('sandbox-es2015'));
+test.serial('md-seed run --dropdb', async t => {
+  const sandbox = await createSandbox(getSandboxExamplePath('sandbox-1'));
 
   await runCommand('run', ['--dropdb']);
   const results = console.log.args;
@@ -77,48 +77,8 @@ test.serial('md-seed run --dropdb (es2015)', async t => {
   t.snapshot(results);
 });
 
-test.serial('md-seed run seeder1 (es2015)', async t => {
-  const sandbox = await createSandbox(getSandboxExamplePath('sandbox-es2015'));
-
-  await runCommand('run', ['seeder1']);
-  const results = console.log.args;
-
-  sandbox.clean();
-
-  t.snapshot(results);
-});
-
-test.serial('md-seed run (es5)', async t => {
-  const sandbox = await createSandbox(getSandboxExamplePath('sandbox-es5'));
-
-  await runCommand('run', []);
-
-  sandbox.clean();
-
-  const results = console.log.args;
-
-  t.snapshot(results);
-});
-
-test.serial('md-seed run --dropdb (es5)', async t => {
-  const sandbox = await createSandbox(getSandboxExamplePath('sandbox-es5'));
-
-  await runCommand('run', ['--dropdb']);
-  const results = console.log.args;
-
-  console.log.resetHistory();
-
-  await runCommand('run', ['-d']);
-  const resultsWithAlias = console.log.args;
-
-  sandbox.clean();
-
-  t.deepEqual(results, resultsWithAlias);
-  t.snapshot(results);
-});
-
-test.serial('md-seed run seeder1 (es5)', async t => {
-  const sandbox = await createSandbox(getSandboxExamplePath('sandbox-es5'));
+test.serial('md-seed run seeder1', async t => {
+  const sandbox = await createSandbox(getSandboxExamplePath('sandbox-1'));
 
   await runCommand('run', ['seeder1']);
   const results = console.log.args;

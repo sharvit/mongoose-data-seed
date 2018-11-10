@@ -24,22 +24,6 @@ test.serial('md-seed init --help', async t => {
   t.snapshot(results);
 });
 
-test.serial('md-seed init --es6 --seedersFolder=folder-name', async t => {
-  const argv = '--es6 --seedersFolder=folder-name'.split(' ');
-
-  const sandbox = new FilesSandbox('init-');
-  config.update(sandbox.sandboxPath);
-
-  await t.notThrows(runCommand('init', argv));
-
-  const files = sandbox.readFiles();
-
-  sandbox.clean();
-
-  t.snapshot(console.log.args, 'log results');
-  t.snapshot(files, 'sandbox content');
-});
-
 test.serial('md-seed init --seedersFolder=folder-name', async t => {
   const argv = '--seedersFolder=folder-name'.split(' ');
 
