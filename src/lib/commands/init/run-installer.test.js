@@ -16,12 +16,15 @@ const testInstaller = async (t, options) => {
   const seedersFolder =
     (options && options.seedersFolder) || 'some-seeder-folder';
 
-  promptMissingOptions.resolves({ seedersFolder });
+  const customSeederTemplate =
+    (options && options.customSeederTemplate) || 'some-file-path.js';
+
+  promptMissingOptions.resolves({ seedersFolder, customSeederTemplate });
 
   await runInstaller(options);
 
   t.true(promptMissingOptions.calledWith(options || {}));
-  t.true(Installer.calledWith({ seedersFolder }));
+  t.true(Installer.calledWith({ seedersFolder, customSeederTemplate }));
   t.true(Installer.prototype.install.called);
   t.true(
     Installer.stubbedOvservable.subscribe.calledWith(
@@ -59,5 +62,6 @@ test.serial('should run installer', t => testInstaller(t));
 test.serial('should run installer with options', t =>
   testInstaller(t, {
     seedersFolder: 'some-seeders-folder',
+    customSeederTemplate: 'some-file-path.js',
   })
 );

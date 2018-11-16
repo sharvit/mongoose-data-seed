@@ -1,24 +1,38 @@
 import commandLineArgs from 'command-line-args';
 
-import { validateSeedersFolderName } from '../../utils/helpers';
-import { promptUseBabel, promptSeedersFolder } from './prompts';
+import {
+  validateSeedersFolderName,
+  validateSeederTemplatePath,
+} from '../../utils/helpers';
+import { promptSeedersFolder, promptSeederTemplate } from './prompts';
 import optionDefinitions from './option-definitions';
 
 export const getOptions = argv => {
-  const { seedersFolder, help: helpWanted } = commandLineArgs(
-    optionDefinitions,
-    { argv }
-  );
+  const {
+    seedersFolder,
+    seederTemplate: customSeederTemplate,
+    help: helpWanted,
+  } = commandLineArgs(optionDefinitions, { argv });
 
-  return { seedersFolder, helpWanted };
+  return { seedersFolder, customSeederTemplate, helpWanted };
 };
 
-export const promptMissingOptions = async ({ seedersFolder } = {}) => {
-  const isSeedersFolderValid = validateSeedersFolderName(seedersFolder);
+export const promptMissingOptions = async ({
+  seedersFolder,
+  customSeederTemplate,
+} = {}) => {
+  const getSeedersFolder = async () =>
+    validateSeedersFolderName(seedersFolder)
+      ? seedersFolder
+      : await promptSeedersFolder();
+
+  const getCustomSeederTemplate = async () =>
+    validateSeederTemplatePath(customSeederTemplate)
+      ? customSeederTemplate
+      : await promptSeederTemplate();
 
   return {
-    seedersFolder: isSeedersFolderValid
-      ? seedersFolder
-      : await promptSeedersFolder(),
+    seedersFolder: await getSeedersFolder(),
+    customSeederTemplate: await getCustomSeederTemplate(),
   };
 };

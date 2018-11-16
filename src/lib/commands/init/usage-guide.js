@@ -10,7 +10,7 @@ const usageGuide = generateUsageGuide([
   {
     header: 'Synopsis',
     content: [
-      '$ md-seed init [{bold --seedersFolder}={underline folder-name}]',
+      '$ md-seed init [{bold --seedersFolder}={underline folder-name}] [{bold --seederTemplate}={underline file-path}]',
       '$ md-seed init {bold --help}',
     ],
   },

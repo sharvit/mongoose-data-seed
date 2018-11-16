@@ -6,6 +6,7 @@ import {
   getFolderNameFromPath,
   getObjectWithSelectedKeys,
   validateSeedersFolderName,
+  validateSeederTemplatePath,
   validateUserConfig,
   exit,
   __RewireAPI__ as moduleRewireAPI,
@@ -34,6 +35,14 @@ test('should validate seeders folder name', t => {
   t.false(validateSeedersFolderName('se'));
   t.false(validateSeedersFolderName('   se  '));
   t.false(validateSeedersFolderName());
+});
+
+test('should validate seeder template path', t => {
+  t.true(validateSeederTemplatePath('file-name.js'));
+  t.true(validateSeederTemplatePath('sedsed'));
+  t.false(validateSeederTemplatePath('abcde'));
+  t.false(validateSeederTemplatePath('   abcde  '));
+  t.false(validateSeederTemplatePath());
 });
 
 test('should not throw error if user config exists', async t => {

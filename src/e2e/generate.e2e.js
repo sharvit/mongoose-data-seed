@@ -8,26 +8,15 @@ import FilesSandbox from './utils/files-sandbox';
 import { runCommand } from '../lib/commands/helpers';
 import config from '../lib/config';
 
-const createSandbox = () => {
+const getSandboxExamplePath = (exampleName = 'sandbox-1') =>
+  path.join(__dirname, `./generate-sandboxes/${exampleName}`);
+
+const createSandbox = async sandboxOriginFilesPath => {
   const sandbox = new FilesSandbox('generate-');
 
-  const { sandboxPath } = sandbox;
+  await sandbox.copyFolderToSandbox(sandboxOriginFilesPath);
 
-  const examplesFolderName = 'md-seed-example';
-
-  fs.copyFileSync(
-    path.join(__dirname, `../../examples/${examplesFolderName}/package.json`),
-    path.join(sandboxPath, 'package.json')
-  );
-  fs.copyFileSync(
-    path.join(
-      __dirname,
-      `../../examples/${examplesFolderName}/md-seed-config.js`
-    ),
-    path.join(sandboxPath, 'md-seed-config.js')
-  );
-
-  config.update(sandboxPath);
+  config.update(sandbox.sandboxPath);
 
   return sandbox;
 };
@@ -36,7 +25,10 @@ const getFilesForSnapshot = sandbox =>
   sandbox
     .readFiles()
     .filter(
-      ({ name }) => name !== 'md-seed-config.js' && name !== 'package.json'
+      ({ name }) =>
+        name !== 'md-seed-config.js' &&
+        name !== 'custom-seeder-template.js' &&
+        name !== 'package.json'
     );
 
 test.beforeEach('mock', t => {
@@ -67,7 +59,7 @@ test.serial(
 );
 
 test.serial('md-seed generate some-seeder', async t => {
-  const sandbox = createSandbox();
+  const sandbox = await createSandbox(getSandboxExamplePath('sandbox-1'));
 
   await t.notThrows(runCommand('generate', 'some-name'));
 
@@ -78,3 +70,19 @@ test.serial('md-seed generate some-seeder', async t => {
   t.snapshot(console.log.args, 'log results');
   t.snapshot(files, 'sandbox content');
 });
+
+test.serial(
+  'md-seed generate some-seeder with custom template and seeders folder',
+  async t => {
+    const sandbox = await createSandbox(getSandboxExamplePath('sandbox-2'));
+
+    await t.notThrows(runCommand('generate', 'some-name'));
+
+    const files = getFilesForSnapshot(sandbox);
+
+    sandbox.clean();
+
+    t.snapshot(console.log.args, 'log results');
+    t.snapshot(files, 'sandbox content');
+  }
+);

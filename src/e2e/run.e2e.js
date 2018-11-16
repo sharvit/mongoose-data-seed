@@ -1,7 +1,6 @@
 import test from 'ava';
 import sinon from 'sinon';
 import path from 'path';
-import { ncp } from 'ncp';
 
 import FilesSandbox from './utils/files-sandbox';
 
@@ -11,21 +10,12 @@ import config from '../lib/config';
 const getSandboxExamplePath = (exampleName = 'sandbox-1') =>
   path.join(__dirname, `./run-sandboxes/${exampleName}`);
 
-const copyFolder = (source, destination) =>
-  new Promise((resolve, reject) => {
-    ncp(source, destination, err => {
-      if (err) return reject(err);
-      resolve();
-    });
-  });
-
 const createSandbox = async sandboxOriginFilesPath => {
   const sandbox = new FilesSandbox('run-');
-  const { sandboxPath } = sandbox;
 
-  await copyFolder(sandboxOriginFilesPath, sandboxPath);
+  await sandbox.copyFolderToSandbox(sandboxOriginFilesPath);
 
-  config.update(sandboxPath);
+  config.update(sandbox.sandboxPath);
 
   return sandbox;
 };

@@ -10,6 +10,7 @@ import {
 const helpData = {
   argv: 'some argv',
   seedersFolder: 'folder-name',
+  seederTemplate: 'file-path.js',
 };
 
 test.beforeEach('mock imports', t => {
@@ -17,7 +18,9 @@ test.beforeEach('mock imports', t => {
     optionDefinitions: 'some option definitions',
     commandLineArgs: sinon.stub(),
     validateSeedersFolderName: sinon.stub(),
+    validateSeederTemplatePath: sinon.stub(),
     promptSeedersFolder: sinon.stub(),
+    promptSeederTemplate: sinon.stub(),
   };
 
   t.context = { mocks };
@@ -34,46 +37,78 @@ test.afterEach('unmock imports', t => {
 });
 
 test('should get user options from the cli', t => {
-  const { argv, seedersFolder } = helpData;
+  const { argv, seedersFolder, seederTemplate } = helpData;
 
   const { commandLineArgs, optionDefinitions } = t.context.mocks;
 
   commandLineArgs
     .withArgs(optionDefinitions, { argv })
-    .returns({ seedersFolder, help: false });
+    .returns({ seedersFolder, seederTemplate, help: false });
 
-  const expectedOptions = { seedersFolder, helpWanted: false };
+  const expectedOptions = {
+    seedersFolder,
+    customSeederTemplate: seederTemplate,
+    helpWanted: false,
+  };
   const recivedOptions = getOptions(argv);
 
   t.true(commandLineArgs.calledWith(optionDefinitions, { argv }));
   t.deepEqual(recivedOptions, expectedOptions);
 });
 
-test('promptMissingOptions should not prompt when suplying valid options', async t => {
-  const options = { seedersFolder: 'folder-name' };
+test.serial(
+  'promptMissingOptions should not prompt when suplying valid options',
+  async t => {
+    const { seedersFolder, seederTemplate } = helpData;
+    const options = { seedersFolder, customSeederTemplate: seederTemplate };
 
-  const { validateSeedersFolderName, promptSeedersFolder } = t.context.mocks;
+    const {
+      validateSeedersFolderName,
+      validateSeederTemplatePath,
+      promptSeedersFolder,
+      promptSeederTemplate,
+    } = t.context.mocks;
 
-  validateSeedersFolderName.withArgs(options.seedersFolder).returns(true);
+    validateSeedersFolderName.withArgs(seedersFolder).returns(true);
+    validateSeederTemplatePath.withArgs(seederTemplate).returns(true);
 
-  const results = await promptMissingOptions(options);
+    const results = await promptMissingOptions(options);
 
-  t.deepEqual(results, options);
-  t.true(validateSeedersFolderName.calledWith(options.seedersFolder));
-  t.false(promptSeedersFolder.called);
-});
+    t.deepEqual(results, options);
+    t.true(validateSeedersFolderName.calledWith(seedersFolder));
+    t.true(validateSeederTemplatePath.calledWith(seederTemplate));
+    t.false(promptSeedersFolder.called);
+    t.false(promptSeederTemplate.called);
+  }
+);
 
-test('promptMissingOptions should prompt all when not supplying options', async t => {
-  const expectedResults = { seedersFolder: 'folder-name' };
+test.serial(
+  'promptMissingOptions should prompt all when not supplying options',
+  async t => {
+    const { seedersFolder, seederTemplate } = helpData;
+    const expectedResults = {
+      seedersFolder,
+      customSeederTemplate: seederTemplate,
+    };
 
-  const { validateSeedersFolderName, promptSeedersFolder } = t.context.mocks;
+    const {
+      validateSeedersFolderName,
+      validateSeederTemplatePath,
+      promptSeedersFolder,
+      promptSeederTemplate,
+    } = t.context.mocks;
 
-  validateSeedersFolderName.returns(false);
-  promptSeedersFolder.returns(expectedResults.seedersFolder);
+    validateSeedersFolderName.returns(false);
+    validateSeederTemplatePath.returns(false);
+    promptSeedersFolder.returns(seedersFolder);
+    promptSeederTemplate.returns(seederTemplate);
 
-  const results = await promptMissingOptions();
+    const results = await promptMissingOptions();
 
-  t.deepEqual(results, expectedResults);
-  t.true(validateSeedersFolderName.called);
-  t.true(promptSeedersFolder.called);
-});
+    t.deepEqual(results, expectedResults);
+    t.true(validateSeedersFolderName.called);
+    t.true(validateSeederTemplatePath.called);
+    t.true(promptSeedersFolder.called);
+    t.true(promptSeederTemplate.called);
+  }
+);

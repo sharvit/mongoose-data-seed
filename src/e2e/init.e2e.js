@@ -43,17 +43,22 @@ test.serial('md-seed init --help', async t => {
   t.snapshot(results);
 });
 
-test.serial('md-seed init --seedersFolder=folder-name', async t => {
-  const argv = '--seedersFolder=folder-name'.split(' ');
+test.serial(
+  'md-seed init --seedersFolder=folder-name seederTemplate=file-path.js',
+  async t => {
+    const argv = '--seedersFolder=folder-name --seederTemplate=file-path.js'.split(
+      ' '
+    );
 
-  const sandbox = createSandbox();
+    const sandbox = createSandbox();
 
-  await t.notThrows(runCommand('init', argv));
+    await t.notThrows(runCommand('init', argv));
 
-  const files = sandbox.readFiles();
+    const files = sandbox.readFiles();
 
-  sandbox.clean();
+    sandbox.clean();
 
-  t.snapshot(console.log.args, 'log results');
-  t.snapshot(files, 'sandbox content');
-});
+    t.snapshot(console.log.args, 'log results');
+    t.snapshot(files, 'sandbox content');
+  }
+);

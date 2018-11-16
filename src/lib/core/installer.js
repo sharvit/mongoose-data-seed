@@ -5,6 +5,7 @@ import editor from 'mem-fs-editor';
 import chalk from 'chalk';
 import { Subject } from 'rxjs';
 
+import { defaultUserGeneratorConfig, systemSeederTemplate } from '../constants';
 import config from '../config';
 
 import InstallerError from './installer-error';
@@ -19,6 +20,17 @@ export default class Installer {
     WRITE_USER_GENERETOR_CONFIG_SUCCESS: 'WRITE_USER_GENERETOR_CONFIG_SUCCESS',
     WRITE_USER_GENERETOR_CONFIG_ERROR: 'WRITE_USER_GENERETOR_CONFIG_ERROR',
 
+    CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_START:
+      'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_START',
+    CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS:
+      'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS',
+    CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_ERROR:
+      'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_ERROR',
+    CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS:
+      'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS',
+    CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM:
+      'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM',
+
     CREARE_SEEDERS_FOLDER_START: 'CREARE_SEEDERS_FOLDER_START',
     CREARE_SEEDERS_FOLDER_SUCCESS: 'CREARE_SEEDERS_FOLDER_SUCCESS',
     CREARE_SEEDERS_FOLDER_ERROR: 'CREARE_SEEDERS_FOLDER_ERROR',
@@ -31,9 +43,18 @@ export default class Installer {
     WRITE_USER_CONFIG_SKIP_FILE_EXISTS: 'WRITE_USER_CONFIG_SKIP_FILE_EXISTS',
   };
 
-  constructor({ seedersFolder = 'seeders' } = {}) {
+  /**
+   * mongoose-data-seed installer
+   * @param {String} seedersFolder              Relative path to your seeders-folder
+   * @param {String} customSeederTemplate       Relative path to your seeder-template
+   *                                            if you would like to use your own seeders-template
+   */
+  constructor({
+    seedersFolder,
+    customSeederTemplate,
+  } = defaultUserGeneratorConfig) {
     this.subject = new Subject();
-    this._initConfig({ seedersFolder });
+    this._initConfig({ seedersFolder, customSeederTemplate });
     this._initMemFs();
   }
   /**
@@ -60,11 +81,16 @@ export default class Installer {
 
   /**
    * Initiate this.config
-   * @param  {string} seedersFolder seeders folder destination
+   * @param {String} seedersFolder              Relative path to your seeders-folder
+   * @param {String} customSeederTemplate       Relative path to your seeder-template
+   *                                            if you would like to use your own seeders-template
    */
-  _initConfig({ seedersFolder }) {
+  _initConfig({ seedersFolder, customSeederTemplate }) {
     this.config = {
       userPackageJsonPath: path.join(config.projectRoot, './package.json'),
+      customSeederTemplatePath:
+        customSeederTemplate &&
+        path.join(config.projectRoot, customSeederTemplate),
       userSeedersFolderName: seedersFolder,
       userSeedersFolderPath: path.join(config.projectRoot, seedersFolder),
       userConfigExists: config.userConfigExists,
@@ -90,6 +116,7 @@ export default class Installer {
     try {
       this.subject.next({ type: START });
 
+      await this._createCustomSeederTemplate();
       await this._writeUserGeneratorConfigToPackageJson();
       await this._createSeedersFolder();
       await this._writeUserConfig();
@@ -113,6 +140,51 @@ export default class Installer {
         resolve();
       });
     });
+  }
+  /**
+   * Copy the package seeder-template to the user desired
+   * custom-seeder-template path if the user wants to use his own seeder-template
+   * @return {Promise} [description]
+   */
+  async _createCustomSeederTemplate() {
+    const {
+      CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_START,
+      CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS,
+      CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_ERROR,
+      CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS,
+      CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM,
+    } = Installer.operations;
+
+    const { customSeederTemplatePath } = this.config;
+
+    const payload = { customSeederTemplatePath };
+
+    const notify = type => this.subject.next({ type, payload });
+
+    try {
+      notify(CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_START);
+
+      if (!customSeederTemplatePath) {
+        return notify(CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM);
+      }
+
+      if (fs.existsSync(customSeederTemplatePath)) {
+        notify(CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS);
+      } else {
+        // copy template
+        this.memFsEditor.copy(systemSeederTemplate, customSeederTemplatePath);
+        // commit changes
+        await this._commitMemFsChanges();
+
+        notify(CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS);
+      }
+    } catch (error) {
+      throw new InstallerError({
+        type: CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_ERROR,
+        payload,
+        error,
+      });
+    }
   }
   /**
    * Write the config into the user package.json

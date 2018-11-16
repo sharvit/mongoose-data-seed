@@ -24,6 +24,9 @@ export const getObjectWithSelectedKeys = (obj, keys) => {
 export const validateSeedersFolderName = name =>
   typeof name === 'string' && trim(name).length >= 3;
 
+export const validateSeederTemplatePath = name =>
+  typeof name === 'string' && trim(name).length >= 6;
+
 export const validateUserConfig = () => {
   const { userConfigExists } = config;
 

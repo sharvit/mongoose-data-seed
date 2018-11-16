@@ -9,6 +9,7 @@ import memFsEditor, {
   fs as memFsEditorFs,
 } from '../../__mocks__/mem-fs-editor';
 
+import { defaultUserGeneratorConfig, systemSeederTemplate } from '../constants';
 import { mockImports, resetImports } from '../utils/test-helpers';
 
 import InstallerError from './installer-error';
@@ -17,6 +18,7 @@ import Installer, { __RewireAPI__ as moduleRewireAPI } from './installer';
 
 const helpData = {
   seedersFolder: 'seeders-folder',
+  customSeederTemplate: 'some-template.js',
 };
 
 const defaultConfig = {
@@ -57,7 +59,12 @@ test('Should create a installer instance', t => {
 
   t.truthy(installer.subject);
   t.is(typeof installer.install, 'function');
-  t.true(installer._initConfig.calledWith({ seedersFolder: 'seeders' }));
+  t.true(
+    installer._initConfig.calledWith({
+      ...defaultUserGeneratorConfig,
+      customSeederTemplate: undefined,
+    })
+  );
   t.true(installer._initMemFs.called);
 
   Installer.prototype._initConfig.restore();
@@ -84,6 +91,18 @@ test('Should _initConfig', t => {
   const _initConfig = Installer.prototype._initConfig.bind(context);
 
   _initConfig({ ...helpData });
+
+  t.snapshot(context);
+});
+
+test('Should _initConfig without customSeederTemplate', t => {
+  const context = {};
+  const _initConfig = Installer.prototype._initConfig.bind(context);
+
+  const config = { ...helpData };
+  delete config.customSeederTemplate;
+
+  _initConfig(config);
 
   t.snapshot(context);
 });
@@ -131,6 +150,7 @@ test('Should getGeneratorConfig', t => {
 
 test('Should _install and success', async t => {
   const context = {
+    _createCustomSeederTemplate: sinon.stub().resolves(),
     _writeUserGeneratorConfigToPackageJson: sinon.stub().resolves(),
     _createSeedersFolder: sinon.stub().resolves(),
     _writeUserConfig: sinon.stub().resolves(),
@@ -144,6 +164,7 @@ test('Should _install and success', async t => {
 
   await _install();
 
+  t.true(context._createCustomSeederTemplate.called);
   t.true(context._writeUserGeneratorConfigToPackageJson.called);
   t.true(context._createSeedersFolder.called);
   t.true(context._writeUserConfig.called);
@@ -156,6 +177,7 @@ test('Should _install and success', async t => {
 test('Should _install and fail', async t => {
   const error = new Error('some-error');
   const context = {
+    _createCustomSeederTemplate: sinon.stub().resolves(),
     _writeUserGeneratorConfigToPackageJson: sinon.stub().resolves(),
     _createSeedersFolder: sinon.stub().rejects(error),
     _writeUserConfig: sinon.stub().resolves(),
@@ -169,6 +191,7 @@ test('Should _install and fail', async t => {
 
   await _install();
 
+  t.true(context._createCustomSeederTemplate.called);
   t.true(context._writeUserGeneratorConfigToPackageJson.called);
   t.true(context._createSeedersFolder.called);
   t.false(context._writeUserConfig.called);
@@ -187,6 +210,7 @@ test('Should _install and fail with InstallerError', async t => {
 
   const error = new InstallerError({ type, payload, error: baseError });
   const context = {
+    _createCustomSeederTemplate: sinon.stub().resolves(),
     _writeUserGeneratorConfigToPackageJson: sinon.stub().resolves(),
     _createSeedersFolder: sinon.stub().rejects(error),
     _writeUserConfig: sinon.stub().resolves(),
@@ -200,6 +224,7 @@ test('Should _install and fail with InstallerError', async t => {
 
   await _install();
 
+  t.true(context._createCustomSeederTemplate.called);
   t.true(context._writeUserGeneratorConfigToPackageJson.called);
   t.true(context._createSeedersFolder.called);
   t.false(context._writeUserConfig.called);
@@ -225,6 +250,198 @@ test('Should _commitMemFsChanges', async t => {
   await _commitMemFsChanges();
 
   t.true(context.memFsEditor.commit.called);
+});
+
+test('Should _createCustomSeederTemplate and success', async t => {
+  const customSeederTemplatePath = '/some/seeder-template.js';
+  const config = { customSeederTemplatePath };
+  const payload = { customSeederTemplatePath };
+
+  const subject = new Subject();
+  const context = {
+    subject,
+    config,
+    _commitMemFsChanges: sinon.stub().resolves(),
+    memFsEditor: { copy: sinon.stub() },
+  };
+  const _createCustomSeederTemplate = Installer.prototype._createCustomSeederTemplate.bind(
+    context
+  );
+
+  await t.notThrows(_createCustomSeederTemplate());
+
+  t.true(
+    subject.next.calledWith({
+      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_START',
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM',
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS',
+      payload,
+    })
+  );
+  t.true(
+    subject.next.calledWith({
+      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS',
+      payload,
+    })
+  );
+  t.true(
+    context.memFsEditor.copy.calledWith(
+      systemSeederTemplate,
+      customSeederTemplatePath
+    )
+  );
+  t.true(context._commitMemFsChanges.called);
+});
+
+test('Should _createCustomSeederTemplate and skip because no custom seeder choosed', async t => {
+  const customSeederTemplatePath = undefined;
+  const config = { customSeederTemplatePath };
+  const payload = { customSeederTemplatePath };
+
+  const subject = new Subject();
+  const context = {
+    subject,
+    config,
+    _commitMemFsChanges: sinon.stub().resolves(),
+    memFsEditor: { copy: sinon.stub() },
+  };
+  const _createCustomSeederTemplate = Installer.prototype._createCustomSeederTemplate.bind(
+    context
+  );
+
+  await t.notThrows(_createCustomSeederTemplate());
+
+  t.true(
+    subject.next.calledWith({
+      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_START',
+      payload,
+    })
+  );
+  t.true(
+    subject.next.calledWith({
+      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM',
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS',
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS',
+      payload,
+    })
+  );
+  t.false(context.memFsEditor.copy.called);
+  t.false(context._commitMemFsChanges.called);
+});
+
+test('Should _createCustomSeederTemplate and skip because no the seeder template already exists', async t => {
+  const customSeederTemplatePath = alreadyExistsPath;
+  const config = { customSeederTemplatePath };
+  const payload = { customSeederTemplatePath };
+
+  const subject = new Subject();
+  const context = {
+    subject,
+    config,
+    _commitMemFsChanges: sinon.stub().resolves(),
+    memFsEditor: { copy: sinon.stub() },
+  };
+  const _createCustomSeederTemplate = Installer.prototype._createCustomSeederTemplate.bind(
+    context
+  );
+
+  await t.notThrows(_createCustomSeederTemplate());
+
+  t.true(
+    subject.next.calledWith({
+      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_START',
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM',
+      payload,
+    })
+  );
+  t.true(
+    subject.next.calledWith({
+      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS',
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS',
+      payload,
+    })
+  );
+  t.false(context.memFsEditor.copy.called);
+  t.false(context._commitMemFsChanges.called);
+});
+
+test('Should _createCustomSeederTemplate and fail', async t => {
+  const customSeederTemplatePath = '/some/seeder-template.js';
+  const config = { customSeederTemplatePath };
+  const payload = { customSeederTemplatePath };
+
+  const subject = new Subject();
+  const error = new Error('some-error');
+  const context = {
+    subject,
+    config,
+    _commitMemFsChanges: sinon.stub().rejects(error),
+    memFsEditor: { copy: sinon.stub() },
+  };
+  const _createCustomSeederTemplate = Installer.prototype._createCustomSeederTemplate.bind(
+    context
+  );
+
+  const rejectionError = await t.throws(_createCustomSeederTemplate());
+
+  t.is(rejectionError.type, 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_ERROR');
+  t.deepEqual(rejectionError.payload, { ...payload, error });
+  t.true(
+    subject.next.calledWith({
+      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_START',
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM',
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS',
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS',
+      payload,
+    })
+  );
+  t.true(context.memFsEditor.copy.called);
+  t.true(context._commitMemFsChanges.called);
 });
 
 test('Should _writeUserGeneratorConfigToPackageJson and success', async t => {
