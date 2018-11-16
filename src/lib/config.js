@@ -2,9 +2,12 @@ import fs from 'fs';
 import path from 'path';
 import findRoot from 'find-root';
 
-const defaultUserGeneratorConfig = {
-  seedersFolder: './seeders',
-};
+import {
+  defaultUserGeneratorConfig,
+  systemSeederTemplate,
+  systemConfigTemplate,
+  configFilename,
+} from './constants';
 
 const getProjectRoot = () => {
   const workingDir = process.cwd();
@@ -40,20 +43,22 @@ const config = {
   },
 
   update(projectRoot = getProjectRoot()) {
-    const userGeneratorConfig = this.getUserGeneratorConfig(projectRoot);
+    const { seedersFolder, customSeederTemplate } = this.getUserGeneratorConfig(
+      projectRoot
+    );
 
-    const userSeedersFolderName = userGeneratorConfig.seedersFolder;
+    const userSeedersFolderName = seedersFolder;
     const userSeedersFolderPath = path.join(projectRoot, userSeedersFolderName);
 
-    const userConfigFilename = 'md-seed-config.js';
+    const userConfigFilename = configFilename;
     const userConfigFilepath = path.join(projectRoot, userConfigFilename);
     const userConfigExists = fs.existsSync(userConfigFilepath);
 
-    const seederTemplate = path.join(__dirname, '../../templates/seeder.js');
-    const configTemplate = path.join(
-      __dirname,
-      '../../templates/md-seed-config.js'
-    );
+    const configTemplate = systemConfigTemplate;
+
+    const seederTemplate = customSeederTemplate
+      ? path.join(projectRoot, customSeederTemplate)
+      : systemSeederTemplate;
 
     this.projectRoot = projectRoot;
     this.userConfigFilename = userConfigFilename;

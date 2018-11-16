@@ -1,0 +1,14 @@
+{
+  "name": "md-seed-example",
+  "version": "2.0.0",
+  "description": "Example of using mongoose-data-seed",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Avi Sharvit <sharvita@gmail.com> (https://sharvit.github.io)",
+  "license": "MIT",
+  "dependencies": {
+    "mongoose": "^5.0.0"
+  }
+}

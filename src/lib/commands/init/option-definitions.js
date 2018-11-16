@@ -6,6 +6,12 @@ const optionDefinitions = [
     description: 'Seeders folder name',
   },
   {
+    name: 'seederTemplate',
+    alias: 't',
+    type: String,
+    description: 'Seeder template file path',
+  },
+  {
     name: 'help',
     alias: 'h',
     type: Boolean,

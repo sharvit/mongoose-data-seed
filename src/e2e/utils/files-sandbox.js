@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import rimraf from 'rimraf';
+import { ncp } from 'ncp';
 
 const sandboxesPath = path.join(__dirname, '../../sandboxes');
 
@@ -27,6 +28,15 @@ export default class FilesSandbox {
     }
 
     this.sandboxPath = fs.mkdtempSync(path.join(sandboxesPath, prefix));
+  }
+
+  copyFolderToSandbox(source) {
+    return new Promise((resolve, reject) =>
+      ncp(source, this.sandboxPath, err => {
+        if (err) return reject(err);
+        resolve();
+      })
+    );
   }
 
   readFiles() {

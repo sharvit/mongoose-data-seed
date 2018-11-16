@@ -3,12 +3,14 @@ import sinon from 'sinon';
 
 import {
   promptSeedersFolder,
+  promptSeederTemplate,
   __RewireAPI__ as moduleRewireAPI,
 } from './prompts';
 
 const helpData = {
   argv: 'some argv',
   seedersFolder: 'folder-name',
+  seederTemplate: 'file-name.js',
   optionDefinitions: 'some option definitions',
 };
 
@@ -16,6 +18,7 @@ test.beforeEach('mock imports', t => {
   const mocks = {
     inquirer: { prompt: sinon.stub() },
     validateSeedersFolderName: sinon.stub(),
+    validateSeederTemplatePath: sinon.stub(),
   };
 
   t.context = { mocks };
@@ -56,4 +59,41 @@ test('should prompt to enter seeders-folder-name', async t => {
 
   t.is(result, seedersFolderName);
   t.true(validateSeedersFolderName.calledWith(seedersFolderName));
+});
+
+test('should prompt to use custom template and decline', async t => {
+  const { inquirer } = t.context.mocks;
+
+  inquirer.prompt.callsFake(async () => ({
+    useCustomSeeder: false,
+  }));
+
+  const result = await promptSeederTemplate();
+
+  t.is(result, undefined);
+});
+
+test('should prompt to use custom template and accept with file path', async t => {
+  const { inquirer, validateSeederTemplatePath } = t.context.mocks;
+  const seederTemplatePath = './some-file-name.js';
+
+  const fakedPrompt = async optionsArray => {
+    const { name, validate, filter } = optionsArray[0];
+
+    if (name === 'useCustomSeeder') return { useCustomSeeder: true };
+
+    if (name === 'seederTemplatePath') {
+      const value = filter(seederTemplatePath);
+      if (!validate(value)) throw new Error(`${name} is invalid`);
+
+      return { seederTemplatePath };
+    }
+  };
+
+  inquirer.prompt.callsFake(fakedPrompt);
+  validateSeederTemplatePath.withArgs(seederTemplatePath).returns(true);
+
+  const result = await promptSeederTemplate();
+
+  t.is(result, seederTemplatePath);
 });
