@@ -1,5 +1,5 @@
-import 'babel-register';
-import 'babel-polyfill';
+import '@babel/register';
+import '@babel/polyfill';
 
 import chalk from 'chalk';
 import logSymbols from 'log-symbols';

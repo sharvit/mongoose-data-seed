@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import 'babel-register';
-import 'babel-polyfill';
+import '@babel/register';
+import '@babel/polyfill';
 
 import commandLineCommands from 'command-line-commands';
 
