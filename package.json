@@ -85,7 +85,7 @@
     "lodash": "^4.17.11",
     "log-symbols": "^2.0.0",
     "mem-fs": "^1.1.3",
-    "mem-fs-editor": "^5.1.0",
+    "mem-fs-editor": "^6.0.0",
     "rxjs": "^6.3.3"
   },
   "devDependencies": {
