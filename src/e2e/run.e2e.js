@@ -21,18 +21,18 @@ const createSandbox = async sandboxOriginFilesPath => {
 };
 
 test.beforeEach('mock', t => {
-  sinon.stub(console, 'log');
+  sinon.stub(global.console, 'log');
 });
 
 test.afterEach('unmock', t => {
-  console.log.restore();
+  global.console.log.restore();
 });
 
 test.serial('md-seed run --help', async t => {
   await runCommand('run', '--help');
   await runCommand('run', '-h');
 
-  const [[results], [resultsAlias]] = console.log.args;
+  const [[results], [resultsAlias]] = global.console.log.args;
 
   t.is(results, resultsAlias);
   t.snapshot(results);
@@ -45,7 +45,7 @@ test.serial('md-seed run', async t => {
 
   sandbox.clean();
 
-  const results = console.log.args;
+  const results = global.console.log.args;
 
   t.snapshot(results);
 });
@@ -54,12 +54,12 @@ test.serial('md-seed run --dropdb', async t => {
   const sandbox = await createSandbox(getSandboxExamplePath('sandbox-1'));
 
   await runCommand('run', ['--dropdb']);
-  const results = console.log.args;
+  const results = global.console.log.args;
 
-  console.log.resetHistory();
+  global.console.log.resetHistory();
 
   await runCommand('run', ['-d']);
-  const resultsWithAlias = console.log.args;
+  const resultsWithAlias = global.console.log.args;
 
   sandbox.clean();
 
@@ -71,7 +71,7 @@ test.serial('md-seed run seeder1', async t => {
   const sandbox = await createSandbox(getSandboxExamplePath('sandbox-1'));
 
   await runCommand('run', ['seeder1']);
-  const results = console.log.args;
+  const results = global.console.log.args;
 
   sandbox.clean();
 

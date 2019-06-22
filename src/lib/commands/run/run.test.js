@@ -38,7 +38,7 @@ test.afterEach('unmock imports', t => {
   resetImports({ moduleRewireAPI, imports });
 });
 
-test('Should run', async t => {
+test.serial('Should run', async t => {
   const { validateUserConfig, MdSeedRunner, RunLogger } = t.context.mocks;
 
   await run();
@@ -63,7 +63,7 @@ test('Should run', async t => {
   t.true(RunLogger.prototype.asObserver.called);
 });
 
-test('Should run with args', async t => {
+test.serial('Should run with args', async t => {
   const { validateUserConfig, MdSeedRunner, RunLogger } = t.context.mocks;
 
   const selectedSeeders = ['some', 'seeders'];

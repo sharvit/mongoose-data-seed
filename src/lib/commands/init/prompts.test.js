@@ -34,7 +34,7 @@ test.afterEach('unmock imports', t => {
   }
 });
 
-test('should prompt to enter seeders-folder-name', async t => {
+test.serial('should prompt to enter seeders-folder-name', async t => {
   const seedersFolderName = 'some-folder-name';
   const { inquirer, validateSeedersFolderName } = t.context.mocks;
 
@@ -61,7 +61,7 @@ test('should prompt to enter seeders-folder-name', async t => {
   t.true(validateSeedersFolderName.calledWith(seedersFolderName));
 });
 
-test('should prompt to use custom template and decline', async t => {
+test.serial('should prompt to use custom template and decline', async t => {
   const { inquirer } = t.context.mocks;
 
   inquirer.prompt.callsFake(async () => ({
@@ -73,27 +73,30 @@ test('should prompt to use custom template and decline', async t => {
   t.is(result, undefined);
 });
 
-test('should prompt to use custom template and accept with file path', async t => {
-  const { inquirer, validateSeederTemplatePath } = t.context.mocks;
-  const seederTemplatePath = './some-file-name.js';
+test.serial(
+  'should prompt to use custom template and accept with file path',
+  async t => {
+    const { inquirer, validateSeederTemplatePath } = t.context.mocks;
+    const seederTemplatePath = './some-file-name.js';
 
-  const fakedPrompt = async optionsArray => {
-    const { name, validate, filter } = optionsArray[0];
+    const fakedPrompt = async optionsArray => {
+      const { name, validate, filter } = optionsArray[0];
 
-    if (name === 'useCustomSeeder') return { useCustomSeeder: true };
+      if (name === 'useCustomSeeder') return { useCustomSeeder: true };
 
-    if (name === 'seederTemplatePath') {
-      const value = filter(seederTemplatePath);
-      if (!validate(value)) throw new Error(`${name} is invalid`);
+      if (name === 'seederTemplatePath') {
+        const value = filter(seederTemplatePath);
+        if (!validate(value)) throw new Error(`${name} is invalid`);
 
-      return { seederTemplatePath };
-    }
-  };
+        return { seederTemplatePath };
+      }
+    };
 
-  inquirer.prompt.callsFake(fakedPrompt);
-  validateSeederTemplatePath.withArgs(seederTemplatePath).returns(true);
+    inquirer.prompt.callsFake(fakedPrompt);
+    validateSeederTemplatePath.withArgs(seederTemplatePath).returns(true);
 
-  const result = await promptSeederTemplate();
+    const result = await promptSeederTemplate();
 
-  t.is(result, seederTemplatePath);
-});
+    t.is(result, seederTemplatePath);
+  }
+);

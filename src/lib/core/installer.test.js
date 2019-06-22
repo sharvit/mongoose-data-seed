@@ -189,7 +189,7 @@ test('Should _install and fail', async t => {
   };
   const _install = Installer.prototype._install.bind(context);
 
-  await _install();
+  await t.notThrowsAsync(() => _install());
 
   t.true(context._createCustomSeederTemplate.called);
   t.true(context._writeUserGeneratorConfigToPackageJson.called);
@@ -268,7 +268,7 @@ test('Should _createCustomSeederTemplate and success', async t => {
     context
   );
 
-  await t.notThrows(_createCustomSeederTemplate());
+  await t.notThrows(() => _createCustomSeederTemplate());
 
   t.true(
     subject.next.calledWith({
@@ -319,7 +319,7 @@ test('Should _createCustomSeederTemplate and skip because no custom seeder choos
     context
   );
 
-  await t.notThrows(_createCustomSeederTemplate());
+  await t.notThrows(() => _createCustomSeederTemplate());
 
   t.true(
     subject.next.calledWith({
@@ -365,7 +365,7 @@ test('Should _createCustomSeederTemplate and skip because no the seeder template
     context
   );
 
-  await t.notThrows(_createCustomSeederTemplate());
+  await t.notThrows(() => _createCustomSeederTemplate());
 
   t.true(
     subject.next.calledWith({
@@ -412,7 +412,9 @@ test('Should _createCustomSeederTemplate and fail', async t => {
     context
   );
 
-  const rejectionError = await t.throws(_createCustomSeederTemplate());
+  const rejectionError = await t.throwsAsync(() =>
+    _createCustomSeederTemplate()
+  );
 
   t.is(rejectionError.type, 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_ERROR');
   t.deepEqual(rejectionError.payload, { ...payload, error });
@@ -464,7 +466,7 @@ test('Should _writeUserGeneratorConfigToPackageJson and success', async t => {
     context
   );
 
-  await t.notThrows(_writeUserGeneratorConfigToPackageJson());
+  await t.notThrows(() => _writeUserGeneratorConfigToPackageJson());
 
   t.true(
     subject.next.calledWith({
@@ -507,7 +509,7 @@ test('Should _writeUserGeneratorConfigToPackageJson and fail', async t => {
     context
   );
 
-  const rejectionError = await t.throws(
+  const rejectionError = await t.throwsAsync(
     _writeUserGeneratorConfigToPackageJson()
   );
 
@@ -544,7 +546,7 @@ test('Should _createSeedersFolder and success', async t => {
     context
   );
 
-  await t.notThrows(_createSeedersFolder());
+  await t.notThrows(() => _createSeedersFolder());
 
   t.true(
     subject.next.calledWith({
@@ -583,7 +585,7 @@ test('Should _createSeedersFolder and skip', async t => {
     context
   );
 
-  await t.notThrows(_createSeedersFolder());
+  await t.notThrows(() => _createSeedersFolder());
 
   t.true(
     subject.next.calledWith({
@@ -622,7 +624,7 @@ test('Should _createSeedersFolder and fail', async t => {
     context
   );
 
-  const rejectionError = await t.throws(_createSeedersFolder());
+  const rejectionError = await t.throwsAsync(() => _createSeedersFolder());
 
   t.is(rejectionError.type, 'CREARE_SEEDERS_FOLDER_ERROR');
   t.deepEqual(rejectionError.payload, {
@@ -672,7 +674,7 @@ test('Should _writeUserConfig and success', async t => {
   };
   const _writeUserConfig = Installer.prototype._writeUserConfig.bind(context);
 
-  await t.notThrows(_writeUserConfig());
+  await t.notThrows(() => _writeUserConfig());
 
   t.true(
     subject.next.calledWith({
@@ -722,7 +724,7 @@ test('Should _writeUserConfig and skip', async t => {
   };
   const _writeUserConfig = Installer.prototype._writeUserConfig.bind(context);
 
-  await t.notThrows(_writeUserConfig());
+  await t.notThrows(() => _writeUserConfig());
 
   t.true(
     subject.next.calledWith({
@@ -768,7 +770,7 @@ test('Should _writeUserConfig and fail', async t => {
   };
   const _writeUserConfig = Installer.prototype._writeUserConfig.bind(context);
 
-  const rejectionError = await t.throws(_writeUserConfig());
+  const rejectionError = await t.throwsAsync(() => _writeUserConfig());
 
   t.is(rejectionError.type, 'WRITE_USER_CONFIG_ERROR');
   t.deepEqual(rejectionError.payload, { ...payload, error });
