@@ -26,18 +26,18 @@ const createSandbox = () => {
 };
 
 test.beforeEach('mock', t => {
-  sinon.stub(console, 'log');
+  sinon.stub(global.console, 'log');
 });
 
 test.afterEach('unmock', t => {
-  console.log.restore();
+  global.console.log.restore();
 });
 
 test.serial('md-seed init --help', async t => {
   await runCommand('init', '--help');
   await runCommand('init', '-h');
 
-  const [[results], [resultsAlias]] = console.log.args;
+  const [[results], [resultsAlias]] = global.console.log.args;
 
   t.is(results, resultsAlias);
   t.snapshot(results);
@@ -52,13 +52,14 @@ test.serial(
 
     const sandbox = createSandbox();
 
-    await t.notThrows(runCommand('init', argv));
+    await runCommand('init', argv);
 
+    const { args: logResults } = global.console.log;
     const files = sandbox.readFiles();
 
     sandbox.clean();
 
-    t.snapshot(console.log.args, 'log results');
+    t.snapshot(logResults, 'log results');
     t.snapshot(files, 'sandbox content');
   }
 );

@@ -32,18 +32,18 @@ const getFilesForSnapshot = sandbox =>
     );
 
 test.beforeEach('mock', t => {
-  sinon.stub(console, 'log');
+  sinon.stub(global.console, 'log');
 });
 
 test.afterEach('unmock', t => {
-  console.log.restore();
+  global.console.log.restore();
 });
 
 test.serial('md-seed generate --help', async t => {
   await runCommand('generate', '--help');
   await runCommand('generate', '-h');
 
-  const [[results], [resultsAlias]] = console.log.args;
+  const [[results], [resultsAlias]] = global.console.log.args;
 
   t.is(results, resultsAlias);
   t.snapshot(results);
@@ -52,7 +52,9 @@ test.serial('md-seed generate --help', async t => {
 test.serial(
   'md-seed generate some-seeder (fail without md-seed-config.js)',
   async t => {
-    const error = await t.throws(runCommand('generate', 'some-seeder'));
+    const error = await t.throwsAsync(() =>
+      runCommand('generate', 'some-seeder')
+    );
 
     t.snapshot(error.message);
   }
@@ -61,13 +63,13 @@ test.serial(
 test.serial('md-seed generate some-seeder', async t => {
   const sandbox = await createSandbox(getSandboxExamplePath('sandbox-1'));
 
-  await t.notThrows(runCommand('generate', 'some-name'));
+  await t.notThrowsAsync(() => runCommand('generate', 'some-name'));
 
   const files = getFilesForSnapshot(sandbox);
 
   sandbox.clean();
 
-  t.snapshot(console.log.args, 'log results');
+  t.snapshot(global.console.log.args, 'log results');
   t.snapshot(files, 'sandbox content');
 });
 
@@ -76,13 +78,13 @@ test.serial(
   async t => {
     const sandbox = await createSandbox(getSandboxExamplePath('sandbox-2'));
 
-    await t.notThrows(runCommand('generate', 'some-name'));
+    await t.notThrowsAsync(() => runCommand('generate', 'some-name'));
 
     const files = getFilesForSnapshot(sandbox);
 
     sandbox.clean();
 
-    t.snapshot(console.log.args, 'log results');
+    t.snapshot(global.console.log.args, 'log results');
     t.snapshot(files, 'sandbox content');
   }
 );

@@ -27,7 +27,7 @@ test.afterEach('restore stubs', t => {
   );
 });
 
-test('should show help when asking for help', async t => {
+test.serial('should show help when asking for help', async t => {
   const { argv } = helpData;
   const { getOptions, help, generateSeeder } = t.context.stubs;
 
@@ -40,7 +40,7 @@ test('should show help when asking for help', async t => {
   t.false(generateSeeder.called);
 });
 
-test('should generate seeder when asking with seeder-name', async t => {
+test.serial('should generate seeder when asking with seeder-name', async t => {
   const { argv, seederName } = helpData;
   const { getOptions, help, generateSeeder } = t.context.stubs;
 

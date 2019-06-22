@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import 'babel-register';
-import 'babel-polyfill';
+import '@babel/register';
+import '@babel/polyfill';
 
 import { runCommand, getCommandAndArgvFromCli } from '../lib/commands/helpers';
 import { exit } from '../lib/utils/helpers';

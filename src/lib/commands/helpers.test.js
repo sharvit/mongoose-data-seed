@@ -17,32 +17,32 @@ import {
   __RewireAPI__ as moduleRewireAPI,
 } from './helpers';
 
-test('isAlias should work', t => {
+test.serial('isAlias should work', t => {
   Object.keys(aliases).forEach(a => t.is(isAlias(a), true));
   Object.keys(commands).forEach(c => t.is(isAlias(c), false));
 
   t.is(isAlias(), false);
 });
 
-test('aliasToCommand should work', t => {
-  for ([alias, command] of Object.entries(aliases)) {
+test.serial('aliasToCommand should work', t => {
+  for (const [alias, command] of Object.entries(aliases)) {
     t.is(aliasToCommand(alias), command);
   }
 });
 
-test('commandToFunction should work', t => {
-  for ([command, func] of Object.entries(commandsMap)) {
+test.serial('commandToFunction should work', t => {
+  for (const [command, func] of Object.entries(commandsMap)) {
     t.is(commandToFunction(command), func);
   }
 
-  for ([alias, command] of Object.entries(aliases)) {
+  for (const [alias, command] of Object.entries(aliases)) {
     t.is(commandToFunction(alias), commandToFunction(command));
   }
 
   t.is(commandToFunction(), commandToFunction(defaultCommand));
 });
 
-test('should get command and argv from cli', t => {
+test.serial('should get command and argv from cli', t => {
   const shouldReturn = { command: 'command', argv: 'argv' };
   const stub = sinon.stub().returns(shouldReturn);
 
@@ -56,7 +56,7 @@ test('should get command and argv from cli', t => {
   moduleRewireAPI.__ResetDependency__('commandLineCommands');
 });
 
-test('runCommand should work', t => {
+test.serial('runCommand should work', t => {
   const spy = sinon.spy();
   const stub = sinon
     .stub()

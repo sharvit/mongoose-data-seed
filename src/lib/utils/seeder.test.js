@@ -14,7 +14,7 @@ test('should throw error if not implementing run method', t => {
 });
 
 test('should throw error when running the base run method', async t => {
-  await t.throws(Seeder.prototype.run(), TypeError);
+  await t.throwsAsync(() => Seeder.prototype.run(), TypeError);
 });
 
 test('async shouldRun method need to return true', async t => {
