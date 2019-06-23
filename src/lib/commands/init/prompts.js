@@ -4,7 +4,7 @@ import { trim } from 'lodash';
 import {
   validateSeedersFolderName,
   validateSeederTemplatePath,
-} from '../../utils';
+} from '../../utils/helpers';
 
 export const promptSeedersFolder = async () => {
   const { seedersFolderName } = await inquirer.prompt([
@@ -25,7 +25,7 @@ export const promptSeederTemplate = async () => {
   const { useCustomSeeder } = await inquirer.prompt([
     {
       name: 'useCustomSeeder',
-      type: 'checkbox',
+      type: 'confirm',
       message:
         'Would you like to use your own custom template for your seeders?',
       default: false,
