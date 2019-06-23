@@ -16,7 +16,7 @@
     "prepare": "yarn build"
   },
   "bin": {
-    "md-seed": "./dist/bin/index.js"
+    "md-seed": "./md-seed.js"
   },
   "pre-commit": [
     "lint"
