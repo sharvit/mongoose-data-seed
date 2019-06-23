@@ -20,7 +20,8 @@ export const seedersList = {
  * Connect to mongodb implementation
  * @return {Promise}
  */
-export const connect = async () => await mongoose.connect(mongoURL);
+export const connect = async () =>
+  await mongoose.connect(mongoURL, { useNewUrlParser: true });
 /**
  * Drop/Clear the database implementation
  * @return {Promise}
