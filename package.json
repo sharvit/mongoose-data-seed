@@ -6,7 +6,7 @@
   "scripts": {
     "build": "yarn build:clean && yarn build:dist",
     "build:clean": "rimraf dist",
-    "build:dist": "babel src/ --out-dir dist/ --ignore 'src/**/*.test.js','src/e2e/*','src/**/__mocks__/*','src/lib/utils/test-helpers.js'",
+    "build:dist": "babel src/ --out-dir dist/ --ignore 'src/**/*.test.js','src/e2e/*','src/**/__mocks__/*','src/lib/utils/test-helpers.js','src/setup-test-env.js'",
     "test": "cross-env NODE_ENV=test nyc --no-cache ava",
     "test:watch": "yarn test --watch",
     "test:check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
