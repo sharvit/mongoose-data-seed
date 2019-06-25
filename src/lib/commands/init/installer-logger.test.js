@@ -44,10 +44,10 @@ test.serial('Should log WRITE_USER_GENERETOR_CONFIG_SUCCESS', t => {
   t.true(global.console.log.calledWith(sinon.match(/package.json/)));
 });
 
-test.serial('Should log CREARE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS', t => {
+test.serial('Should log CREATE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS', t => {
   const logger = createMockedLogger();
 
-  const type = 'CREARE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS';
+  const type = 'CREATE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS';
   const payload = { foldername: 'some-foldername' };
 
   logger.next({ type, payload });
@@ -57,10 +57,10 @@ test.serial('Should log CREARE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS', t => {
   t.true(global.console.log.calledWith(sinon.match(payload.foldername)));
 });
 
-test.serial('Should log CREARE_SEEDERS_FOLDER_SUCCESS', t => {
+test.serial('Should log CREATE_SEEDERS_FOLDER_SUCCESS', t => {
   const logger = createMockedLogger();
 
-  const type = 'CREARE_SEEDERS_FOLDER_SUCCESS';
+  const type = 'CREATE_SEEDERS_FOLDER_SUCCESS';
   const payload = { foldername: 'some-foldername' };
 
   logger.next({ type, payload });
@@ -110,10 +110,10 @@ test.serial('Should log WRITE_USER_GENERETOR_CONFIG_ERROR', t => {
   t.true(global.console.error.calledWith(payload.error));
 });
 
-test.serial('Should log CREARE_SEEDERS_FOLDER_ERROR', t => {
+test.serial('Should log CREATE_SEEDERS_FOLDER_ERROR', t => {
   const logger = createMockedLogger();
 
-  const type = 'CREARE_SEEDERS_FOLDER_ERROR';
+  const type = 'CREATE_SEEDERS_FOLDER_ERROR';
   const payload = { error: 'some-error', folderpath: 'some-folderpath' };
 
   logger.error({ type, payload });

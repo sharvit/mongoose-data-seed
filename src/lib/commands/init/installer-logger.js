@@ -10,12 +10,12 @@ export default class InstallerLogger extends BaseLogger {
         console.log(`${chalk.green('UPDATED')} package.json`);
         break;
 
-      case Installer.operations.CREARE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS:
+      case Installer.operations.CREATE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS:
         console.log(
           `${chalk.yellow('SKIP')} ${payload.foldername} are already exists`
         );
         break;
-      case Installer.operations.CREARE_SEEDERS_FOLDER_SUCCESS:
+      case Installer.operations.CREATE_SEEDERS_FOLDER_SUCCESS:
         console.log(`${chalk.green('CREATED')} ${payload.foldername}`);
         break;
 
@@ -40,7 +40,7 @@ export default class InstallerLogger extends BaseLogger {
         );
         break;
 
-      case Installer.operations.CREARE_SEEDERS_FOLDER_ERROR:
+      case Installer.operations.CREATE_SEEDERS_FOLDER_ERROR:
         console.log(
           `${chalk.red('ERROR')} Unable to create seeders folder: ${chalk.gray(
             payload.folderpath
