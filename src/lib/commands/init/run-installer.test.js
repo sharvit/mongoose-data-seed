@@ -51,7 +51,7 @@ test.beforeEach('mock imports', t => {
   }
 });
 
-test.afterEach('unmock imports', t => {
+test.afterEach.always('unmock imports', t => {
   for (const name of Object.keys(t.context.mocks)) {
     moduleRewireAPI.__ResetDependency__(name);
   }

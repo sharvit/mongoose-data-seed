@@ -14,7 +14,7 @@ test.beforeEach('mock', t => {
   sinon.stub(global.console, 'log');
 });
 
-test.afterEach('unmock', t => {
+test.afterEach.always('unmock', t => {
   global.console.error.restore();
   global.console.log.restore();
 });
