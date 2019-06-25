@@ -10,6 +10,20 @@ export default class InstallerLogger extends BaseLogger {
         console.log(`${chalk.green('UPDATED')} package.json`);
         break;
 
+      case Installer.operations
+        .CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS:
+        console.log(
+          `${chalk.yellow('SKIP')} ${
+            payload.customSeederTemplateFilename
+          } are already exists`
+        );
+        break;
+      case Installer.operations.CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS:
+        console.log(
+          `${chalk.green('CREATED')} ${payload.customSeederTemplateFilename}`
+        );
+        break;
+
       case Installer.operations.CREATE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS:
         console.log(
           `${chalk.yellow('SKIP')} ${payload.foldername} are already exists`
@@ -36,6 +50,16 @@ export default class InstallerLogger extends BaseLogger {
         console.log(
           `${chalk.red('ERROR')} Unable to write config file: ${chalk.gray(
             payload.filepath
+          )}`
+        );
+        break;
+
+      case Installer.operations.CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_ERROR:
+        console.log(
+          `${chalk.red(
+            'ERROR'
+          )} Unable to create custom seeder template: ${chalk.gray(
+            payload.customSeederTemplatePath
           )}`
         );
         break;

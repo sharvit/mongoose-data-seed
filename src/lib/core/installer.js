@@ -88,6 +88,7 @@ export default class Installer {
   _initConfig({ seedersFolder, customSeederTemplate }) {
     this.config = {
       userPackageJsonPath: path.join(config.projectRoot, './package.json'),
+      customSeederTemplateFilename: customSeederTemplate,
       customSeederTemplatePath:
         customSeederTemplate &&
         path.join(config.projectRoot, customSeederTemplate),
@@ -155,9 +156,12 @@ export default class Installer {
       CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM,
     } = Installer.operations;
 
-    const { customSeederTemplatePath } = this.config;
+    const {
+      customSeederTemplateFilename,
+      customSeederTemplatePath,
+    } = this.config;
 
-    const payload = { customSeederTemplatePath };
+    const payload = { customSeederTemplateFilename, customSeederTemplatePath };
 
     const notify = type => this.subject.next({ type, payload });
 
