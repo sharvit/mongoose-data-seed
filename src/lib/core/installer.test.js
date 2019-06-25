@@ -3,7 +3,11 @@ import sinon from 'sinon';
 import path from 'path';
 
 import Subject from '../../__mocks__/rxjs-subject';
-import fs, { alreadyExistsPath, throwableMkdirPath } from '../../__mocks__/fs';
+import fs, {
+  alreadyExistsFilename,
+  alreadyExistsPath,
+  throwableMkdirPath,
+} from '../../__mocks__/fs';
 import memFs, { store } from '../../__mocks__/mem-fs';
 import memFsEditor, {
   fs as memFsEditorFs,
@@ -253,9 +257,10 @@ test('Should _commitMemFsChanges', async t => {
 });
 
 test('Should _createCustomSeederTemplate and success', async t => {
-  const customSeederTemplatePath = '/some/seeder-template.js';
-  const config = { customSeederTemplatePath };
-  const payload = { customSeederTemplatePath };
+  const customSeederTemplateFilename = 'seeder-template.js';
+  const customSeederTemplatePath = `/some/${customSeederTemplateFilename}`;
+  const config = { customSeederTemplateFilename, customSeederTemplatePath };
+  const payload = { customSeederTemplateFilename, customSeederTemplatePath };
 
   const subject = new Subject();
   const context = {
@@ -304,9 +309,10 @@ test('Should _createCustomSeederTemplate and success', async t => {
 });
 
 test('Should _createCustomSeederTemplate and skip because no custom seeder choosed', async t => {
+  const customSeederTemplateFilename = undefined;
   const customSeederTemplatePath = undefined;
-  const config = { customSeederTemplatePath };
-  const payload = { customSeederTemplatePath };
+  const config = { customSeederTemplateFilename, customSeederTemplatePath };
+  const payload = { customSeederTemplateFilename, customSeederTemplatePath };
 
   const subject = new Subject();
   const context = {
@@ -350,9 +356,10 @@ test('Should _createCustomSeederTemplate and skip because no custom seeder choos
 });
 
 test('Should _createCustomSeederTemplate and skip because no the seeder template already exists', async t => {
+  const customSeederTemplateFilename = alreadyExistsFilename;
   const customSeederTemplatePath = alreadyExistsPath;
-  const config = { customSeederTemplatePath };
-  const payload = { customSeederTemplatePath };
+  const config = { customSeederTemplateFilename, customSeederTemplatePath };
+  const payload = { customSeederTemplateFilename, customSeederTemplatePath };
 
   const subject = new Subject();
   const context = {
@@ -396,9 +403,10 @@ test('Should _createCustomSeederTemplate and skip because no the seeder template
 });
 
 test('Should _createCustomSeederTemplate and fail', async t => {
-  const customSeederTemplatePath = '/some/seeder-template.js';
-  const config = { customSeederTemplatePath };
-  const payload = { customSeederTemplatePath };
+  const customSeederTemplateFilename = 'seeder-template.js';
+  const customSeederTemplatePath = `/some/${customSeederTemplateFilename}`;
+  const config = { customSeederTemplateFilename, customSeederTemplatePath };
+  const payload = { customSeederTemplateFilename, customSeederTemplatePath };
 
   const subject = new Subject();
   const error = new Error('some-error');
