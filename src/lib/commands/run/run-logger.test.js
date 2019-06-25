@@ -29,7 +29,7 @@ test.beforeEach('mock imports', t => {
   sinon.stub(global.console, 'log');
 });
 
-test.afterEach('unmock imports', t => {
+test.afterEach.always('unmock imports', t => {
   const imports = Object.keys(t.context.mocks);
 
   resetImports({ moduleRewireAPI, imports });

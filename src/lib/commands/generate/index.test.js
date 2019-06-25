@@ -19,7 +19,7 @@ test.beforeEach('create stubs', t => {
   t.context = { stubs };
 });
 
-test.afterEach('restore stubs', t => {
+test.afterEach.always('restore stubs', t => {
   const { stubs } = t.context;
 
   Object.keys(stubs).forEach(methodName =>
