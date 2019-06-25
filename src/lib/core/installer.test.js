@@ -204,7 +204,7 @@ test('Should _install and fail', async t => {
 });
 
 test('Should _install and fail with InstallerError', async t => {
-  const type = 'CREARE_SEEDERS_FOLDER_ERROR';
+  const type = 'CREATE_SEEDERS_FOLDER_ERROR';
   const payload = { some: 'data' };
   const baseError = new Error('some-base-error');
 
@@ -272,25 +272,25 @@ test('Should _createCustomSeederTemplate and success', async t => {
 
   t.true(
     subject.next.calledWith({
-      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_START',
+      type: 'CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_START',
       payload,
     })
   );
   t.false(
     subject.next.calledWith({
-      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM',
+      type: 'CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM',
       payload,
     })
   );
   t.false(
     subject.next.calledWith({
-      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS',
+      type: 'CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS',
       payload,
     })
   );
   t.true(
     subject.next.calledWith({
-      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS',
+      type: 'CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS',
       payload,
     })
   );
@@ -323,25 +323,25 @@ test('Should _createCustomSeederTemplate and skip because no custom seeder choos
 
   t.true(
     subject.next.calledWith({
-      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_START',
+      type: 'CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_START',
       payload,
     })
   );
   t.true(
     subject.next.calledWith({
-      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM',
+      type: 'CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM',
       payload,
     })
   );
   t.false(
     subject.next.calledWith({
-      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS',
+      type: 'CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS',
       payload,
     })
   );
   t.false(
     subject.next.calledWith({
-      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS',
+      type: 'CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS',
       payload,
     })
   );
@@ -369,25 +369,25 @@ test('Should _createCustomSeederTemplate and skip because no the seeder template
 
   t.true(
     subject.next.calledWith({
-      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_START',
+      type: 'CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_START',
       payload,
     })
   );
   t.false(
     subject.next.calledWith({
-      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM',
+      type: 'CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM',
       payload,
     })
   );
   t.true(
     subject.next.calledWith({
-      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS',
+      type: 'CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS',
       payload,
     })
   );
   t.false(
     subject.next.calledWith({
-      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS',
+      type: 'CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS',
       payload,
     })
   );
@@ -416,29 +416,29 @@ test('Should _createCustomSeederTemplate and fail', async t => {
     _createCustomSeederTemplate()
   );
 
-  t.is(rejectionError.type, 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_ERROR');
+  t.is(rejectionError.type, 'CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_ERROR');
   t.deepEqual(rejectionError.payload, { ...payload, error });
   t.true(
     subject.next.calledWith({
-      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_START',
+      type: 'CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_START',
       payload,
     })
   );
   t.false(
     subject.next.calledWith({
-      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM',
+      type: 'CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM',
       payload,
     })
   );
   t.false(
     subject.next.calledWith({
-      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS',
+      type: 'CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS',
       payload,
     })
   );
   t.false(
     subject.next.calledWith({
-      type: 'CREARE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS',
+      type: 'CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS',
       payload,
     })
   );
@@ -550,19 +550,19 @@ test('Should _createSeedersFolder and success', async t => {
 
   t.true(
     subject.next.calledWith({
-      type: 'CREARE_SEEDERS_FOLDER_START',
+      type: 'CREATE_SEEDERS_FOLDER_START',
       payload,
     })
   );
   t.false(
     subject.next.calledWith({
-      type: 'CREARE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS',
+      type: 'CREATE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS',
       payload,
     })
   );
   t.true(
     subject.next.calledWith({
-      type: 'CREARE_SEEDERS_FOLDER_SUCCESS',
+      type: 'CREATE_SEEDERS_FOLDER_SUCCESS',
       payload,
     })
   );
@@ -589,19 +589,19 @@ test('Should _createSeedersFolder and skip', async t => {
 
   t.true(
     subject.next.calledWith({
-      type: 'CREARE_SEEDERS_FOLDER_START',
+      type: 'CREATE_SEEDERS_FOLDER_START',
       payload,
     })
   );
   t.true(
     subject.next.calledWith({
-      type: 'CREARE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS',
+      type: 'CREATE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS',
       payload,
     })
   );
   t.false(
     subject.next.calledWith({
-      type: 'CREARE_SEEDERS_FOLDER_SUCCESS',
+      type: 'CREATE_SEEDERS_FOLDER_SUCCESS',
       payload,
     })
   );
@@ -626,26 +626,26 @@ test('Should _createSeedersFolder and fail', async t => {
 
   const rejectionError = await t.throwsAsync(() => _createSeedersFolder());
 
-  t.is(rejectionError.type, 'CREARE_SEEDERS_FOLDER_ERROR');
+  t.is(rejectionError.type, 'CREATE_SEEDERS_FOLDER_ERROR');
   t.deepEqual(rejectionError.payload, {
     ...payload,
     error: new Error('some-error'),
   });
   t.true(
     subject.next.calledWith({
-      type: 'CREARE_SEEDERS_FOLDER_START',
+      type: 'CREATE_SEEDERS_FOLDER_START',
       payload,
     })
   );
   t.false(
     subject.next.calledWith({
-      type: 'CREARE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS',
+      type: 'CREATE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS',
       payload,
     })
   );
   t.false(
     subject.next.calledWith({
-      type: 'CREARE_SEEDERS_FOLDER_SUCCESS',
+      type: 'CREATE_SEEDERS_FOLDER_SUCCESS',
       payload,
     })
   );
