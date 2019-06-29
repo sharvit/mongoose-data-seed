@@ -147,9 +147,32 @@ test('Should getGeneratorConfig', t => {
     context
   );
 
+  const expectedResults = {
+    seedersFolder: context.config.userSeedersFolderName,
+  };
   const results = getGeneratorConfig();
 
-  t.deepEqual(results, { seedersFolder: 'foldername' });
+  t.deepEqual(results, expectedResults);
+});
+
+test('Should getGeneratorConfig with customSeederTemplate', t => {
+  const context = {
+    config: {
+      userSeedersFolderName: 'foldername',
+      customSeederTemplateFilename: 'template-filename.js',
+    },
+  };
+  const getGeneratorConfig = Installer.prototype.getGeneratorConfig.bind(
+    context
+  );
+
+  const expectedResults = {
+    seedersFolder: context.config.userSeedersFolderName,
+    customSeederTemplate: context.config.customSeederTemplateFilename,
+  };
+  const results = getGeneratorConfig();
+
+  t.deepEqual(results, expectedResults);
 });
 
 test('Should _install and success', async t => {
@@ -458,7 +481,10 @@ test('Should _writeUserGeneratorConfigToPackageJson and success', async t => {
   const config = {
     userPackageJsonPath: path.join(__dirname, './__mocks__/package.json'),
   };
-  const generatorConfig = { seedersFolder: '/some/folder' };
+  const generatorConfig = {
+    seedersFolder: '/some/folder',
+    customSeederTemplateFilename: 'some-filename.js',
+  };
   const payload = {
     packageJsonPath: config.userPackageJsonPath,
   };
@@ -500,7 +526,10 @@ test('Should _writeUserGeneratorConfigToPackageJson and fail', async t => {
   const config = {
     userPackageJsonPath: path.join(__dirname, './__mocks__/package.json'),
   };
-  const generatorConfig = { seedersFolder: '/some/folder' };
+  const generatorConfig = {
+    seedersFolder: '/some/folder',
+    customSeederTemplateFilename: 'some-filename.js',
+  };
   const payload = {
     packageJsonPath: config.userPackageJsonPath,
   };

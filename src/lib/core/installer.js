@@ -67,12 +67,21 @@ export default class Installer {
     return this.subject.asObservable();
   }
   /**
-   * config to write into `md-seed-config.json`
+   * config to write into the `package.json`
    */
   getGeneratorConfig() {
-    const { userSeedersFolderName: seedersFolder } = this.config;
+    const {
+      userSeedersFolderName: seedersFolder,
+      customSeederTemplateFilename: customSeederTemplate,
+    } = this.config;
 
-    return { seedersFolder };
+    const generatorConfig = { seedersFolder };
+
+    if (customSeederTemplate) {
+      generatorConfig.customSeederTemplate = customSeederTemplate;
+    }
+
+    return generatorConfig;
   }
 
   /*
