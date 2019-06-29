@@ -136,9 +136,10 @@ export const dropdb = async () => mongoose.connection.db.dropDatabase();
 
 `mongoose-data-seed` configurations will get loaded from the `mdSeed` field in your `package.json` file.
 
-Field           | Default Value | Description
-----------------|---------------|--------------------------------------------------------------------------
-`seedersFolder` | `'./seeders'` | Path for your seeders-folder, seeders will be generated into this folder.
+Field                  | Default Value | Description
+-----------------------|---------------|--------------------------------------------------------------------------
+`seedersFolder`        | `'./seeders'` | Path for your seeders-folder, seeders will be generated into this folder.
+`customSeederTemplate` | `undefined`   | Path to a custom template file to generate your seeders from.
 
 
 ## Examples
