@@ -13,6 +13,6 @@
   },
   "mdSeed": {
     "seedersFolder": "./my-custom-seeders-folder",
-    "customSeederTemplate": "./custom-seeder-template.js"
+    "customSeederTemplate": "./custom-seeder-template.ejs"
   }
 }

@@ -44,9 +44,9 @@ test.serial('md-seed init --help', async t => {
 });
 
 test.serial(
-  'md-seed init --seedersFolder=folder-name seederTemplate=file-path.js',
+  'md-seed init --seedersFolder=folder-name seederTemplate=file-path.ejs',
   async t => {
-    const argv = '--seedersFolder=folder-name --seederTemplate=file-path.js'.split(
+    const argv = '--seedersFolder=folder-name --seederTemplate=file-path.ejs'.split(
       ' '
     );
 
