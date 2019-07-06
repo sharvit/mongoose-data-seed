@@ -9,7 +9,8 @@
   "author": "Avi Sharvit <sharvita@gmail.com> (https://sharvit.github.io)",
   "license": "MIT",
   "mdSeed": {
-    "seedersFolder": "./seeders"
+    "seedersFolder": "./seeders",
+    "customSeederTemplate": "./md-seed-template.ejs"
   },
   "dependencies": {
     "crypto": "0.0.3",
