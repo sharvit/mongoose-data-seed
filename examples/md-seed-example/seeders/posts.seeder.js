@@ -12,9 +12,9 @@ class PostsSeeder extends Seeder {
   }
 
   async shouldRun() {
-    return Post.countDocuments()
-      .exec()
-      .then(count => count === 0);
+    const count = await Post.countDocuments().exec();
+
+    return count === 0;
   }
 
   async run() {

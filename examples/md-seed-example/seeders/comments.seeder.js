@@ -10,9 +10,11 @@ class CommentsSeeder extends Seeder {
   }
 
   async shouldRun() {
-    return Post.countDocuments({ comments: { $exists: false } })
-      .exec()
-      .then(count => count > 0);
+    const count = await Post.countDocuments({
+      comments: { $size: 0 },
+    }).exec();
+
+    return count > 0;
   }
 
   async run() {
