@@ -41,7 +41,7 @@ export const promptSeederTemplate = async () => {
       name: 'seederTemplatePath',
       type: 'input',
       message: 'Choose a path for your seeder template',
-      default: './md-seed-template.js',
+      default: './md-seed-template.ejs',
       filter: input => trim(input),
       validate: input => validateSeederTemplatePath(input),
     },
