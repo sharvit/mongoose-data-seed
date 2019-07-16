@@ -19,6 +19,7 @@
     "uid2": "0.0.3"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.0.0"
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.0"
   }
 }

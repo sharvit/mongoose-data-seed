@@ -1,6 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 import path from 'path';
+import mongoose from 'mongoose';
 
 import FilesSandbox from './utils/files-sandbox';
 
@@ -42,10 +43,10 @@ test.serial('md-seed run', async t => {
   const sandbox = await createSandbox(getSandboxExamplePath('sandbox-1'));
 
   await runCommand('run', []);
+  const results = global.console.log.args;
 
   sandbox.clean();
-
-  const results = global.console.log.args;
+  await mongoose.connection.close();
 
   t.snapshot(results);
 });
@@ -62,6 +63,7 @@ test.serial('md-seed run --dropdb', async t => {
   const resultsWithAlias = global.console.log.args;
 
   sandbox.clean();
+  await mongoose.connection.close();
 
   t.deepEqual(results, resultsWithAlias);
   t.snapshot(results);
@@ -74,6 +76,7 @@ test.serial('md-seed run seeder1', async t => {
   const results = global.console.log.args;
 
   sandbox.clean();
+  await mongoose.connection.close();
 
   t.snapshot(results);
 });

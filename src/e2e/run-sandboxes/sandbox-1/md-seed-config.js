@@ -17,14 +17,19 @@ export const seedersList = {
   Seeder2,
   Seeder3,
 };
+
+let db;
 /**
  * Connect to mongodb implementation
  * @return {Promise}
  */
 export const connect = async () =>
-  await mongoose.connect(mongoURL, { useNewUrlParser: true });
+  (db = await mongoose.connect(mongoURL, { useNewUrlParser: true }));
 /**
  * Drop/Clear the database implementation
  * @return {Promise}
  */
-export const dropdb = async () => mongoose.connection.db.dropDatabase();
+export const dropdb = async () => {
+  await mongoose.connection.db.dropDatabase();
+  await db.disconnect();
+};
