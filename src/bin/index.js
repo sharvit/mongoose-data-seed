@@ -1,5 +1,6 @@
 import '@babel/register';
-import '@babel/polyfill';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 
 import { runCommand, getCommandAndArgvFromCli } from '../lib/commands/helpers';
 import { exit } from '../lib/utils/helpers';
