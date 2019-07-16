@@ -74,6 +74,10 @@
   },
   "homepage": "https://github.com/sharvit/mongoose-data-seed#readme",
   "dependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
+    "@babel/preset-env": "^7.4.0",
     "@babel/register": "^7.4.0",
     "@babel/runtime": "^7.4.0",
     "chalk": "^2.0.1",
@@ -93,10 +97,6 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.4.0",
-    "@babel/core": "^7.4.0",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
-    "@babel/preset-env": "^7.4.0",
     "@babel/template": "^7.4.0",
     "@babel/types": "^7.4.0",
     "ava": "^2.0.0",
