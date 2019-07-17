@@ -1,0 +1,14 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "examples/md-seed-example/package.json",
+        "package.json",
+        "src/e2e/generate-sandboxes/sandbox-1/package.json",
+        "src/e2e/generate-sandboxes/sandbox-2/package.json",
+        "src/e2e/run-sandboxes/sandbox-1/package.json",
+        "src/lib/core/__mocks__/package.json"
+      ]
+    }
+  }
+}
