@@ -13,10 +13,10 @@
     "customSeederTemplate": "./md-seed-template.ejs"
   },
   "dependencies": {
-    "crypto": "1.0.1",
+    "crypto": "^1.0.1",
     "faker": "^4.1.0",
     "mongoose": "^5.0.0",
-    "uid2": "0.0.3"
+    "uid2": "^0.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
