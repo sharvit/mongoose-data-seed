@@ -11,7 +11,7 @@
   "dependencies": {
     "crypto": "1.0.1",
     "faker": "^4.1.0",
-    "mongoose": "^5.0.0",
+    "mongoose": "^5.6.7",
     "uid2": "0.0.3"
   },
   "devDependencies": {
