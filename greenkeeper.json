@@ -4,7 +4,8 @@
       "packages": ["package.json"]
     },
     "examples": {
-      "packages": ["examples/md-seed-example/package.json"]
+      "packages": ["examples/md-seed-example/package.json"],
+      "ignore": ["mongoose"]
     },
     "testing": {
       "packages": [
