@@ -1,10 +1,28 @@
 {
   "name": "mongoose-data-seed",
-  "version": "2.0.1",
+  "version": "0.0.0-semantic-release",
   "description": "Seed mongodb with data using mongoose models",
+  "license": "MIT",
+  "repository": "https://github.com/sharvit/mongoose-data-seed",
+  "homepage": "https://github.com/sharvit/mongoose-data-seed#readme",
+  "bugs": {
+    "url": "https://github.com/sharvit/mongoose-data-seed/issues"
+  },
+  "author": {
+    "name": "Avi Sharvit",
+    "email": "sharvita@gmail.com",
+    "url": "https://github.com/sharvit/generator-node-mdl"
+  },
+  "engines": {
+    "node": ">=8"
+  },
   "main": "index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "yarn build:clean && yarn build:dist",
+    "prebuild": "yarn build:clean",
+    "build": "yarn build:dist",
     "build:clean": "rimraf dist",
     "build:dist": "babel src/ --out-dir dist/ --ignore 'src/**/*.test.js','src/e2e/*','src/**/__mocks__/*','src/lib/utils/test-helpers.js','src/setup-test-env.js'",
     "test": "cross-env NODE_ENV=test nyc --no-cache ava",
@@ -12,15 +30,16 @@
     "test:check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "lint": "eslint --max-warnings 0 .",
+    "lint:commit": "commitlint -e",
+    "lint:commit-travis": "commitlint-travis",
+    "commit": "git-cz",
+    "semantic-release": "semantic-release",
     "slate": "rimraf node_modules && yarn",
     "prepare": "yarn build"
   },
   "bin": {
     "md-seed": "./md-seed.js"
   },
-  "pre-commit": [
-    "lint"
-  ],
   "ava": {
     "concurrency": 5,
     "verbose": true,
@@ -55,31 +74,13 @@
       "html"
     ]
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sharvit/mongoose-data-seed.git"
-  },
-  "keywords": [
-    "mongoose",
-    "seed",
-    "data",
-    "mongodb",
-    "seeder",
-    "mongoosejs"
-  ],
-  "author": "Avi Sharvit <sharvita@gmail.com> (https://sharvit.github.io)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/sharvit/mongoose-data-seed/issues"
-  },
-  "homepage": "https://github.com/sharvit/mongoose-data-seed#readme",
   "dependencies": {
-    "@babel/core": "^7.4.0",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
-    "@babel/preset-env": "^7.4.0",
-    "@babel/register": "^7.4.0",
-    "@babel/runtime": "^7.4.0",
+    "@babel/core": "^7.5.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.0",
+    "@babel/preset-env": "^7.5.0",
+    "@babel/register": "^7.5.0",
+    "@babel/runtime": "^7.5.0",
     "chalk": "^2.0.1",
     "clui": "^0.3.1",
     "command-line-args": "^5.0.2",
@@ -96,28 +97,51 @@
     "rxjs": "^6.3.3"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.0",
-    "@babel/template": "^7.4.0",
-    "@babel/types": "^7.4.0",
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.0",
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "@commitlint/travis-cli": "^8.1.0",
     "ava": "^2.0.0",
     "babel-eslint": "^10.0.1",
+    "babel-plugin-add-module-exports": "^1.0.0",
     "babel-plugin-istanbul": "^5.1.0",
     "babel-plugin-rewire": "^1.2.0",
+    "commitlint-config-cz": "^0.12.0",
     "coveralls": "^3.0.2",
     "cross-env": "^5.2.0",
-    "eslint": "^6.0.0",
+    "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.0.0",
+    "eslint-config-standard": "^13.0.1",
     "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^9.0.0",
+    "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
     "mongoose": "^5.3.11",
     "ncp": "^2.0.0",
     "nyc": "^14.0.0",
-    "pre-commit": "^1.2.2",
-    "prettier": "^1.15.1",
+    "prettier": "^1.15.3",
     "prettier-eslint": "^9.0.0",
-    "rimraf": "^2.6.1",
+    "rimraf": "^2.6.2",
     "sinon": "^7.1.1"
-  }
+  },
+  "optionalDependencies": {
+    "cz-conventional-changelog": "^3.0.2",
+    "semantic-release": "^15.13.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "keywords": [
+    "mongoose",
+    "seed",
+    "data",
+    "mongodb",
+    "seeder",
+    "mongoosejs"
+  ]
 }

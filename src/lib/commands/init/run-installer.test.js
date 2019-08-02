@@ -3,8 +3,7 @@ import sinon from 'sinon';
 
 import Installer from '../../core/__mocks__/installer';
 
-import {
-  default as runInstaller,
+import runInstaller, {
   __RewireAPI__ as moduleRewireAPI,
 } from './run-installer';
 

@@ -3,8 +3,7 @@ import sinon from 'sinon';
 
 import { mockImports, resetImports } from '../../utils/test-helpers';
 
-import {
-  default as generateSeeder,
+import generateSeeder, {
   __RewireAPI__ as moduleRewireAPI,
 } from './generate-seeder';
 

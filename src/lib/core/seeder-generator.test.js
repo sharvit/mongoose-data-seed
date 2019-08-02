@@ -2,8 +2,7 @@ import test from 'ava';
 import sinon from 'sinon';
 import path from 'path';
 
-import {
-  default as SeederGenerator,
+import SeederGenerator, {
   __RewireAPI__ as moduleRewireAPI,
 } from './seeder-generator';
 
@@ -121,12 +120,6 @@ test('should init memFs', t => {
     moduleRewireAPI.__ResetDependency__('editor');
   };
 
-  const {
-    seederTemplate,
-    userSeedersFolderPath,
-    userSeedersFolderName,
-  } = helperData;
-
   const store = 'some store';
   const fs = 'some fs';
 
@@ -156,7 +149,6 @@ test('should init name', t => {
     name,
     seederName,
     seederFileName,
-    seederTemplate,
     userSeedersFolderPath,
     userSeedersFolderName,
   } = helperData;

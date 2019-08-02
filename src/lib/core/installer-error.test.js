@@ -1,5 +1,4 @@
 import test from 'ava';
-import sinon from 'sinon';
 
 import InstallerError from './installer-error';
 

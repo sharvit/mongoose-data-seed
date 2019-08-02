@@ -1,13 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import {
-  aliases,
-  commands,
-  commandsMap,
-  defaultCommand,
-  availableCommandsList,
-} from './constants';
+import { aliases, commands, commandsMap, defaultCommand } from './constants';
 import {
   isAlias,
   aliasToCommand,

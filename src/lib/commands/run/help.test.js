@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import { default as help, __RewireAPI__ as moduleRewireAPI } from './help';
+import help, { __RewireAPI__ as moduleRewireAPI } from './help';
 
 test('show show help', t => {
   const createStubs = ({ usageGuide }) => {

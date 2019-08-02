@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import { default as generate, __RewireAPI__ as moduleRewireAPI } from './index';
+import generate, { __RewireAPI__ as moduleRewireAPI } from './index';
 
 const helpData = { argv: 'some argv', seederName: 'some-seeder-name' };
 

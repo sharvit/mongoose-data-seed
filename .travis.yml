@@ -1,18 +1,24 @@
 language: node_js
-node_js:
-  - '8'
 services:
   - mongodb
-cache: yarn
-script: yarn test
-after_success:
-  - yarn coveralls
-deploy:
-  skip_cleanup: true
-  provider: npm
-  email: sharvita@gmail.com
-  api_key:
-    secure: kfj9vhR6t00r0braHL/F89vsKpd9drH9Fh/9aN4863omDTljZyhYNYgVZ6jKIb4/QdM7BTRXg9k5/ibyd9Y+fdivAGYq031s7Op6Dg9AxEC7eE7U+/sMltijvNExc7ihN/2iTyv3j78JiN7JGozc0oTqh7DJW1+cmqkIic+J2GhGU4V2Of4KXSwJYPD9nl2wSRv3Lp6mU/54zY1V3hJFTAoytcb5IspkBdEagqv//uXp6smM4IQ5psvb82wJyE8D9+ODJ6gcq56NareXNdsZx6bHlvdY7J0kZQl00IRYkZPOXJAcf5HMxZl1MsZ91icbzPRqvhtTUfcIYObt8XMGV8saFFsO5oanJuc9RnlNxUyp0MCAbnqyqeox/flDy5YVLdMpd430ZcZvk3f89cFBfYeUfamZpRL4Tn97ju1zgRI8yZOzKb+ncliYtNG7gY3zfe911oiep5BzUHu4T861OMsJJJRRtCYeVsdjSFoKw+NZeYpSt3db8cmKM5+cBKlKM2maGP+suETiuM/sZA3UJeVfdeHSGl2W8inPeg202lRHMUChuXlqWtoQO4h6ATHKMO++1BVyAp00rY5rZzMXdd1C44TMki70HXtXgfxy8xkXR6inGcTe7yNGVH0/HKyoPs/7PG3HqMDSM13ABNA0oGgTg+J/S3DsSF8tyKP81Zo=
-  on:
-    tags: true
-    repo: sharvit/mongoose-data-seed
+jobs:
+  include:
+    - stage: test
+      node_js: 8
+      script: yarn test
+    - node_js: 10
+      script: yarn test
+    - node_js: 12
+      script:
+        - yarn lint:commit-travis
+        - yarn lint
+        - yarn test
+      after_success: yarn coveralls
+    - stage: release
+      if: branch = master AND type = push
+      node_js: 12
+      script: yarn build
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script: yarn semantic-release

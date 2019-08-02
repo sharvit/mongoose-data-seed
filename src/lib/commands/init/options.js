@@ -24,12 +24,12 @@ export const promptMissingOptions = async ({
   const getSeedersFolder = async () =>
     validateSeedersFolderName(seedersFolder)
       ? seedersFolder
-      : await promptSeedersFolder();
+      : promptSeedersFolder();
 
   const getCustomSeederTemplate = async () =>
     validateSeederTemplatePath(customSeederTemplate)
       ? customSeederTemplate
-      : await promptSeederTemplate();
+      : promptSeederTemplate();
 
   return {
     seedersFolder: await getSeedersFolder(),

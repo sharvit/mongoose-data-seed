@@ -7,13 +7,6 @@ import {
   __RewireAPI__ as moduleRewireAPI,
 } from './prompts';
 
-const helpData = {
-  argv: 'some argv',
-  seedersFolder: 'folder-name',
-  seederTemplate: 'file-name.js',
-  optionDefinitions: 'some option definitions',
-};
-
 test.beforeEach('mock imports', t => {
   const mocks = {
     inquirer: { prompt: sinon.stub() },
