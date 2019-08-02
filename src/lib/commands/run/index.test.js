@@ -3,7 +3,7 @@ import sinon from 'sinon';
 
 import { mockImports, resetImports } from '../../utils/test-helpers';
 
-import { default as command, __RewireAPI__ as moduleRewireAPI } from './index';
+import command, { __RewireAPI__ as moduleRewireAPI } from './index';
 
 test.beforeEach('mock imports', t => {
   const mocks = {

@@ -1,5 +1,4 @@
 import test from 'ava';
-import sinon from 'sinon';
 
 import MdSeedRunnerError from './md-seed-runner-error';
 

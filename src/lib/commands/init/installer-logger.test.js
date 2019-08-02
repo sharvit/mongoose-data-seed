@@ -1,9 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import InstallerLogger, {
-  __RewireAPI__ as moduleRewireAPI,
-} from './installer-logger';
+import InstallerLogger from './installer-logger';
 
 const createMockedLogger = () => {
   return new InstallerLogger();

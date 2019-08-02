@@ -1,7 +1,6 @@
 import test from 'ava';
 import sinon from 'sinon';
 import path from 'path';
-import fs from 'fs';
 
 import FilesSandbox from './utils/files-sandbox';
 

@@ -2,7 +2,6 @@ import path from 'path';
 import memFs from 'mem-fs';
 import editor from 'mem-fs-editor';
 import chalk from 'chalk';
-import { upperFirst, camelCase, kebabCase } from 'lodash';
 
 import {
   getFolderNameFromPath,

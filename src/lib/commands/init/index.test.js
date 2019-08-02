@@ -1,7 +1,7 @@
 import test from 'ava';
 import sinon from 'sinon';
 
-import { default as init, __RewireAPI__ as moduleRewireAPI } from './index';
+import init, { __RewireAPI__ as moduleRewireAPI } from './index';
 
 test.beforeEach('mock imports', t => {
   const mocks = {

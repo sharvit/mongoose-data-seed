@@ -1,6 +1,6 @@
 import test from 'ava';
 import sinon from 'sinon';
-import { toArray, toPromise } from 'rxjs/operators';
+import { toArray } from 'rxjs/operators';
 
 import { mockImports, resetImports } from '../utils/test-helpers';
 
@@ -366,7 +366,7 @@ test('should _loadSelectedSeeders', t => {
 
   const seedRunner = new MdSeedRunner({ ...helpData });
 
-  const selectedSeeders = seedRunner._loadSelectedSeeders(['User']);
+  seedRunner._loadSelectedSeeders(['User']);
 
   t.true(getObjectWithSelectedKeys.calledWith(helpData.seedersList, ['User']));
 });

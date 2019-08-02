@@ -1,4 +1,7 @@
-[![Build Status](https://travis-ci.org/sharvit/mongoose-data-seed.svg?branch=master)](https://travis-ci.org/sharvit/mongoose-data-seed)
+[![Package Version](https://img.shields.io/npm/v/mongoose-data-seed.svg?style=flat-square)](https://www.npmjs.com/package/mongoose-data-seed)
+[![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
+[![Downloads Status](https://img.shields.io/npm/dm/mongoose-data-seed.svg?style=flat-square)](https://npm-stat.com/charts.html?package=mongoose-data-seed&from=2016-04-01)
+[![Build Status: Linux](https://img.shields.io/travis/sharvit/mongoose-data-seed/master.svg?style=flat-square)](https://travis-ci.org/sharvit/mongoose-data-seed)
 [![Coverage Status](https://coveralls.io/repos/github/sharvit/mongoose-data-seed/badge.svg?branch=master)](https://coveralls.io/github/sharvit/mongoose-data-seed?branch=master)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![dependencies Status](https://david-dm.org/sharvit/mongoose-data-seed/status.svg)](https://david-dm.org/sharvit/mongoose-data-seed)

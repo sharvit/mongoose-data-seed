@@ -2,7 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import memFs from 'mem-fs';
 import editor from 'mem-fs-editor';
-import chalk from 'chalk';
 import { Subject } from 'rxjs';
 
 import { defaultUserGeneratorConfig, systemSeederTemplate } from '../constants';
@@ -57,6 +56,7 @@ export default class Installer {
     this._initConfig({ seedersFolder, customSeederTemplate });
     this._initMemFs();
   }
+
   /**
    * Run installer - install `mongoose-data-seeder`
    * @return {Observable}
@@ -66,6 +66,7 @@ export default class Installer {
 
     return this.subject.asObservable();
   }
+
   /**
    * config to write into the `package.json`
    */
@@ -109,6 +110,7 @@ export default class Installer {
       configTemplatePath: config.configTemplate,
     };
   }
+
   /**
    * Initiate the in-memory file-system
    */
@@ -116,6 +118,7 @@ export default class Installer {
     const store = memFs.create();
     this.memFsEditor = editor.create(store);
   }
+
   /**
    * Run the installation process
    * @return {Promise}
@@ -140,6 +143,7 @@ export default class Installer {
       this.subject.error({ type, payload });
     }
   }
+
   /**
    * Commit the in-memory file changes
    * @return {Promise}
@@ -151,6 +155,7 @@ export default class Installer {
       });
     });
   }
+
   /**
    * Copy the package seeder-template to the user desired
    * custom-seeder-template path if the user wants to use his own seeder-template
@@ -199,6 +204,7 @@ export default class Installer {
       });
     }
   }
+
   /**
    * Write the config into the user package.json
    */
@@ -235,6 +241,7 @@ export default class Installer {
       });
     }
   }
+
   /**
    * Create the seeders folder
    */
@@ -274,6 +281,7 @@ export default class Installer {
       });
     }
   }
+
   /**
    * Write the `md-seed-config.js` into the root folder
    */

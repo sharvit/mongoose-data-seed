@@ -6,7 +6,10 @@ export default class BaseLogger {
       complete: (...args) => this.complete(...args),
     };
   }
+
   next() {}
+
   error() {}
+
   complete() {}
 }

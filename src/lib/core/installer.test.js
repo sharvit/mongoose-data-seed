@@ -296,7 +296,7 @@ test('Should _createCustomSeederTemplate and success', async t => {
     context
   );
 
-  await t.notThrows(() => _createCustomSeederTemplate());
+  await t.notThrowsAsync(() => _createCustomSeederTemplate());
 
   t.true(
     subject.next.calledWith({
@@ -500,7 +500,7 @@ test('Should _writeUserGeneratorConfigToPackageJson and success', async t => {
     context
   );
 
-  await t.notThrows(() => _writeUserGeneratorConfigToPackageJson());
+  await t.notThrowsAsync(() => _writeUserGeneratorConfigToPackageJson());
 
   t.true(
     subject.next.calledWith({
@@ -711,7 +711,7 @@ test('Should _writeUserConfig and success', async t => {
   };
   const _writeUserConfig = Installer.prototype._writeUserConfig.bind(context);
 
-  await t.notThrows(() => _writeUserConfig());
+  await t.notThrowsAsync(() => _writeUserConfig());
 
   t.true(
     subject.next.calledWith({

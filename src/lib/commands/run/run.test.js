@@ -1,6 +1,5 @@
 import test from 'ava';
 import sinon from 'sinon';
-import { Observable } from 'rxjs';
 
 import { mockImports, resetImports } from '../../utils/test-helpers';
 

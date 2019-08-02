@@ -1,8 +1,23 @@
 {
-  "rules": {
-    "prettier/prettier": ["error", { "singleQuote": true, "trailingComma": "es5" }]
+  "parser": "babel-eslint",
+  "extends": [
+    "standard",
+    "prettier",
+    "prettier/standard"
+  ],
+  "plugins": [
+    "prettier",
+    "standard"
+  ],
+  "env": {
+    "node": true,
+    "jest": true,
+    "jasmine": true
   },
-  "extends": ["prettier"],
-  "plugins": ["prettier"],
-  "parser": "babel-eslint"
+  "rules": {
+    "prettier/prettier": ["error", {
+      "singleQuote": true,
+      "trailingComma": "es5"
+    }]
+  }
 }

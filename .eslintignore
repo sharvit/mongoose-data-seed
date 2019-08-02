@@ -3,4 +3,5 @@ node_modules/
 dist/
 coverage/
 .nyc_output/
+package-lock.json
 package.json

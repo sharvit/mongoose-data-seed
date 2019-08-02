@@ -3,8 +3,6 @@ import path from 'path';
 import rimraf from 'rimraf';
 import { ncp } from 'ncp';
 
-const sandboxesPath = path.join(__dirname, '../../sandboxes');
-
 const readFolderFiles = folderPath =>
   fs.readdirSync(folderPath).map(file => {
     const filePath = path.join(folderPath, file);
