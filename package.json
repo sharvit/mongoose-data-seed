@@ -17,9 +17,9 @@
     "node": ">=8"
   },
   "main": "index.js",
-  "files": [
-    "dist"
-  ],
+  "bin": {
+    "md-seed": "./md-seed.js"
+  },
   "scripts": {
     "prebuild": "yarn build:clean",
     "build": "yarn build:dist",
@@ -36,9 +36,6 @@
     "semantic-release": "semantic-release",
     "slate": "rimraf node_modules && yarn",
     "prepare": "yarn build"
-  },
-  "bin": {
-    "md-seed": "./md-seed.js"
   },
   "ava": {
     "concurrency": 5,
