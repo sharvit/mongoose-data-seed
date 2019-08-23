@@ -85,7 +85,7 @@
     "command-line-usage": "^6.0.2",
     "core-js": "^3.1.4",
     "find-root": "^1.0.0",
-    "inquirer": "^6.2.0",
+    "inquirer": "^7.0.0",
     "lodash": "^4.17.11",
     "log-symbols": "^3.0.0",
     "mem-fs": "^1.1.3",
