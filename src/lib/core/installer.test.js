@@ -61,7 +61,7 @@ test('Should create a installer instance', t => {
 
   const installer = new Installer();
 
-  t.truthy(installer.subject);
+  t.truthy(installer._subject);
   t.is(typeof installer.install, 'function');
   t.true(
     installer._initConfig.calledWith({
@@ -81,7 +81,7 @@ test('Should create a installer instance with args', t => {
 
   const installer = new Installer({ ...helpData });
 
-  t.truthy(installer.subject);
+  t.truthy(installer._subject);
   t.is(typeof installer.install, 'function');
   t.true(installer._initConfig.calledWith({ ...helpData }));
   t.true(installer._initMemFs.called);
@@ -121,13 +121,13 @@ test('Should _initMemFs', t => {
 
   t.true(mocks.memFs.create.called);
   t.true(mocks.editor.create.calledWith(store));
-  t.is(context.memFsEditor, memFsEditorFs);
+  t.is(context._memFsEditor, memFsEditorFs);
 });
 
 test('Should install', t => {
   const context = {
     _install: sinon.stub().resolves(),
-    subject: { asObservable: () => 'observable' },
+    _subject: { asObservable: () => 'observable' },
   };
   const install = Installer.prototype.install.bind(context);
 
@@ -181,7 +181,7 @@ test('Should _install and success', async t => {
     _writeUserGeneratorConfigToPackageJson: sinon.stub().resolves(),
     _createSeedersFolder: sinon.stub().resolves(),
     _writeUserConfig: sinon.stub().resolves(),
-    subject: {
+    _subject: {
       next: sinon.stub(),
       complete: sinon.stub(),
       error: sinon.stub(),
@@ -195,10 +195,10 @@ test('Should _install and success', async t => {
   t.true(context._writeUserGeneratorConfigToPackageJson.called);
   t.true(context._createSeedersFolder.called);
   t.true(context._writeUserConfig.called);
-  t.true(context.subject.next.calledWith({ type: 'START' }));
-  t.true(context.subject.next.calledWith({ type: 'SUCCESS' }));
-  t.true(context.subject.complete.called);
-  t.false(context.subject.error.called);
+  t.true(context._subject.next.calledWith({ type: 'START' }));
+  t.true(context._subject.next.calledWith({ type: 'SUCCESS' }));
+  t.true(context._subject.complete.called);
+  t.false(context._subject.error.called);
 });
 
 test('Should _install and fail', async t => {
@@ -208,7 +208,7 @@ test('Should _install and fail', async t => {
     _writeUserGeneratorConfigToPackageJson: sinon.stub().resolves(),
     _createSeedersFolder: sinon.stub().rejects(error),
     _writeUserConfig: sinon.stub().resolves(),
-    subject: {
+    _subject: {
       next: sinon.stub(),
       complete: sinon.stub(),
       error: sinon.stub(),
@@ -222,11 +222,11 @@ test('Should _install and fail', async t => {
   t.true(context._writeUserGeneratorConfigToPackageJson.called);
   t.true(context._createSeedersFolder.called);
   t.false(context._writeUserConfig.called);
-  t.true(context.subject.next.calledWith({ type: 'START' }));
-  t.false(context.subject.next.calledWith({ type: 'SUCCESS' }));
-  t.false(context.subject.complete.called);
+  t.true(context._subject.next.calledWith({ type: 'START' }));
+  t.false(context._subject.next.calledWith({ type: 'SUCCESS' }));
+  t.false(context._subject.complete.called);
   t.true(
-    context.subject.error.calledWith({ type: 'ERROR', payload: { error } })
+    context._subject.error.calledWith({ type: 'ERROR', payload: { error } })
   );
 });
 
@@ -241,7 +241,7 @@ test('Should _install and fail with InstallerError', async t => {
     _writeUserGeneratorConfigToPackageJson: sinon.stub().resolves(),
     _createSeedersFolder: sinon.stub().rejects(error),
     _writeUserConfig: sinon.stub().resolves(),
-    subject: {
+    _subject: {
       next: sinon.stub(),
       complete: sinon.stub(),
       error: sinon.stub(),
@@ -255,11 +255,11 @@ test('Should _install and fail with InstallerError', async t => {
   t.true(context._writeUserGeneratorConfigToPackageJson.called);
   t.true(context._createSeedersFolder.called);
   t.false(context._writeUserConfig.called);
-  t.true(context.subject.next.calledWith({ type: 'START' }));
-  t.false(context.subject.next.calledWith({ type: 'SUCCESS' }));
-  t.false(context.subject.complete.called);
+  t.true(context._subject.next.calledWith({ type: 'START' }));
+  t.false(context._subject.next.calledWith({ type: 'SUCCESS' }));
+  t.false(context._subject.complete.called);
   t.true(
-    context.subject.error.calledWith({
+    context._subject.error.calledWith({
       type,
       payload: { ...payload, error: baseError },
     })
@@ -268,7 +268,7 @@ test('Should _install and fail with InstallerError', async t => {
 
 test('Should _commitMemFsChanges', async t => {
   const context = {
-    memFsEditor: { commit: sinon.stub().callsArg(0) },
+    _memFsEditor: { commit: sinon.stub().callsArg(0) },
   };
   const _commitMemFsChanges = Installer.prototype._commitMemFsChanges.bind(
     context
@@ -276,7 +276,7 @@ test('Should _commitMemFsChanges', async t => {
 
   await _commitMemFsChanges();
 
-  t.true(context.memFsEditor.commit.called);
+  t.true(context._memFsEditor.commit.called);
 });
 
 test('Should _createCustomSeederTemplate and success', async t => {
@@ -287,10 +287,10 @@ test('Should _createCustomSeederTemplate and success', async t => {
 
   const subject = new Subject();
   const context = {
-    subject,
+    _subject: subject,
     config,
     _commitMemFsChanges: sinon.stub().resolves(),
-    memFsEditor: { copy: sinon.stub() },
+    _memFsEditor: { copy: sinon.stub() },
   };
   const _createCustomSeederTemplate = Installer.prototype._createCustomSeederTemplate.bind(
     context
@@ -323,7 +323,7 @@ test('Should _createCustomSeederTemplate and success', async t => {
     })
   );
   t.true(
-    context.memFsEditor.copy.calledWith(
+    context._memFsEditor.copy.calledWith(
       systemSeederTemplate,
       customSeederTemplatePath
     )
@@ -339,10 +339,10 @@ test('Should _createCustomSeederTemplate and skip because no custom seeder choos
 
   const subject = new Subject();
   const context = {
-    subject,
+    _subject: subject,
     config,
     _commitMemFsChanges: sinon.stub().resolves(),
-    memFsEditor: { copy: sinon.stub() },
+    _memFsEditor: { copy: sinon.stub() },
   };
   const _createCustomSeederTemplate = Installer.prototype._createCustomSeederTemplate.bind(
     context
@@ -374,7 +374,7 @@ test('Should _createCustomSeederTemplate and skip because no custom seeder choos
       payload,
     })
   );
-  t.false(context.memFsEditor.copy.called);
+  t.false(context._memFsEditor.copy.called);
   t.false(context._commitMemFsChanges.called);
 });
 
@@ -386,10 +386,10 @@ test('Should _createCustomSeederTemplate and skip because no the seeder template
 
   const subject = new Subject();
   const context = {
-    subject,
+    _subject: subject,
     config,
     _commitMemFsChanges: sinon.stub().resolves(),
-    memFsEditor: { copy: sinon.stub() },
+    _memFsEditor: { copy: sinon.stub() },
   };
   const _createCustomSeederTemplate = Installer.prototype._createCustomSeederTemplate.bind(
     context
@@ -421,7 +421,7 @@ test('Should _createCustomSeederTemplate and skip because no the seeder template
       payload,
     })
   );
-  t.false(context.memFsEditor.copy.called);
+  t.false(context._memFsEditor.copy.called);
   t.false(context._commitMemFsChanges.called);
 });
 
@@ -434,10 +434,10 @@ test('Should _createCustomSeederTemplate and fail', async t => {
   const subject = new Subject();
   const error = new Error('some-error');
   const context = {
-    subject,
+    _subject: subject,
     config,
     _commitMemFsChanges: sinon.stub().rejects(error),
-    memFsEditor: { copy: sinon.stub() },
+    _memFsEditor: { copy: sinon.stub() },
   };
   const _createCustomSeederTemplate = Installer.prototype._createCustomSeederTemplate.bind(
     context
@@ -473,7 +473,7 @@ test('Should _createCustomSeederTemplate and fail', async t => {
       payload,
     })
   );
-  t.true(context.memFsEditor.copy.called);
+  t.true(context._memFsEditor.copy.called);
   t.true(context._commitMemFsChanges.called);
 });
 
@@ -490,10 +490,10 @@ test('Should _writeUserGeneratorConfigToPackageJson and success', async t => {
   };
   const subject = new Subject();
   const context = {
-    subject,
+    _subject: subject,
     config,
     _commitMemFsChanges: sinon.stub().resolves(),
-    memFsEditor: { writeJSON: sinon.stub() },
+    _memFsEditor: { writeJSON: sinon.stub() },
     getGeneratorConfig: () => generatorConfig,
   };
   const _writeUserGeneratorConfigToPackageJson = Installer.prototype._writeUserGeneratorConfigToPackageJson.bind(
@@ -515,7 +515,7 @@ test('Should _writeUserGeneratorConfigToPackageJson and success', async t => {
     })
   );
   t.true(
-    context.memFsEditor.writeJSON.calledWith(payload.packageJsonPath, {
+    context._memFsEditor.writeJSON.calledWith(payload.packageJsonPath, {
       mdSeed: generatorConfig,
     })
   );
@@ -536,10 +536,10 @@ test('Should _writeUserGeneratorConfigToPackageJson and fail', async t => {
   const subject = new Subject();
   const error = new Error('some-error');
   const context = {
-    subject,
+    _subject: subject,
     config,
     _commitMemFsChanges: sinon.stub().rejects(error),
-    memFsEditor: { writeJSON: sinon.stub() },
+    _memFsEditor: { writeJSON: sinon.stub() },
     getGeneratorConfig: () => generatorConfig,
   };
   const _writeUserGeneratorConfigToPackageJson = Installer.prototype._writeUserGeneratorConfigToPackageJson.bind(
@@ -564,7 +564,7 @@ test('Should _writeUserGeneratorConfigToPackageJson and fail', async t => {
       payload,
     })
   );
-  t.true(context.memFsEditor.writeJSON.called);
+  t.true(context._memFsEditor.writeJSON.called);
   t.true(context._commitMemFsChanges.called);
 });
 
@@ -578,7 +578,7 @@ test('Should _createSeedersFolder and success', async t => {
     userSeedersFolderName: foldername,
   };
   const subject = new Subject();
-  const context = { subject, config };
+  const context = { _subject: subject, config };
   const _createSeedersFolder = Installer.prototype._createSeedersFolder.bind(
     context
   );
@@ -617,7 +617,7 @@ test('Should _createSeedersFolder and skip', async t => {
     userSeedersFolderName: foldername,
   };
   const subject = new Subject();
-  const context = { subject, config };
+  const context = { _subject: subject, config };
   const _createSeedersFolder = Installer.prototype._createSeedersFolder.bind(
     context
   );
@@ -656,7 +656,7 @@ test('Should _createSeedersFolder and fail', async t => {
     userSeedersFolderName: foldername,
   };
   const subject = new Subject();
-  const context = { subject, config };
+  const context = { _subject: subject, config };
   const _createSeedersFolder = Installer.prototype._createSeedersFolder.bind(
     context
   );
@@ -704,10 +704,10 @@ test('Should _writeUserConfig and success', async t => {
   };
   const subject = new Subject();
   const context = {
-    subject,
+    _subject: subject,
     config,
     _commitMemFsChanges: sinon.stub().resolves(),
-    memFsEditor: { copy: sinon.stub() },
+    _memFsEditor: { copy: sinon.stub() },
   };
   const _writeUserConfig = Installer.prototype._writeUserConfig.bind(context);
 
@@ -732,7 +732,7 @@ test('Should _writeUserConfig and success', async t => {
     })
   );
   t.true(
-    context.memFsEditor.copy.calledWith(
+    context._memFsEditor.copy.calledWith(
       config.configTemplatePath,
       config.userConfigFilepath
     )
@@ -754,10 +754,10 @@ test('Should _writeUserConfig and skip', async t => {
   };
   const subject = new Subject();
   const context = {
-    subject,
+    _subject: subject,
     config,
     _commitMemFsChanges: sinon.stub().resolves(),
-    memFsEditor: { copy: sinon.stub() },
+    _memFsEditor: { copy: sinon.stub() },
   };
   const _writeUserConfig = Installer.prototype._writeUserConfig.bind(context);
 
@@ -781,7 +781,7 @@ test('Should _writeUserConfig and skip', async t => {
       payload,
     })
   );
-  t.false(context.memFsEditor.copy.called);
+  t.false(context._memFsEditor.copy.called);
   t.false(context._commitMemFsChanges.called);
 });
 
@@ -800,10 +800,10 @@ test('Should _writeUserConfig and fail', async t => {
   const subject = new Subject();
   const error = new Error('some-error');
   const context = {
-    subject,
+    _subject: subject,
     config,
     _commitMemFsChanges: sinon.stub().rejects(error),
-    memFsEditor: { copy: sinon.stub() },
+    _memFsEditor: { copy: sinon.stub() },
   };
   const _writeUserConfig = Installer.prototype._writeUserConfig.bind(context);
 
@@ -830,7 +830,7 @@ test('Should _writeUserConfig and fail', async t => {
     })
   );
   t.true(
-    context.memFsEditor.copy.calledWith(
+    context._memFsEditor.copy.calledWith(
       config.configTemplatePath,
       config.userConfigFilepath
     )

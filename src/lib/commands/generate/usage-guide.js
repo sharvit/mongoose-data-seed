@@ -1,6 +1,9 @@
 import generateUsageGuide from 'command-line-usage';
 import optionDefinitions from './option-definitions';
 
+/**
+ * @private
+ */
 const usageGuide = generateUsageGuide([
   {
     header: 'Generate Seeder',

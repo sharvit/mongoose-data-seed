@@ -4,7 +4,15 @@ import { validateUserConfig } from '../../utils/helpers';
 
 import RunLogger from './run-logger';
 
-export default async ({ selectedSeeders = [], dropDatabase = false } = {}) => {
+/**
+ * Run seeders
+ * @param  {Object}   [options={}]          Options
+ * @param  {string[]} [options.selectedSeeders=[]]  Selected seeders to run.
+ *                                                  When empty, run all seeders.
+ * @param  {boolean}   [options.dropDatabase=false] Drop database before running?
+ * @return {Promise}
+ */
+const run = async ({ selectedSeeders = [], dropDatabase = false } = {}) => {
   validateUserConfig();
 
   // get relevant user-config
@@ -25,3 +33,5 @@ export default async ({ selectedSeeders = [], dropDatabase = false } = {}) => {
   // wait for runner
   await observable.toPromise();
 };
+
+export default run;

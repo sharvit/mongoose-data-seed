@@ -7,6 +7,14 @@ import {
 import { promptSeedersFolder, promptSeederTemplate } from './prompts';
 import optionDefinitions from './option-definitions';
 
+/**
+ * Get init options from argv
+ * @param    {string[]} argv              cli argv
+ * @return   {Object}                     init options
+ * @property {string}   seedersFolder
+ * @property {string}   customSeederTemplate
+ * @property {boolean}  helpWanted
+ */
 export const getOptions = argv => {
   const {
     seedersFolder,
@@ -17,6 +25,13 @@ export const getOptions = argv => {
   return { seedersFolder, customSeederTemplate, helpWanted };
 };
 
+/**
+ * Prompt missing options for init command
+ * @param  {Object}  [options={}]                 Init command options
+ * @param  {[type]}  options.seedersFolder        seeders folder
+ * @param  {[type]}  options.customSeederTemplate custom seeder template
+ * @return {Promise} Options without missing
+ */
 export const promptMissingOptions = async ({
   seedersFolder,
   customSeederTemplate,

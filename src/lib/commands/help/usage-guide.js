@@ -1,5 +1,9 @@
 import generateUsageGuide from 'command-line-usage';
 
+/**
+ * Help command user guide
+ * @type {string}
+ */
 const usageGuide = generateUsageGuide([
   {
     header: 'Mongoose Data Seeder',

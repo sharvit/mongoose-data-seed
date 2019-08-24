@@ -6,6 +6,9 @@ import {
   validateSeederTemplatePath,
 } from '../../utils/helpers';
 
+/**
+ * @private
+ */
 export const promptSeedersFolder = async () => {
   const { seedersFolderName } = await inquirer.prompt([
     {
@@ -21,6 +24,9 @@ export const promptSeedersFolder = async () => {
   return seedersFolderName;
 };
 
+/**
+ * @private
+ */
 export const promptSeederTemplate = async () => {
   const { useCustomSeeder } = await inquirer.prompt([
     {

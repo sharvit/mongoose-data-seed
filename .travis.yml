@@ -12,13 +12,24 @@ jobs:
       script:
         - yarn lint:commit-travis
         - yarn lint
+        - yarn build
         - yarn test
       after_success: yarn coveralls
     - stage: release
       if: branch = master AND type = push
       node_js: 12
-      script: yarn build
+      script: yarn build:dist
       deploy:
         provider: script
         skip_cleanup: true
         script: yarn semantic-release
+    - stage: publish docs
+      if: branch = master AND type = push
+      node_js: 12
+      script: yarn build:docs
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        github_token: $GH_TOKEN
+        local_dir: ./docs
+        keep_history: true
