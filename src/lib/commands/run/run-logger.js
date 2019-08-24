@@ -5,6 +5,9 @@ import { Spinner } from 'clui';
 import BaseLogger from '../../utils/base-logger';
 import { MdSeedRunner } from '../../core';
 
+/**
+ * Run Logger
+ */
 export default class RunLogger extends BaseLogger {
   constructor() {
     super();
@@ -12,6 +15,12 @@ export default class RunLogger extends BaseLogger {
     this.spinner = new Spinner();
   }
 
+  /**
+   * Log next notification
+   * @param  {Object} notification notification to log
+   * @param  {string} notification.type    operation type
+   * @param  {Object} notification.payload operation payload
+   */
   next({ type, payload }) {
     this.spinner.stop();
 
@@ -56,6 +65,12 @@ export default class RunLogger extends BaseLogger {
     }
   }
 
+  /**
+   * Log error
+   * @param  {Object} error         error to log
+   * @param  {string} error.type    error type
+   * @param  {Object} error.payload error payload
+   */
   error({ type, payload }) {
     this.spinner.stop();
 

@@ -84,7 +84,7 @@ test('Should _run', async t => {
   const selectedSeeders = Object.keys(helpData.seedersList);
   const dropDatabase = false;
 
-  seedRunner.subject
+  seedRunner._subject
     .asObservable()
     .pipe(toArray())
     .toPromise()
@@ -109,7 +109,7 @@ test('Should _run and drop database', async t => {
   const selectedSeeders = Object.keys(helpData.seedersList);
   const dropDatabase = true;
 
-  seedRunner.subject
+  seedRunner._subject
     .asObservable()
     .pipe(toArray())
     .toPromise()
@@ -134,7 +134,7 @@ test('Should _run and fail', async t => {
   const selectedSeeders = Object.keys(helpData.seedersList);
   const dropDatabase = true;
 
-  seedRunner.subject
+  seedRunner._subject
     .asObservable()
     .pipe(toArray())
     .toPromise()
@@ -165,7 +165,7 @@ test('Should _run and fail with type and payload', async t => {
   const selectedSeeders = Object.keys(helpData.seedersList);
   const dropDatabase = true;
 
-  seedRunner.subject
+  seedRunner._subject
     .asObservable()
     .pipe(toArray())
     .toPromise()
@@ -183,7 +183,7 @@ test('Should _connectToMongodb', async t => {
 
   const seedRunner = new MdSeedRunner({ ...helpData });
 
-  seedRunner.subject
+  seedRunner._subject
     .asObservable()
     .pipe(toArray())
     .toPromise()
@@ -191,7 +191,7 @@ test('Should _connectToMongodb', async t => {
 
   await seedRunner._connectToMongodb();
 
-  seedRunner.subject.complete();
+  seedRunner._subject.complete();
 
   t.true(helpData.connect.called);
 });
@@ -206,7 +206,7 @@ test('Should _connectToMongodb and fail', async t => {
 
   const seedRunner = new MdSeedRunner({ ...data });
 
-  seedRunner.subject
+  seedRunner._subject
     .asObservable()
     .pipe(toArray())
     .toPromise()
@@ -218,7 +218,7 @@ test('Should _connectToMongodb and fail', async t => {
     t.snapshot(error, 'connect to mongodb error');
   }
 
-  seedRunner.subject.complete();
+  seedRunner._subject.complete();
 
   t.true(data.connect.called);
 });
@@ -228,7 +228,7 @@ test('Should _dropDatabase', async t => {
 
   const seedRunner = new MdSeedRunner({ ...helpData });
 
-  seedRunner.subject
+  seedRunner._subject
     .asObservable()
     .pipe(toArray())
     .toPromise()
@@ -236,7 +236,7 @@ test('Should _dropDatabase', async t => {
 
   await seedRunner._dropDatabase();
 
-  seedRunner.subject.complete();
+  seedRunner._subject.complete();
 
   t.true(helpData.dropdb.called);
 });
@@ -251,7 +251,7 @@ test('Should _dropDatabase and fail', async t => {
 
   const seedRunner = new MdSeedRunner({ ...data });
 
-  seedRunner.subject
+  seedRunner._subject
     .asObservable()
     .pipe(toArray())
     .toPromise()
@@ -263,7 +263,7 @@ test('Should _dropDatabase and fail', async t => {
     t.snapshot(error, 'dropdb error');
   }
 
-  seedRunner.subject.complete();
+  seedRunner._subject.complete();
 
   t.true(data.dropdb.called);
 });
@@ -281,7 +281,7 @@ test('Should _runSeeders', async t => {
     .returns(selectedSeeders);
   sinon.stub(seedRunner, '_runSeeder').resolves();
 
-  seedRunner.subject
+  seedRunner._subject
     .asObservable()
     .pipe(toArray())
     .toPromise()
@@ -289,7 +289,7 @@ test('Should _runSeeders', async t => {
 
   await seedRunner._runSeeders(selectedSeeders);
 
-  seedRunner.subject.complete();
+  seedRunner._subject.complete();
 
   t.true(seedRunner._loadSelectedSeeders.calledWith(selectedSeeders));
   t.snapshot(seedRunner._runSeeder.args, '_runSeeder args');
@@ -304,7 +304,7 @@ test('Should _runSeeder', async t => {
 
   const seedRunner = new MdSeedRunner({ ...helpData });
 
-  seedRunner.subject
+  seedRunner._subject
     .asObservable()
     .pipe(toArray())
     .toPromise()
@@ -312,7 +312,7 @@ test('Should _runSeeder', async t => {
 
   await seedRunner._runSeeder({ Seeder, name });
 
-  seedRunner.subject.complete();
+  seedRunner._subject.complete();
 
   t.true(Seeder.called);
   t.true(Seeder.prototype.seed.called);
@@ -327,7 +327,7 @@ test('Should _runSeeder and fail', async t => {
 
   const seedRunner = new MdSeedRunner({ ...helpData });
 
-  seedRunner.subject
+  seedRunner._subject
     .asObservable()
     .pipe(toArray())
     .toPromise()
@@ -339,7 +339,7 @@ test('Should _runSeeder and fail', async t => {
     t.snapshot(error, '_runSeeder error');
   }
 
-  seedRunner.subject.complete();
+  seedRunner._subject.complete();
 
   t.true(Seeder.called);
   t.true(Seeder.prototype.seed.called);

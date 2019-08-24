@@ -6,7 +6,17 @@ import {
 } from '../utils/helpers';
 import MdSeedRunnerError from './md-seed-runner-error';
 
+/**
+ * mongoose-data-seed runner
+ */
 export default class MdSeedRunner {
+  /**
+   * MdSeedRunner operations constants
+   * @type {Object}
+   * @property {string} START        MdSeedRunner starts.
+   * @property {string} SUCCESS      MdSeedRunner succeed.
+   * @property {string} ERROR        MdSeedRunner finished with an error.
+   */
   static operations = {
     START: 'START',
     SUCCESS: 'SUCCESS',
@@ -26,21 +36,21 @@ export default class MdSeedRunner {
 
   /**
    * Creates MdSeedRunner
-   * @param {AsyncFunction} connect     Connect to mongodb implementation
-   * @param {AsyncFunction} dropdb      Drop/Clear the database implementation
-   * @param {Object}        seedersList key=Seeder name | value=Seeder implementation
+   * @param {Function<Promise>}     connect     Connect to mongodb implementation
+   * @param {Function<Promise>}     dropdb      Drop/Clear the database implementation
+   * @param {Map<string, Function>} seedersList key=Seeder name | value=Seeder implementation
    */
   constructor({ connect, dropdb, seedersList }) {
     this.connect = connect;
     this.dropdb = dropdb;
     this.seedersList = seedersList;
-    this.subject = new Subject();
+    this._subject = new Subject();
   }
 
   run({ selectedSeeders = [], dropDatabase = false } = {}) {
     this._run({ selectedSeeders, dropDatabase });
 
-    return this.subject.asObservable();
+    return this._subject.asObservable();
   }
 
   /*
@@ -51,7 +61,7 @@ export default class MdSeedRunner {
     const { START, SUCCESS, ERROR } = MdSeedRunner.operations;
 
     try {
-      this.subject.next({
+      this._subject.next({
         type: START,
         payload: { selectedSeeders, dropDatabase },
       });
@@ -64,16 +74,16 @@ export default class MdSeedRunner {
 
       await this._runSeeders(selectedSeeders);
 
-      this.subject.next({
+      this._subject.next({
         type: SUCCESS,
         payload: { selectedSeeders, dropDatabase },
       });
 
-      this.subject.complete();
+      this._subject.complete();
     } catch (error) {
       const { type = ERROR, payload = { error } } = error;
 
-      this.subject.error({ type, payload });
+      this._subject.error({ type, payload });
     }
   }
 
@@ -85,11 +95,11 @@ export default class MdSeedRunner {
     } = MdSeedRunner.operations;
 
     try {
-      this.subject.next({ type: MONGOOSE_CONNECT_START });
+      this._subject.next({ type: MONGOOSE_CONNECT_START });
 
       await this.connect();
 
-      this.subject.next({ type: MONGOOSE_CONNECT_SUCCESS });
+      this._subject.next({ type: MONGOOSE_CONNECT_SUCCESS });
     } catch (error) {
       throw new MdSeedRunnerError({ type: MONGOOSE_CONNECT_ERROR, error });
     }
@@ -103,11 +113,11 @@ export default class MdSeedRunner {
     } = MdSeedRunner.operations;
 
     try {
-      this.subject.next({ type: MONGOOSE_DROP_START });
+      this._subject.next({ type: MONGOOSE_DROP_START });
 
       await this.dropdb();
 
-      this.subject.next({ type: MONGOOSE_DROP_SUCCESS });
+      this._subject.next({ type: MONGOOSE_DROP_SUCCESS });
     } catch (error) {
       throw new MdSeedRunnerError({ type: MONGOOSE_DROP_ERROR, error });
     }
@@ -118,7 +128,7 @@ export default class MdSeedRunner {
 
     const seeders = this._loadSelectedSeeders(selectedSeeders);
 
-    this.subject.next({
+    this._subject.next({
       type: ALL_SEEDERS_START,
       payload: { seeders: Object.keys(seeders) },
     });
@@ -127,7 +137,7 @@ export default class MdSeedRunner {
       await this._runSeeder({ name, Seeder });
     }
 
-    this.subject.next({
+    this._subject.next({
       type: ALL_SEEDERS_FINISH,
       payload: { seeders: Object.keys(seeders) },
     });
@@ -141,7 +151,7 @@ export default class MdSeedRunner {
     } = MdSeedRunner.operations;
 
     try {
-      this.subject.next({
+      this._subject.next({
         type: SEEDER_START,
         payload: { name },
       });
@@ -149,7 +159,7 @@ export default class MdSeedRunner {
       const seeder = new Seeder();
       const results = await seeder.seed();
 
-      this.subject.next({ type: SEEDER_SUCCESS, payload: { name, results } });
+      this._subject.next({ type: SEEDER_SUCCESS, payload: { name, results } });
     } catch (error) {
       throw new MdSeedRunnerError({
         type: SEEDER_ERROR,

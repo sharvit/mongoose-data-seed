@@ -15,7 +15,7 @@
 
 Seed mongodb with data using mongoose models
 
-![cli example using md-seed run](md-seed-run-example.gif)
+![cli example using md-seed run](https://raw.githubusercontent.com/sharvit/mongoose-data-seed/master/md-seed-run-example.gif)
 
 ## Install
 

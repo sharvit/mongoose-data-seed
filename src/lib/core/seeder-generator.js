@@ -9,6 +9,11 @@ import {
   normalizeSeederFileName,
 } from '../utils/helpers';
 
+/**
+ * Seeder Generator
+ *
+ * Generate a new seeder
+ */
 export default class SeederGenerator {
   constructor({ name, seederTemplate, userSeedersFolderPath }) {
     this._initOptions({ seederTemplate, userSeedersFolderPath });

@@ -3,7 +3,16 @@ import chalk from 'chalk';
 import BaseLogger from '../../utils/base-logger';
 import { Installer } from '../../core';
 
+/**
+ * Installer Logger
+ */
 export default class InstallerLogger extends BaseLogger {
+  /**
+   * Log next notification
+   * @param  {Object} notification notification to log
+   * @param  {string} notification.type    operation type
+   * @param  {Object} notification.payload operation payload
+   */
   next({ type, payload }) {
     switch (type) {
       case Installer.operations.WRITE_USER_GENERETOR_CONFIG_SUCCESS:
@@ -44,6 +53,12 @@ export default class InstallerLogger extends BaseLogger {
     }
   }
 
+  /**
+   * Log error
+   * @param  {Object} error         error to log
+   * @param  {string} error.type    error type
+   * @param  {Object} error.payload error payload
+   */
   error({ type, payload }) {
     switch (type) {
       case Installer.operations.WRITE_USER_GENERETOR_CONFIG_ERROR:

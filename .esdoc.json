@@ -1,0 +1,38 @@
+{
+  "source": "./src",
+  "destination": "./docs",
+  "excludes": ["\\.config\\.js$", "__mocks__", "e2e"],
+  "plugins": [
+    {
+      "name": "esdoc-standard-plugin",
+      "option": {
+        "lint": { "enable": true },
+        "accessor": {
+          "access": ["public", "protected"],
+          "autoPrivate": true
+        },
+        "undocumentIdentifier": { "enable": false },
+        "unexportedIdentifier": { "enable": false },
+        "typeInference": { "enable": true },
+        "manual": {
+          "index": "./README.md",
+          "globalIndex": true,
+          "files": [
+            "./README.md",
+            "./CONTRIBUTING.md",
+            "./CODE_OF_CONDUCT.md"
+          ]
+        },
+        "test": {
+          "source": "./src",
+          "interfaces": ["describe", "it", "context", "suite", "test"],
+          "includes": ["\\.test\\.js$"],
+          "excludes": ["\\.config\\.js$"]
+        }
+      }
+    }, {
+      "name": "esdoc-ecmascript-proposal-plugin",
+      "option": { "all": true }
+    }
+  ]
+}

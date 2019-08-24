@@ -9,7 +9,49 @@ import config from '../config';
 
 import InstallerError from './installer-error';
 
+/**
+ * mongoose-data-seed installer
+ *
+ * @example
+ * // create installer
+ * const installer = new Installer({ seedersFolder: './seeders' });
+ *
+ * // run seeders
+ * const observable = installer.install();
+ *
+ * // subscribe logger
+ * observable.subscribe({
+ *   next({ type, payload }) {
+ *     switch (type) {
+ *       case Installer.operations.START:
+ *         console.log('Installer started!');
+ *         break;
+ *       case Installer.operations.SUCCESS:
+ *         console.log('Installer finished successfully!');
+ *         break;
+ *     }
+ *   },
+ *   error({ type, payload }) {
+ *     console.error(`Error: ${type}`);
+ *     console.error(payload.error);
+ *   }
+ * });
+ */
 export default class Installer {
+  /**
+   * @typedef {Object} InstallerConfig
+   * @property {string}  seedersFolder        Relative path to your seeders-folder.
+   * @property {?string} customSeederTemplate Relative path to your seeder-template
+   *                                          if you would like to use your own seeders-template
+   */
+
+  /**
+   * Installer operations constants
+   * @type {Object}
+   * @property {string} START        Installation starts.
+   * @property {string} SUCCESS      Installation succeed.
+   * @property {string} ERROR        Installation finished with an error.
+   */
   static operations = {
     START: 'START',
     SUCCESS: 'SUCCESS',
@@ -43,16 +85,14 @@ export default class Installer {
   };
 
   /**
-   * mongoose-data-seed installer
-   * @param {String} seedersFolder              Relative path to your seeders-folder
-   * @param {String} customSeederTemplate       Relative path to your seeder-template
-   *                                            if you would like to use your own seeders-template
+   * Creates mongoose-data-seed installer
+   * @param {InstallerConfig} [config] Generator config
    */
   constructor({
     seedersFolder,
     customSeederTemplate,
   } = defaultUserGeneratorConfig) {
-    this.subject = new Subject();
+    this._subject = new Subject();
     this._initConfig({ seedersFolder, customSeederTemplate });
     this._initMemFs();
   }
@@ -60,15 +100,17 @@ export default class Installer {
   /**
    * Run installer - install `mongoose-data-seeder`
    * @return {Observable}
+   * @see https://rxjs-dev.firebaseapp.com/api/index/class/Observable
    */
   install() {
     this._install();
 
-    return this.subject.asObservable();
+    return this._subject.asObservable();
   }
 
   /**
-   * config to write into the `package.json`
+   * get the config that should be written into the `package.json`
+   * @return {InstallerConfig} generator config
    */
   getGeneratorConfig() {
     const {
@@ -91,14 +133,26 @@ export default class Installer {
 
   /**
    * Initiate this.config
-   * @param {String} seedersFolder              Relative path to your seeders-folder
-   * @param {String} customSeederTemplate       Relative path to your seeder-template
-   *                                            if you would like to use your own seeders-template
+   * @param {InstallerConfig} config generator config
    */
   _initConfig({ seedersFolder, customSeederTemplate }) {
+    /**
+     * Full configuration object
+     * @type {Object}
+     * @property {string}  userPackageJsonPath path to the user package.json file.
+     * @property {?string} customSeederTemplateFilename custom seeder template filename.
+     * @property {?string} customSeederTemplatePath custom seeder template path.
+     * @property {string}  userSeedersFolderName seeders folder name.
+     * @property {string}  userSeedersFolderPath seeders folder path.
+     * @property {boolean} userConfigExists user has a config file?.
+     * @property {?string} userConfigFilename config file name.
+     * @property {?string} userConfigFilepath config file path.
+     * @property {string}  configTemplatePath config template path.
+     */
     this.config = {
       userPackageJsonPath: path.join(config.projectRoot, './package.json'),
-      customSeederTemplateFilename: customSeederTemplate,
+      customSeederTemplateFilename:
+        customSeederTemplate && customSeederTemplate,
       customSeederTemplatePath:
         customSeederTemplate &&
         path.join(config.projectRoot, customSeederTemplate),
@@ -116,7 +170,7 @@ export default class Installer {
    */
   _initMemFs() {
     const store = memFs.create();
-    this.memFsEditor = editor.create(store);
+    this._memFsEditor = editor.create(store);
   }
 
   /**
@@ -127,20 +181,20 @@ export default class Installer {
     const { START, SUCCESS, ERROR } = Installer.operations;
 
     try {
-      this.subject.next({ type: START });
+      this._subject.next({ type: START });
 
       await this._createCustomSeederTemplate();
       await this._writeUserGeneratorConfigToPackageJson();
       await this._createSeedersFolder();
       await this._writeUserConfig();
 
-      this.subject.next({ type: SUCCESS });
+      this._subject.next({ type: SUCCESS });
 
-      this.subject.complete();
+      this._subject.complete();
     } catch (error) {
       const { type = ERROR, payload = { error } } = error;
 
-      this.subject.error({ type, payload });
+      this._subject.error({ type, payload });
     }
   }
 
@@ -150,7 +204,7 @@ export default class Installer {
    */
   async _commitMemFsChanges() {
     return new Promise(resolve => {
-      this.memFsEditor.commit(() => {
+      this._memFsEditor.commit(() => {
         resolve();
       });
     });
@@ -177,7 +231,7 @@ export default class Installer {
 
     const payload = { customSeederTemplateFilename, customSeederTemplatePath };
 
-    const notify = type => this.subject.next({ type, payload });
+    const notify = type => this._subject.next({ type, payload });
 
     try {
       notify(CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_START);
@@ -190,7 +244,7 @@ export default class Installer {
         notify(CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS);
       } else {
         // copy template
-        this.memFsEditor.copy(systemSeederTemplate, customSeederTemplatePath);
+        this._memFsEditor.copy(systemSeederTemplate, customSeederTemplatePath);
         // commit changes
         await this._commitMemFsChanges();
 
@@ -220,16 +274,16 @@ export default class Installer {
     const payload = { packageJsonPath };
 
     try {
-      this.subject.next({ type: WRITE_USER_GENERETOR_CONFIG_START, payload });
+      this._subject.next({ type: WRITE_USER_GENERETOR_CONFIG_START, payload });
 
       const packageJson = require(packageJsonPath);
       packageJson.mdSeed = this.getGeneratorConfig();
 
-      this.memFsEditor.writeJSON(packageJsonPath, packageJson);
+      this._memFsEditor.writeJSON(packageJsonPath, packageJson);
 
       await this._commitMemFsChanges();
 
-      this.subject.next({
+      this._subject.next({
         type: WRITE_USER_GENERETOR_CONFIG_SUCCESS,
         payload,
       });
@@ -261,17 +315,17 @@ export default class Installer {
     const payload = { folderpath, foldername };
 
     try {
-      this.subject.next({ type: CREATE_SEEDERS_FOLDER_START, payload });
+      this._subject.next({ type: CREATE_SEEDERS_FOLDER_START, payload });
 
       if (fs.existsSync(folderpath)) {
-        this.subject.next({
+        this._subject.next({
           type: CREATE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS,
           payload,
         });
       } else {
         fs.mkdirSync(folderpath);
 
-        this.subject.next({ type: CREATE_SEEDERS_FOLDER_SUCCESS, payload });
+        this._subject.next({ type: CREATE_SEEDERS_FOLDER_SUCCESS, payload });
       }
     } catch (error) {
       throw new InstallerError({
@@ -303,20 +357,20 @@ export default class Installer {
     const payload = { fileExists, filename, filepath };
 
     try {
-      this.subject.next({ type: WRITE_USER_CONFIG_START, payload });
+      this._subject.next({ type: WRITE_USER_CONFIG_START, payload });
 
       if (fileExists === true) {
-        this.subject.next({
+        this._subject.next({
           type: WRITE_USER_CONFIG_SKIP_FILE_EXISTS,
           payload,
         });
       } else {
         // copy template
-        this.memFsEditor.copy(configTemplatePath, filepath);
+        this._memFsEditor.copy(configTemplatePath, filepath);
         // commit changes
         await this._commitMemFsChanges();
 
-        this.subject.next({ type: WRITE_USER_CONFIG_SUCCESS, payload });
+        this._subject.next({ type: WRITE_USER_CONFIG_SUCCESS, payload });
       }
     } catch (error) {
       throw new InstallerError({

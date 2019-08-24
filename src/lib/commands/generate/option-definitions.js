@@ -1,3 +1,7 @@
+/**
+ * Generate command option defenitions
+ * @type {Object[]}
+ */
 const optionDefinitions = [
   {
     name: 'name',

@@ -1,6 +1,7 @@
 templates/
 node_modules/
 dist/
+docs/
 coverage/
 .nyc_output/
 package-lock.json

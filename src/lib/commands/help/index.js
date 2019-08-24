@@ -1,5 +1,10 @@
 import usageGuide from './usage-guide';
 
-export default async () => {
+/**
+ * Prints the help
+ */
+const help = async () => {
   console.log(usageGuide);
 };
+
+export default help;

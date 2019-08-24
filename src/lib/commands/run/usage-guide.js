@@ -1,6 +1,10 @@
 import generateUsageGuide from 'command-line-usage';
 import optionDefinitions from './option-definitions';
 
+/**
+ * Run command user guide
+ * @type {string}
+ */
 const usageGuide = generateUsageGuide([
   {
     header: 'Seed runner',
