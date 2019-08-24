@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../../">
+  <title data-ice="title">src/lib/commands/run/run-logger.test.js | mongoose-data-seed</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Seed mongodb with data using mongoose models"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="mongoose-data-seed"><meta property="twitter:description" content="Seed mongodb with data using mongoose models"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/sharvit/mongoose-data-seed"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib">lib</a><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-config">config</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-configFilename">configFilename</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultUserGeneratorConfig">defaultUserGeneratorConfig</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-systemConfigTemplate">systemConfigTemplate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-systemSeederTemplate">systemSeederTemplate</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands">lib/commands</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-aliasToCommand">aliasToCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-commandToFunction">commandToFunction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCommandAndArgvFromCli">getCommandAndArgvFromCli</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isAlias">isAlias</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-runCommand">runCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-aliases">aliases</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-availableCommandsList">availableCommandsList</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-commands">commands</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-commandsMap">commandsMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultCommand">defaultCommand</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-generate">lib/commands/generate</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateSeeder">generateSeeder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-index">index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOptions">getOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateOptions">validateOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-optionDefinitions">optionDefinitions</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-help">lib/commands/help</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-usageGuide">usageGuide</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-init">lib/commands/init</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/commands/init/installer-logger.js~InstallerLogger.html">InstallerLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-index">index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOptions">getOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-promptMissingOptions">promptMissingOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-runinstaller">runinstaller</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-optionDefinitions">optionDefinitions</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-run">lib/commands/run</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/commands/run/run-logger.js~RunLogger.html">RunLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-index">index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOptions">getOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-run">run</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-optionDefinitions">optionDefinitions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-usageGuide">usageGuide</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-core">lib/core</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/installer-error.js~InstallerError.html">InstallerError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/installer.js~Installer.html">Installer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/md-seed-runner-error.js~MdSeedRunnerError.html">MdSeedRunnerError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/md-seed-runner.js~MdSeedRunner.html">MdSeedRunner</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/seeder-generator.js~SeederGenerator.html">SeederGenerator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InstallerConfig">InstallerConfig</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-utils">lib/utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/utils/base-logger.js~BaseLogger.html">BaseLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/utils/seeder.js~Seeder.html">Seeder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-exit">exit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getFolderNameFromPath">getFolderNameFromPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getObjectWithSelectedKeys">getObjectWithSelectedKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalizeSeederFileName">normalizeSeederFileName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalizeSeederName">normalizeSeederName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateSeederTemplatePath">validateSeederTemplatePath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateSeedersFolderName">validateSeedersFolderName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateUserConfig">validateUserConfig</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ExitCodes">ExitCodes</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/lib/commands/run/run-logger.test.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import test from &apos;ava&apos;;
+import sinon from &apos;sinon&apos;;
+
+import { mockImports, resetImports } from &apos;../../utils/test-helpers&apos;;
+
+import RunLogger, { __RewireAPI__ as moduleRewireAPI } from &apos;./run-logger&apos;;
+
+const createMockedLogger = () =&gt; {
+  const logger = new RunLogger();
+
+  logger.spinner = {
+    start: sinon.stub(),
+    stop: sinon.stub(),
+    message: sinon.stub(),
+  };
+
+  return logger;
+};
+
+test.beforeEach(&apos;mock imports&apos;, t =&gt; {
+  const mocks = {
+    clui: { Spinner: sinon.stub() },
+  };
+
+  t.context = { mocks };
+
+  mockImports({ moduleRewireAPI, mocks });
+
+  sinon.stub(global.console, &apos;log&apos;);
+});
+
+test.afterEach.always(&apos;unmock imports&apos;, t =&gt; {
+  const imports = Object.keys(t.context.mocks);
+
+  resetImports({ moduleRewireAPI, imports });
+
+  global.console.log.restore();
+});
+
+test.serial(&apos;Should create a run-logger instance&apos;, t =&gt; {
+  const logger = new RunLogger();
+
+  t.is(typeof logger.asObserver, &apos;function&apos;);
+});
+
+test.serial(&apos;Should return observer&apos;, t =&gt; {
+  const logger = new RunLogger();
+
+  const observer = logger.asObserver();
+
+  t.is(typeof observer.next, &apos;function&apos;);
+  t.is(typeof observer.error, &apos;function&apos;);
+});
+
+test.serial(&apos;Should log MONGOOSE_CONNECT_START&apos;, t =&gt; {
+  const logger = createMockedLogger();
+
+  const type = &apos;MONGOOSE_CONNECT_START&apos;;
+
+  logger.next({ type });
+
+  t.true(logger.spinner.stop.calledOnce);
+  t.true(logger.spinner.message.calledOnce);
+  t.true(logger.spinner.start.calledOnce);
+});
+
+test.serial(&apos;Should log MONGOOSE_CONNECT_SUCCESS&apos;, t =&gt; {
+  const logger = createMockedLogger();
+
+  const type = &apos;MONGOOSE_CONNECT_SUCCESS&apos;;
+
+  logger.next({ type });
+
+  t.true(logger.spinner.stop.calledOnce);
+  t.true(
+    global.console.log.calledWith(
+      sinon.match(/Successfully connected to MongoDB/)
+    )
+  );
+});
+
+test.serial(&apos;Should log MONGOOSE_DROP_START&apos;, t =&gt; {
+  const logger = createMockedLogger();
+
+  logger.next({ type: &apos;MONGOOSE_DROP_START&apos; });
+
+  t.true(logger.spinner.stop.calledOnce);
+  t.true(logger.spinner.message.calledOnce);
+  t.true(logger.spinner.start.calledOnce);
+});
+
+test.serial(&apos;Should log MONGOOSE_DROP_SUCCESS&apos;, t =&gt; {
+  const logger = createMockedLogger();
+
+  logger.next({ type: &apos;MONGOOSE_DROP_SUCCESS&apos; });
+
+  t.true(logger.spinner.stop.calledOnce);
+  t.true(global.console.log.calledWith(sinon.match(/Database dropped/)));
+});
+
+test.serial(&apos;Should log ALL_SEEDERS_START&apos;, t =&gt; {
+  const logger = createMockedLogger();
+
+  logger.next({ type: &apos;ALL_SEEDERS_START&apos; });
+
+  t.true(logger.spinner.stop.calledOnce);
+  t.true(global.console.log.calledWith(sinon.match(/Seeding Results/)));
+});
+
+test.serial(&apos;Should log ALL_SEEDERS_FINISH&apos;, t =&gt; {
+  const logger = createMockedLogger();
+
+  logger.next({ type: &apos;ALL_SEEDERS_FINISH&apos; });
+
+  t.true(logger.spinner.stop.calledOnce);
+  t.true(global.console.log.calledWith(sinon.match(/Done/)));
+});
+
+test.serial(&apos;Should log SEEDER_START&apos;, t =&gt; {
+  const logger = createMockedLogger();
+
+  const payload = { name: &apos;some-name&apos; };
+
+  logger.next({ type: &apos;SEEDER_START&apos;, payload });
+
+  t.true(logger.spinner.stop.calledOnce);
+  t.true(logger.spinner.message.calledWith(payload.name));
+  t.true(logger.spinner.start.calledOnce);
+});
+
+test.serial(&apos;Should log SEEDER_SUCCESS&apos;, t =&gt; {
+  const logger = createMockedLogger();
+
+  const payload = { name: &apos;some-name&apos;, results: { run: true, created: &apos;10&apos; } };
+
+  logger.next({ type: &apos;SEEDER_SUCCESS&apos;, payload });
+
+  t.true(logger.spinner.stop.calledOnce);
+  t.true(global.console.log.calledWith(sinon.match(payload.name)));
+  t.true(global.console.log.calledWith(sinon.match(payload.results.created)));
+});
+
+test.serial(&apos;Should log SEEDER_SUCCESS with run=false&apos;, t =&gt; {
+  const logger = createMockedLogger();
+
+  const payload = { name: &apos;some-name&apos;, results: { run: false, created: &apos;0&apos; } };
+
+  logger.next({ type: &apos;SEEDER_SUCCESS&apos;, payload });
+
+  t.true(logger.spinner.stop.calledOnce);
+  t.true(global.console.log.calledWith(sinon.match(payload.name)));
+  t.true(global.console.log.calledWith(sinon.match(payload.results.created)));
+});
+
+test.serial(&apos;Should log MONGOOSE_CONNECT_ERROR&apos;, t =&gt; {
+  const logger = createMockedLogger();
+
+  logger.error({ type: &apos;MONGOOSE_CONNECT_ERROR&apos; });
+
+  t.true(logger.spinner.stop.calledOnce);
+  t.true(
+    global.console.log.calledWith(sinon.match(/Unable to connected to MongoDB/))
+  );
+});
+
+test.serial(&apos;Should log MONGOOSE_DROP_ERROR&apos;, t =&gt; {
+  const logger = createMockedLogger();
+
+  logger.error({ type: &apos;MONGOOSE_DROP_ERROR&apos; });
+
+  t.true(logger.spinner.stop.calledOnce);
+  t.true(global.console.log.calledWith(sinon.match(/Unable to drop database/)));
+});
+
+test.serial(&apos;Should log SEEDER_ERROR&apos;, t =&gt; {
+  const logger = createMockedLogger();
+
+  const payload = { name: &apos;some-name&apos; };
+
+  logger.error({ type: &apos;SEEDER_ERROR&apos;, payload });
+
+  t.true(logger.spinner.stop.calledOnce);
+  t.true(global.console.log.calledWith(sinon.match(payload.name)));
+});
+
+test.serial(&apos;Should log error&apos;, t =&gt; {
+  sinon.stub(global.console, &apos;error&apos;);
+
+  const logger = createMockedLogger();
+
+  const payload = { error: &apos;some-error&apos; };
+
+  logger.error({ type: &apos;some-type&apos;, payload });
+
+  t.true(logger.spinner.stop.calledOnce);
+  t.true(global.console.error.calledWith(payload.error));
+
+  global.console.error.restore();
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

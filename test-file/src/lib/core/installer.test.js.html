@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/lib/core/installer.test.js | mongoose-data-seed</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Seed mongodb with data using mongoose models"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="mongoose-data-seed"><meta property="twitter:description" content="Seed mongodb with data using mongoose models"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/sharvit/mongoose-data-seed"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib">lib</a><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-config">config</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-configFilename">configFilename</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultUserGeneratorConfig">defaultUserGeneratorConfig</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-systemConfigTemplate">systemConfigTemplate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-systemSeederTemplate">systemSeederTemplate</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands">lib/commands</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-aliasToCommand">aliasToCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-commandToFunction">commandToFunction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCommandAndArgvFromCli">getCommandAndArgvFromCli</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isAlias">isAlias</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-runCommand">runCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-aliases">aliases</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-availableCommandsList">availableCommandsList</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-commands">commands</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-commandsMap">commandsMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultCommand">defaultCommand</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-generate">lib/commands/generate</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateSeeder">generateSeeder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-index">index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOptions">getOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateOptions">validateOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-optionDefinitions">optionDefinitions</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-help">lib/commands/help</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-usageGuide">usageGuide</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-init">lib/commands/init</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/commands/init/installer-logger.js~InstallerLogger.html">InstallerLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-index">index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOptions">getOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-promptMissingOptions">promptMissingOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-runinstaller">runinstaller</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-optionDefinitions">optionDefinitions</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-run">lib/commands/run</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/commands/run/run-logger.js~RunLogger.html">RunLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-index">index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOptions">getOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-run">run</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-optionDefinitions">optionDefinitions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-usageGuide">usageGuide</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-core">lib/core</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/installer-error.js~InstallerError.html">InstallerError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/installer.js~Installer.html">Installer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/md-seed-runner-error.js~MdSeedRunnerError.html">MdSeedRunnerError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/md-seed-runner.js~MdSeedRunner.html">MdSeedRunner</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/seeder-generator.js~SeederGenerator.html">SeederGenerator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InstallerConfig">InstallerConfig</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-utils">lib/utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/utils/base-logger.js~BaseLogger.html">BaseLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/utils/seeder.js~Seeder.html">Seeder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-exit">exit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getFolderNameFromPath">getFolderNameFromPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getObjectWithSelectedKeys">getObjectWithSelectedKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalizeSeederFileName">normalizeSeederFileName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalizeSeederName">normalizeSeederName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateSeederTemplatePath">validateSeederTemplatePath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateSeedersFolderName">validateSeedersFolderName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateUserConfig">validateUserConfig</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ExitCodes">ExitCodes</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/lib/core/installer.test.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import test from &apos;ava&apos;;
+import sinon from &apos;sinon&apos;;
+import path from &apos;path&apos;;
+
+import Subject from &apos;../../__mocks__/rxjs-subject&apos;;
+import fs, {
+  alreadyExistsFilename,
+  alreadyExistsPath,
+  throwableMkdirPath,
+} from &apos;../../__mocks__/fs&apos;;
+import memFs, { store } from &apos;../../__mocks__/mem-fs&apos;;
+import memFsEditor, {
+  fs as memFsEditorFs,
+} from &apos;../../__mocks__/mem-fs-editor&apos;;
+
+import { defaultUserGeneratorConfig, systemSeederTemplate } from &apos;../constants&apos;;
+import { mockImports, resetImports } from &apos;../utils/test-helpers&apos;;
+
+import InstallerError from &apos;./installer-error&apos;;
+
+import Installer, { __RewireAPI__ as moduleRewireAPI } from &apos;./installer&apos;;
+
+const helpData = {
+  seedersFolder: &apos;seeders-folder&apos;,
+  customSeederTemplate: &apos;some-template.js&apos;,
+};
+
+const defaultConfig = {
+  projectRoot: &apos;/project/root&apos;,
+  userConfigExists: true,
+  userConfigFilename: &apos;config-filename.js&apos;,
+  userConfigFilepath: &apos;/project/root/config-filename.js&apos;,
+  configTemplate: &apos;/template/folder/config-template.js&apos;,
+};
+
+test.beforeEach(&apos;mock imports&apos;, t =&gt; {
+  const mocks = {
+    Subject,
+    fs,
+    memFs,
+    editor: memFsEditor,
+    config: { ...defaultConfig },
+    getObjectWithSelectedKeys: sinon.stub(),
+    normalizeSeederName: sinon.stub().returnsArg(0),
+  };
+
+  t.context = { mocks };
+
+  mockImports({ moduleRewireAPI, mocks });
+});
+
+test.afterEach.always(&apos;unmock imports&apos;, t =&gt; {
+  const imports = Object.keys(t.context.mocks);
+
+  resetImports({ moduleRewireAPI, imports });
+});
+
+test(&apos;Should create a installer instance&apos;, t =&gt; {
+  sinon.stub(Installer.prototype, &apos;_initConfig&apos;);
+  sinon.stub(Installer.prototype, &apos;_initMemFs&apos;);
+
+  const installer = new Installer();
+
+  t.truthy(installer._subject);
+  t.is(typeof installer.install, &apos;function&apos;);
+  t.true(
+    installer._initConfig.calledWith({
+      ...defaultUserGeneratorConfig,
+      customSeederTemplate: undefined,
+    })
+  );
+  t.true(installer._initMemFs.called);
+
+  Installer.prototype._initConfig.restore();
+  Installer.prototype._initMemFs.restore();
+});
+
+test(&apos;Should create a installer instance with args&apos;, t =&gt; {
+  sinon.stub(Installer.prototype, &apos;_initConfig&apos;);
+  sinon.stub(Installer.prototype, &apos;_initMemFs&apos;);
+
+  const installer = new Installer({ ...helpData });
+
+  t.truthy(installer._subject);
+  t.is(typeof installer.install, &apos;function&apos;);
+  t.true(installer._initConfig.calledWith({ ...helpData }));
+  t.true(installer._initMemFs.called);
+
+  Installer.prototype._initConfig.restore();
+  Installer.prototype._initMemFs.restore();
+});
+
+test(&apos;Should _initConfig&apos;, t =&gt; {
+  const context = {};
+  const _initConfig = Installer.prototype._initConfig.bind(context);
+
+  _initConfig({ ...helpData });
+
+  t.snapshot(context);
+});
+
+test(&apos;Should _initConfig without customSeederTemplate&apos;, t =&gt; {
+  const context = {};
+  const _initConfig = Installer.prototype._initConfig.bind(context);
+
+  const config = { ...helpData };
+  delete config.customSeederTemplate;
+
+  _initConfig(config);
+
+  t.snapshot(context);
+});
+
+test(&apos;Should _initMemFs&apos;, t =&gt; {
+  const { mocks } = t.context;
+
+  const context = {};
+  const _initMemFs = Installer.prototype._initMemFs.bind(context);
+
+  _initMemFs();
+
+  t.true(mocks.memFs.create.called);
+  t.true(mocks.editor.create.calledWith(store));
+  t.is(context._memFsEditor, memFsEditorFs);
+});
+
+test(&apos;Should install&apos;, t =&gt; {
+  const context = {
+    _install: sinon.stub().resolves(),
+    _subject: { asObservable: () =&gt; &apos;observable&apos; },
+  };
+  const install = Installer.prototype.install.bind(context);
+
+  const results = install();
+
+  t.is(results, &apos;observable&apos;);
+  t.true(context._install.called);
+});
+
+test(&apos;Should getGeneratorConfig&apos;, t =&gt; {
+  const context = {
+    config: {
+      userSeedersFolderName: &apos;foldername&apos;,
+    },
+  };
+  const getGeneratorConfig = Installer.prototype.getGeneratorConfig.bind(
+    context
+  );
+
+  const expectedResults = {
+    seedersFolder: context.config.userSeedersFolderName,
+  };
+  const results = getGeneratorConfig();
+
+  t.deepEqual(results, expectedResults);
+});
+
+test(&apos;Should getGeneratorConfig with customSeederTemplate&apos;, t =&gt; {
+  const context = {
+    config: {
+      userSeedersFolderName: &apos;foldername&apos;,
+      customSeederTemplateFilename: &apos;template-filename.js&apos;,
+    },
+  };
+  const getGeneratorConfig = Installer.prototype.getGeneratorConfig.bind(
+    context
+  );
+
+  const expectedResults = {
+    seedersFolder: context.config.userSeedersFolderName,
+    customSeederTemplate: context.config.customSeederTemplateFilename,
+  };
+  const results = getGeneratorConfig();
+
+  t.deepEqual(results, expectedResults);
+});
+
+test(&apos;Should _install and success&apos;, async t =&gt; {
+  const context = {
+    _createCustomSeederTemplate: sinon.stub().resolves(),
+    _writeUserGeneratorConfigToPackageJson: sinon.stub().resolves(),
+    _createSeedersFolder: sinon.stub().resolves(),
+    _writeUserConfig: sinon.stub().resolves(),
+    _subject: {
+      next: sinon.stub(),
+      complete: sinon.stub(),
+      error: sinon.stub(),
+    },
+  };
+  const _install = Installer.prototype._install.bind(context);
+
+  await _install();
+
+  t.true(context._createCustomSeederTemplate.called);
+  t.true(context._writeUserGeneratorConfigToPackageJson.called);
+  t.true(context._createSeedersFolder.called);
+  t.true(context._writeUserConfig.called);
+  t.true(context._subject.next.calledWith({ type: &apos;START&apos; }));
+  t.true(context._subject.next.calledWith({ type: &apos;SUCCESS&apos; }));
+  t.true(context._subject.complete.called);
+  t.false(context._subject.error.called);
+});
+
+test(&apos;Should _install and fail&apos;, async t =&gt; {
+  const error = new Error(&apos;some-error&apos;);
+  const context = {
+    _createCustomSeederTemplate: sinon.stub().resolves(),
+    _writeUserGeneratorConfigToPackageJson: sinon.stub().resolves(),
+    _createSeedersFolder: sinon.stub().rejects(error),
+    _writeUserConfig: sinon.stub().resolves(),
+    _subject: {
+      next: sinon.stub(),
+      complete: sinon.stub(),
+      error: sinon.stub(),
+    },
+  };
+  const _install = Installer.prototype._install.bind(context);
+
+  await t.notThrowsAsync(() =&gt; _install());
+
+  t.true(context._createCustomSeederTemplate.called);
+  t.true(context._writeUserGeneratorConfigToPackageJson.called);
+  t.true(context._createSeedersFolder.called);
+  t.false(context._writeUserConfig.called);
+  t.true(context._subject.next.calledWith({ type: &apos;START&apos; }));
+  t.false(context._subject.next.calledWith({ type: &apos;SUCCESS&apos; }));
+  t.false(context._subject.complete.called);
+  t.true(
+    context._subject.error.calledWith({ type: &apos;ERROR&apos;, payload: { error } })
+  );
+});
+
+test(&apos;Should _install and fail with InstallerError&apos;, async t =&gt; {
+  const type = &apos;CREATE_SEEDERS_FOLDER_ERROR&apos;;
+  const payload = { some: &apos;data&apos; };
+  const baseError = new Error(&apos;some-base-error&apos;);
+
+  const error = new InstallerError({ type, payload, error: baseError });
+  const context = {
+    _createCustomSeederTemplate: sinon.stub().resolves(),
+    _writeUserGeneratorConfigToPackageJson: sinon.stub().resolves(),
+    _createSeedersFolder: sinon.stub().rejects(error),
+    _writeUserConfig: sinon.stub().resolves(),
+    _subject: {
+      next: sinon.stub(),
+      complete: sinon.stub(),
+      error: sinon.stub(),
+    },
+  };
+  const _install = Installer.prototype._install.bind(context);
+
+  await _install();
+
+  t.true(context._createCustomSeederTemplate.called);
+  t.true(context._writeUserGeneratorConfigToPackageJson.called);
+  t.true(context._createSeedersFolder.called);
+  t.false(context._writeUserConfig.called);
+  t.true(context._subject.next.calledWith({ type: &apos;START&apos; }));
+  t.false(context._subject.next.calledWith({ type: &apos;SUCCESS&apos; }));
+  t.false(context._subject.complete.called);
+  t.true(
+    context._subject.error.calledWith({
+      type,
+      payload: { ...payload, error: baseError },
+    })
+  );
+});
+
+test(&apos;Should _commitMemFsChanges&apos;, async t =&gt; {
+  const context = {
+    _memFsEditor: { commit: sinon.stub().callsArg(0) },
+  };
+  const _commitMemFsChanges = Installer.prototype._commitMemFsChanges.bind(
+    context
+  );
+
+  await _commitMemFsChanges();
+
+  t.true(context._memFsEditor.commit.called);
+});
+
+test(&apos;Should _createCustomSeederTemplate and success&apos;, async t =&gt; {
+  const customSeederTemplateFilename = &apos;seeder-template.js&apos;;
+  const customSeederTemplatePath = `/some/${customSeederTemplateFilename}`;
+  const config = { customSeederTemplateFilename, customSeederTemplatePath };
+  const payload = { customSeederTemplateFilename, customSeederTemplatePath };
+
+  const subject = new Subject();
+  const context = {
+    _subject: subject,
+    config,
+    _commitMemFsChanges: sinon.stub().resolves(),
+    _memFsEditor: { copy: sinon.stub() },
+  };
+  const _createCustomSeederTemplate = Installer.prototype._createCustomSeederTemplate.bind(
+    context
+  );
+
+  await t.notThrowsAsync(() =&gt; _createCustomSeederTemplate());
+
+  t.true(
+    subject.next.calledWith({
+      type: &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_START&apos;,
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM&apos;,
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS&apos;,
+      payload,
+    })
+  );
+  t.true(
+    subject.next.calledWith({
+      type: &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS&apos;,
+      payload,
+    })
+  );
+  t.true(
+    context._memFsEditor.copy.calledWith(
+      systemSeederTemplate,
+      customSeederTemplatePath
+    )
+  );
+  t.true(context._commitMemFsChanges.called);
+});
+
+test(&apos;Should _createCustomSeederTemplate and skip because no custom seeder choosed&apos;, async t =&gt; {
+  const customSeederTemplateFilename = undefined;
+  const customSeederTemplatePath = undefined;
+  const config = { customSeederTemplateFilename, customSeederTemplatePath };
+  const payload = { customSeederTemplateFilename, customSeederTemplatePath };
+
+  const subject = new Subject();
+  const context = {
+    _subject: subject,
+    config,
+    _commitMemFsChanges: sinon.stub().resolves(),
+    _memFsEditor: { copy: sinon.stub() },
+  };
+  const _createCustomSeederTemplate = Installer.prototype._createCustomSeederTemplate.bind(
+    context
+  );
+
+  await t.notThrows(() =&gt; _createCustomSeederTemplate());
+
+  t.true(
+    subject.next.calledWith({
+      type: &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_START&apos;,
+      payload,
+    })
+  );
+  t.true(
+    subject.next.calledWith({
+      type: &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM&apos;,
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS&apos;,
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS&apos;,
+      payload,
+    })
+  );
+  t.false(context._memFsEditor.copy.called);
+  t.false(context._commitMemFsChanges.called);
+});
+
+test(&apos;Should _createCustomSeederTemplate and skip because no the seeder template already exists&apos;, async t =&gt; {
+  const customSeederTemplateFilename = alreadyExistsFilename;
+  const customSeederTemplatePath = alreadyExistsPath;
+  const config = { customSeederTemplateFilename, customSeederTemplatePath };
+  const payload = { customSeederTemplateFilename, customSeederTemplatePath };
+
+  const subject = new Subject();
+  const context = {
+    _subject: subject,
+    config,
+    _commitMemFsChanges: sinon.stub().resolves(),
+    _memFsEditor: { copy: sinon.stub() },
+  };
+  const _createCustomSeederTemplate = Installer.prototype._createCustomSeederTemplate.bind(
+    context
+  );
+
+  await t.notThrows(() =&gt; _createCustomSeederTemplate());
+
+  t.true(
+    subject.next.calledWith({
+      type: &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_START&apos;,
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM&apos;,
+      payload,
+    })
+  );
+  t.true(
+    subject.next.calledWith({
+      type: &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS&apos;,
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS&apos;,
+      payload,
+    })
+  );
+  t.false(context._memFsEditor.copy.called);
+  t.false(context._commitMemFsChanges.called);
+});
+
+test(&apos;Should _createCustomSeederTemplate and fail&apos;, async t =&gt; {
+  const customSeederTemplateFilename = &apos;seeder-template.js&apos;;
+  const customSeederTemplatePath = `/some/${customSeederTemplateFilename}`;
+  const config = { customSeederTemplateFilename, customSeederTemplatePath };
+  const payload = { customSeederTemplateFilename, customSeederTemplatePath };
+
+  const subject = new Subject();
+  const error = new Error(&apos;some-error&apos;);
+  const context = {
+    _subject: subject,
+    config,
+    _commitMemFsChanges: sinon.stub().rejects(error),
+    _memFsEditor: { copy: sinon.stub() },
+  };
+  const _createCustomSeederTemplate = Installer.prototype._createCustomSeederTemplate.bind(
+    context
+  );
+
+  const rejectionError = await t.throwsAsync(() =&gt;
+    _createCustomSeederTemplate()
+  );
+
+  t.is(rejectionError.type, &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_ERROR&apos;);
+  t.deepEqual(rejectionError.payload, { ...payload, error });
+  t.true(
+    subject.next.calledWith({
+      type: &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_START&apos;,
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM&apos;,
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS&apos;,
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS&apos;,
+      payload,
+    })
+  );
+  t.true(context._memFsEditor.copy.called);
+  t.true(context._commitMemFsChanges.called);
+});
+
+test(&apos;Should _writeUserGeneratorConfigToPackageJson and success&apos;, async t =&gt; {
+  const config = {
+    userPackageJsonPath: path.join(__dirname, &apos;./__mocks__/package.json&apos;),
+  };
+  const generatorConfig = {
+    seedersFolder: &apos;/some/folder&apos;,
+    customSeederTemplateFilename: &apos;some-filename.js&apos;,
+  };
+  const payload = {
+    packageJsonPath: config.userPackageJsonPath,
+  };
+  const subject = new Subject();
+  const context = {
+    _subject: subject,
+    config,
+    _commitMemFsChanges: sinon.stub().resolves(),
+    _memFsEditor: { writeJSON: sinon.stub() },
+    getGeneratorConfig: () =&gt; generatorConfig,
+  };
+  const _writeUserGeneratorConfigToPackageJson = Installer.prototype._writeUserGeneratorConfigToPackageJson.bind(
+    context
+  );
+
+  await t.notThrowsAsync(() =&gt; _writeUserGeneratorConfigToPackageJson());
+
+  t.true(
+    subject.next.calledWith({
+      type: &apos;WRITE_USER_GENERETOR_CONFIG_START&apos;,
+      payload,
+    })
+  );
+  t.true(
+    subject.next.calledWith({
+      type: &apos;WRITE_USER_GENERETOR_CONFIG_SUCCESS&apos;,
+      payload,
+    })
+  );
+  t.true(
+    context._memFsEditor.writeJSON.calledWith(payload.packageJsonPath, {
+      mdSeed: generatorConfig,
+    })
+  );
+  t.true(context._commitMemFsChanges.called);
+});
+
+test(&apos;Should _writeUserGeneratorConfigToPackageJson and fail&apos;, async t =&gt; {
+  const config = {
+    userPackageJsonPath: path.join(__dirname, &apos;./__mocks__/package.json&apos;),
+  };
+  const generatorConfig = {
+    seedersFolder: &apos;/some/folder&apos;,
+    customSeederTemplateFilename: &apos;some-filename.js&apos;,
+  };
+  const payload = {
+    packageJsonPath: config.userPackageJsonPath,
+  };
+  const subject = new Subject();
+  const error = new Error(&apos;some-error&apos;);
+  const context = {
+    _subject: subject,
+    config,
+    _commitMemFsChanges: sinon.stub().rejects(error),
+    _memFsEditor: { writeJSON: sinon.stub() },
+    getGeneratorConfig: () =&gt; generatorConfig,
+  };
+  const _writeUserGeneratorConfigToPackageJson = Installer.prototype._writeUserGeneratorConfigToPackageJson.bind(
+    context
+  );
+
+  const rejectionError = await t.throwsAsync(
+    _writeUserGeneratorConfigToPackageJson()
+  );
+
+  t.is(rejectionError.type, &apos;WRITE_USER_GENERETOR_CONFIG_ERROR&apos;);
+  t.deepEqual(rejectionError.payload, { ...payload, error });
+  t.true(
+    subject.next.calledWith({
+      type: &apos;WRITE_USER_GENERETOR_CONFIG_START&apos;,
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: &apos;WRITE_USER_GENERETOR_CONFIG_SUCCESS&apos;,
+      payload,
+    })
+  );
+  t.true(context._memFsEditor.writeJSON.called);
+  t.true(context._commitMemFsChanges.called);
+});
+
+test(&apos;Should _createSeedersFolder and success&apos;, async t =&gt; {
+  const { mocks } = t.context;
+  const folderpath = &apos;/some/folder/path/folder&apos;;
+  const foldername = folderpath.split(&apos;/&apos;).pop();
+  const payload = { folderpath, foldername };
+  const config = {
+    userSeedersFolderPath: folderpath,
+    userSeedersFolderName: foldername,
+  };
+  const subject = new Subject();
+  const context = { _subject: subject, config };
+  const _createSeedersFolder = Installer.prototype._createSeedersFolder.bind(
+    context
+  );
+
+  await t.notThrows(() =&gt; _createSeedersFolder());
+
+  t.true(
+    subject.next.calledWith({
+      type: &apos;CREATE_SEEDERS_FOLDER_START&apos;,
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: &apos;CREATE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS&apos;,
+      payload,
+    })
+  );
+  t.true(
+    subject.next.calledWith({
+      type: &apos;CREATE_SEEDERS_FOLDER_SUCCESS&apos;,
+      payload,
+    })
+  );
+  t.true(mocks.fs.existsSync.calledWith(folderpath));
+  t.true(mocks.fs.mkdirSync.calledWith(folderpath));
+});
+
+test(&apos;Should _createSeedersFolder and skip&apos;, async t =&gt; {
+  const { mocks } = t.context;
+  const folderpath = alreadyExistsPath;
+  const foldername = alreadyExistsPath.split(&apos;/&apos;).pop();
+  const payload = { folderpath, foldername };
+  const config = {
+    userSeedersFolderPath: folderpath,
+    userSeedersFolderName: foldername,
+  };
+  const subject = new Subject();
+  const context = { _subject: subject, config };
+  const _createSeedersFolder = Installer.prototype._createSeedersFolder.bind(
+    context
+  );
+
+  await t.notThrows(() =&gt; _createSeedersFolder());
+
+  t.true(
+    subject.next.calledWith({
+      type: &apos;CREATE_SEEDERS_FOLDER_START&apos;,
+      payload,
+    })
+  );
+  t.true(
+    subject.next.calledWith({
+      type: &apos;CREATE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS&apos;,
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: &apos;CREATE_SEEDERS_FOLDER_SUCCESS&apos;,
+      payload,
+    })
+  );
+  t.true(mocks.fs.existsSync.calledWith(folderpath));
+  t.false(mocks.fs.mkdirSync.calledWith(folderpath));
+});
+
+test(&apos;Should _createSeedersFolder and fail&apos;, async t =&gt; {
+  const { mocks } = t.context;
+  const folderpath = throwableMkdirPath;
+  const foldername = throwableMkdirPath.split(&apos;/&apos;).pop();
+  const payload = { folderpath, foldername };
+  const config = {
+    userSeedersFolderPath: folderpath,
+    userSeedersFolderName: foldername,
+  };
+  const subject = new Subject();
+  const context = { _subject: subject, config };
+  const _createSeedersFolder = Installer.prototype._createSeedersFolder.bind(
+    context
+  );
+
+  const rejectionError = await t.throwsAsync(() =&gt; _createSeedersFolder());
+
+  t.is(rejectionError.type, &apos;CREATE_SEEDERS_FOLDER_ERROR&apos;);
+  t.deepEqual(rejectionError.payload, {
+    ...payload,
+    error: new Error(&apos;some-error&apos;),
+  });
+  t.true(
+    subject.next.calledWith({
+      type: &apos;CREATE_SEEDERS_FOLDER_START&apos;,
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: &apos;CREATE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS&apos;,
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: &apos;CREATE_SEEDERS_FOLDER_SUCCESS&apos;,
+      payload,
+    })
+  );
+  t.true(mocks.fs.existsSync.calledWith(folderpath));
+  t.true(mocks.fs.mkdirSync.calledWith(folderpath));
+});
+
+test(&apos;Should _writeUserConfig and success&apos;, async t =&gt; {
+  const config = {
+    userConfigExists: false,
+    userConfigFilename: &apos;filename.js&apos;,
+    userConfigFilepath: &apos;/some/path/filename.js&apos;,
+    configTemplatePath: &apos;/some/template.js&apos;,
+  };
+  const payload = {
+    fileExists: config.userConfigExists,
+    filename: config.userConfigFilename,
+    filepath: config.userConfigFilepath,
+  };
+  const subject = new Subject();
+  const context = {
+    _subject: subject,
+    config,
+    _commitMemFsChanges: sinon.stub().resolves(),
+    _memFsEditor: { copy: sinon.stub() },
+  };
+  const _writeUserConfig = Installer.prototype._writeUserConfig.bind(context);
+
+  await t.notThrowsAsync(() =&gt; _writeUserConfig());
+
+  t.true(
+    subject.next.calledWith({
+      type: &apos;WRITE_USER_CONFIG_START&apos;,
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: &apos;WRITE_USER_CONFIG_SKIP_FILE_EXISTS&apos;,
+      payload,
+    })
+  );
+  t.true(
+    subject.next.calledWith({
+      type: &apos;WRITE_USER_CONFIG_SUCCESS&apos;,
+      payload,
+    })
+  );
+  t.true(
+    context._memFsEditor.copy.calledWith(
+      config.configTemplatePath,
+      config.userConfigFilepath
+    )
+  );
+  t.true(context._commitMemFsChanges.called);
+});
+
+test(&apos;Should _writeUserConfig and skip&apos;, async t =&gt; {
+  const config = {
+    userConfigExists: true,
+    userConfigFilename: &apos;filename.js&apos;,
+    userConfigFilepath: &apos;/some/path/filename.js&apos;,
+    configTemplatePath: &apos;/some/template.js&apos;,
+  };
+  const payload = {
+    fileExists: config.userConfigExists,
+    filename: config.userConfigFilename,
+    filepath: config.userConfigFilepath,
+  };
+  const subject = new Subject();
+  const context = {
+    _subject: subject,
+    config,
+    _commitMemFsChanges: sinon.stub().resolves(),
+    _memFsEditor: { copy: sinon.stub() },
+  };
+  const _writeUserConfig = Installer.prototype._writeUserConfig.bind(context);
+
+  await t.notThrows(() =&gt; _writeUserConfig());
+
+  t.true(
+    subject.next.calledWith({
+      type: &apos;WRITE_USER_CONFIG_START&apos;,
+      payload,
+    })
+  );
+  t.true(
+    subject.next.calledWith({
+      type: &apos;WRITE_USER_CONFIG_SKIP_FILE_EXISTS&apos;,
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: &apos;WRITE_USER_CONFIG_SUCCESS&apos;,
+      payload,
+    })
+  );
+  t.false(context._memFsEditor.copy.called);
+  t.false(context._commitMemFsChanges.called);
+});
+
+test(&apos;Should _writeUserConfig and fail&apos;, async t =&gt; {
+  const config = {
+    userConfigExists: false,
+    userConfigFilename: &apos;filename.js&apos;,
+    userConfigFilepath: &apos;/some/path/filename.js&apos;,
+    configTemplatePath: &apos;/some/template.js&apos;,
+  };
+  const payload = {
+    fileExists: config.userConfigExists,
+    filename: config.userConfigFilename,
+    filepath: config.userConfigFilepath,
+  };
+  const subject = new Subject();
+  const error = new Error(&apos;some-error&apos;);
+  const context = {
+    _subject: subject,
+    config,
+    _commitMemFsChanges: sinon.stub().rejects(error),
+    _memFsEditor: { copy: sinon.stub() },
+  };
+  const _writeUserConfig = Installer.prototype._writeUserConfig.bind(context);
+
+  const rejectionError = await t.throwsAsync(() =&gt; _writeUserConfig());
+
+  t.is(rejectionError.type, &apos;WRITE_USER_CONFIG_ERROR&apos;);
+  t.deepEqual(rejectionError.payload, { ...payload, error });
+  t.true(
+    subject.next.calledWith({
+      type: &apos;WRITE_USER_CONFIG_START&apos;,
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: &apos;WRITE_USER_CONFIG_SKIP_FILE_EXISTS&apos;,
+      payload,
+    })
+  );
+  t.false(
+    subject.next.calledWith({
+      type: &apos;WRITE_USER_CONFIG_SUCCESS&apos;,
+      payload,
+    })
+  );
+  t.true(
+    context._memFsEditor.copy.calledWith(
+      config.configTemplatePath,
+      config.userConfigFilepath
+    )
+  );
+  t.true(context._commitMemFsChanges.called);
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

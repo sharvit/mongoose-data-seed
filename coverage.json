@@ -1,0 +1,326 @@
+{
+  "coverage": "68.05%",
+  "expectCount": 144,
+  "actualCount": 98,
+  "files": {
+    "src/bin/index.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/commands/constants.js": {
+      "expectCount": 5,
+      "actualCount": 5,
+      "undocumentLines": []
+    },
+    "src/lib/commands/generate/generate-seeder.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/commands/generate/generate-seeder.test.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        10
+      ]
+    },
+    "src/lib/commands/generate/help.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/commands/generate/index.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/commands/generate/index.test.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        6
+      ]
+    },
+    "src/lib/commands/generate/option-definitions.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/commands/generate/options.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/lib/commands/generate/options.test.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        10
+      ]
+    },
+    "src/lib/commands/generate/usage-guide.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/commands/help/index.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/commands/help/usage-guide.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/commands/helpers.js": {
+      "expectCount": 5,
+      "actualCount": 5,
+      "undocumentLines": []
+    },
+    "src/lib/commands/init/help.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/commands/init/index.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/commands/init/installer-logger.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "src/lib/commands/init/installer-logger.test.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        6
+      ]
+    },
+    "src/lib/commands/init/option-definitions.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/commands/init/options.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/lib/commands/init/options.test.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        10
+      ]
+    },
+    "src/lib/commands/init/prompts.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/lib/commands/init/run-installer.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/commands/init/run-installer.test.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        12
+      ]
+    },
+    "src/lib/commands/init/usage-guide.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/commands/run/help.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/commands/run/index.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/commands/run/option-definitions.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/commands/run/options.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/commands/run/options.test.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        8
+      ]
+    },
+    "src/lib/commands/run/run-logger.js": {
+      "expectCount": 5,
+      "actualCount": 3,
+      "undocumentLines": [
+        12,
+        15
+      ]
+    },
+    "src/lib/commands/run/run-logger.test.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        8
+      ]
+    },
+    "src/lib/commands/run/run.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/commands/run/run.test.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        11,
+        17
+      ]
+    },
+    "src/lib/commands/run/usage-guide.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/config.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/lib/constants.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "src/lib/core/installer-error.js": {
+      "expectCount": 5,
+      "actualCount": 5,
+      "undocumentLines": []
+    },
+    "src/lib/core/installer.js": {
+      "expectCount": 16,
+      "actualCount": 14,
+      "undocumentLines": [
+        95,
+        172
+      ]
+    },
+    "src/lib/core/installer.test.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        23,
+        28
+      ]
+    },
+    "src/lib/core/md-seed-runner-error.js": {
+      "expectCount": 5,
+      "actualCount": 5,
+      "undocumentLines": []
+    },
+    "src/lib/core/md-seed-runner.js": {
+      "expectCount": 14,
+      "actualCount": 3,
+      "undocumentLines": [
+        44,
+        45,
+        46,
+        47,
+        50,
+        60,
+        90,
+        108,
+        126,
+        146,
+        172
+      ]
+    },
+    "src/lib/core/md-seed-runner.test.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        13
+      ]
+    },
+    "src/lib/core/seeder-generator.js": {
+      "expectCount": 16,
+      "actualCount": 3,
+      "undocumentLines": [
+        18,
+        44,
+        51,
+        53,
+        56,
+        60,
+        62,
+        64,
+        66,
+        69,
+        75,
+        84,
+        92
+      ]
+    },
+    "src/lib/core/seeder-generator.test.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        9
+      ]
+    },
+    "src/lib/utils/base-logger.js": {
+      "expectCount": 5,
+      "actualCount": 2,
+      "undocumentLines": [
+        20,
+        22,
+        24
+      ]
+    },
+    "src/lib/utils/constants.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "src/lib/utils/helpers.js": {
+      "expectCount": 8,
+      "actualCount": 8,
+      "undocumentLines": []
+    },
+    "src/lib/utils/seeder.js": {
+      "expectCount": 8,
+      "actualCount": 8,
+      "undocumentLines": []
+    },
+    "src/lib/utils/test-helpers.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/setup-test-env.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        9
+      ]
+    }
+  }
+}

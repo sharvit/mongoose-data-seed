@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/lib/core/seeder-generator.test.js | mongoose-data-seed</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Seed mongodb with data using mongoose models"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="mongoose-data-seed"><meta property="twitter:description" content="Seed mongodb with data using mongoose models"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/sharvit/mongoose-data-seed"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib">lib</a><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-config">config</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-configFilename">configFilename</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultUserGeneratorConfig">defaultUserGeneratorConfig</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-systemConfigTemplate">systemConfigTemplate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-systemSeederTemplate">systemSeederTemplate</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands">lib/commands</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-aliasToCommand">aliasToCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-commandToFunction">commandToFunction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCommandAndArgvFromCli">getCommandAndArgvFromCli</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isAlias">isAlias</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-runCommand">runCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-aliases">aliases</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-availableCommandsList">availableCommandsList</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-commands">commands</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-commandsMap">commandsMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultCommand">defaultCommand</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-generate">lib/commands/generate</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateSeeder">generateSeeder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-index">index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOptions">getOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateOptions">validateOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-optionDefinitions">optionDefinitions</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-help">lib/commands/help</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-usageGuide">usageGuide</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-init">lib/commands/init</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/commands/init/installer-logger.js~InstallerLogger.html">InstallerLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-index">index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOptions">getOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-promptMissingOptions">promptMissingOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-runinstaller">runinstaller</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-optionDefinitions">optionDefinitions</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-run">lib/commands/run</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/commands/run/run-logger.js~RunLogger.html">RunLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-index">index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOptions">getOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-run">run</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-optionDefinitions">optionDefinitions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-usageGuide">usageGuide</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-core">lib/core</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/installer-error.js~InstallerError.html">InstallerError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/installer.js~Installer.html">Installer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/md-seed-runner-error.js~MdSeedRunnerError.html">MdSeedRunnerError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/md-seed-runner.js~MdSeedRunner.html">MdSeedRunner</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/seeder-generator.js~SeederGenerator.html">SeederGenerator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InstallerConfig">InstallerConfig</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-utils">lib/utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/utils/base-logger.js~BaseLogger.html">BaseLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/utils/seeder.js~Seeder.html">Seeder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-exit">exit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getFolderNameFromPath">getFolderNameFromPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getObjectWithSelectedKeys">getObjectWithSelectedKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalizeSeederFileName">normalizeSeederFileName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalizeSeederName">normalizeSeederName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateSeederTemplatePath">validateSeederTemplatePath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateSeedersFolderName">validateSeedersFolderName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateUserConfig">validateUserConfig</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ExitCodes">ExitCodes</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/lib/core/seeder-generator.test.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import test from &apos;ava&apos;;
+import sinon from &apos;sinon&apos;;
+import path from &apos;path&apos;;
+
+import SeederGenerator, {
+  __RewireAPI__ as moduleRewireAPI,
+} from &apos;./seeder-generator&apos;;
+
+const helperData = {
+  name: &apos;some-name&apos;,
+  seederName: &apos;SomeName&apos;,
+  seederFileName: &apos;some-name.seeder.js&apos;,
+  seederFilePath: &apos;some/path/some-name.seeder.js&apos;,
+  seederFileRelativePath: &apos;some/relative-path/some-name.seeder.js&apos;,
+  seederTemplate: &apos;some template&apos;,
+  userSeedersFolderPath: &apos;some/path/for/seeders&apos;,
+  userSeedersFolderName: &apos;some-folder-name&apos;,
+};
+
+test(&apos;should create a new instance of SeederGenerator&apos;, t =&gt; {
+  const createStubs = () =&gt; {
+    sinon.stub(SeederGenerator.prototype, &apos;_initOptions&apos;);
+    sinon.stub(SeederGenerator.prototype, &apos;_initMemFs&apos;);
+    sinon.stub(SeederGenerator.prototype, &apos;_initName&apos;);
+  };
+  const restoreStubs = () =&gt; {
+    SeederGenerator.prototype._initOptions.restore();
+    SeederGenerator.prototype._initMemFs.restore();
+    SeederGenerator.prototype._initName.restore();
+  };
+
+  createStubs();
+
+  const { name, seederTemplate, userSeedersFolderPath } = helperData;
+
+  const generator = new SeederGenerator({
+    name,
+    seederTemplate,
+    userSeedersFolderPath,
+  });
+
+  t.true(
+    generator._initOptions.calledWith({
+      seederTemplate,
+      userSeedersFolderPath,
+    })
+  );
+  t.true(generator._initMemFs.called);
+  t.true(generator._initName.calledWith(name));
+
+  restoreStubs();
+});
+
+test(&apos;should generate Seeder&apos;, async t =&gt; {
+  const { seederFileRelativePath } = helperData;
+
+  const context = {
+    seederFileRelativePath,
+    _validateSeederFileNotExists: sinon.stub(),
+    _copySeederTemplate: sinon.stub(),
+    _commitMemFsChanges: sinon.stub().resolves(),
+  };
+
+  const result = await SeederGenerator.prototype.generate.call(context);
+
+  t.true(context._validateSeederFileNotExists.called);
+  t.true(context._copySeederTemplate.called);
+  t.true(context._commitMemFsChanges.called);
+
+  t.is(result, context.seederFileRelativePath);
+});
+
+test(&apos;should init options&apos;, t =&gt; {
+  const createStubs = ({ getFolderNameFromPath }) =&gt; {
+    moduleRewireAPI.__Rewire__(&apos;getFolderNameFromPath&apos;, getFolderNameFromPath);
+  };
+  const restoreStubs = () =&gt; {
+    moduleRewireAPI.__ResetDependency__(&apos;getFolderNameFromPath&apos;);
+  };
+
+  const {
+    seederTemplate,
+    userSeedersFolderPath,
+    userSeedersFolderName,
+  } = helperData;
+
+  const getFolderNameFromPath = sinon
+    .stub()
+    .withArgs(userSeedersFolderPath)
+    .returns(userSeedersFolderName);
+
+  createStubs({ getFolderNameFromPath });
+
+  const context = {};
+
+  SeederGenerator.prototype._initOptions.call(context, {
+    seederTemplate,
+    userSeedersFolderPath,
+  });
+
+  t.true(getFolderNameFromPath.calledWith(userSeedersFolderPath));
+  t.deepEqual(context, {
+    options: {
+      seederTemplate,
+      userSeedersFolderName,
+      userSeedersFolderPath,
+    },
+  });
+
+  restoreStubs();
+});
+
+test(&apos;should init memFs&apos;, t =&gt; {
+  const createStubs = ({ memFs, editor }) =&gt; {
+    moduleRewireAPI.__Rewire__(&apos;memFs&apos;, memFs);
+    moduleRewireAPI.__Rewire__(&apos;editor&apos;, editor);
+  };
+  const restoreStubs = () =&gt; {
+    moduleRewireAPI.__ResetDependency__(&apos;memFs&apos;);
+    moduleRewireAPI.__ResetDependency__(&apos;editor&apos;);
+  };
+
+  const store = &apos;some store&apos;;
+  const fs = &apos;some fs&apos;;
+
+  const memFs = { create: sinon.stub().returns(store) };
+  const editor = {
+    create: sinon
+      .stub()
+      .withArgs(store)
+      .returns(fs),
+  };
+
+  createStubs({ memFs, editor });
+
+  const context = {};
+
+  SeederGenerator.prototype._initMemFs.call(context);
+
+  t.true(memFs.create.called);
+  t.true(editor.create.calledWith(store));
+  t.deepEqual(context, { fs });
+
+  restoreStubs();
+});
+
+test(&apos;should init name&apos;, t =&gt; {
+  const {
+    name,
+    seederName,
+    seederFileName,
+    userSeedersFolderPath,
+    userSeedersFolderName,
+  } = helperData;
+
+  const seederFilePath = path.join(userSeedersFolderPath, seederFileName);
+  const seederFileRelativePath = path.join(
+    userSeedersFolderName,
+    seederFileName
+  );
+
+  const context = { options: { userSeedersFolderPath, userSeedersFolderName } };
+  const expectedContext = Object.assign({}, context, {
+    name,
+    seederName,
+    seederFileName,
+    seederFilePath,
+    seederFileRelativePath,
+  });
+
+  SeederGenerator.prototype._initName.call(context, name);
+
+  t.deepEqual(context, expectedContext);
+});
+
+test(&apos;_validateSeederFileNotExists should throw error when seeder file are already exists&apos;, t =&gt; {
+  const { seederFilePath, seederFileRelativePath } = helperData;
+
+  const fs = { exists: () =&gt; true };
+  const context = { fs, seederFilePath, seederFileRelativePath };
+
+  t.throws(
+    () =&gt; SeederGenerator.prototype._validateSeederFileNotExists.call(context),
+    Error
+  );
+});
+
+test(&apos;_validateSeederFileNotExists should not throw error when seeder file are not exists&apos;, t =&gt; {
+  const { seederFilePath, seederFileRelativePath } = helperData;
+
+  const fs = { exists: () =&gt; false };
+  const context = { fs, seederFilePath, seederFileRelativePath };
+
+  t.notThrows(() =&gt;
+    SeederGenerator.prototype._validateSeederFileNotExists.call(context)
+  );
+});
+
+test(&apos;should commit memFs changes&apos;, async t =&gt; {
+  const fs = { commit: sinon.stub().callsArg(0) };
+
+  const context = { fs };
+
+  await SeederGenerator.prototype._commitMemFsChanges.call(context);
+
+  t.true(fs.commit.called);
+});
+
+test(&apos;should copy seeder template&apos;, async t =&gt; {
+  const { seederName, seederTemplate, seederFilePath } = helperData;
+
+  const fs = { copyTpl: sinon.spy() };
+  const context = {
+    fs,
+    seederName,
+    seederFilePath,
+    options: { seederTemplate },
+  };
+
+  SeederGenerator.prototype._copySeederTemplate.call(context);
+
+  t.true(fs.copyTpl.calledWith(seederTemplate, seederFilePath, { seederName }));
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

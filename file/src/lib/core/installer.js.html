@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/lib/core/installer.js | mongoose-data-seed</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Seed mongodb with data using mongoose models"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="mongoose-data-seed"><meta property="twitter:description" content="Seed mongodb with data using mongoose models"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/sharvit/mongoose-data-seed"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib">lib</a><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-config">config</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-configFilename">configFilename</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultUserGeneratorConfig">defaultUserGeneratorConfig</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-systemConfigTemplate">systemConfigTemplate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-systemSeederTemplate">systemSeederTemplate</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands">lib/commands</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-aliasToCommand">aliasToCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-commandToFunction">commandToFunction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCommandAndArgvFromCli">getCommandAndArgvFromCli</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isAlias">isAlias</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-runCommand">runCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-aliases">aliases</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-availableCommandsList">availableCommandsList</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-commands">commands</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-commandsMap">commandsMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultCommand">defaultCommand</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-generate">lib/commands/generate</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateSeeder">generateSeeder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-index">index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOptions">getOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateOptions">validateOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-optionDefinitions">optionDefinitions</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-help">lib/commands/help</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-usageGuide">usageGuide</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-init">lib/commands/init</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/commands/init/installer-logger.js~InstallerLogger.html">InstallerLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-index">index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOptions">getOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-promptMissingOptions">promptMissingOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-runinstaller">runinstaller</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-optionDefinitions">optionDefinitions</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-run">lib/commands/run</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/commands/run/run-logger.js~RunLogger.html">RunLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-index">index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOptions">getOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-run">run</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-optionDefinitions">optionDefinitions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-usageGuide">usageGuide</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-core">lib/core</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/installer-error.js~InstallerError.html">InstallerError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/installer.js~Installer.html">Installer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/md-seed-runner-error.js~MdSeedRunnerError.html">MdSeedRunnerError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/md-seed-runner.js~MdSeedRunner.html">MdSeedRunner</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/seeder-generator.js~SeederGenerator.html">SeederGenerator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InstallerConfig">InstallerConfig</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-utils">lib/utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/utils/base-logger.js~BaseLogger.html">BaseLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/utils/seeder.js~Seeder.html">Seeder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-exit">exit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getFolderNameFromPath">getFolderNameFromPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getObjectWithSelectedKeys">getObjectWithSelectedKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalizeSeederFileName">normalizeSeederFileName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalizeSeederName">normalizeSeederName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateSeederTemplatePath">validateSeederTemplatePath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateSeedersFolderName">validateSeedersFolderName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateUserConfig">validateUserConfig</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ExitCodes">ExitCodes</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/lib/core/installer.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import fs from &apos;fs&apos;;
+import path from &apos;path&apos;;
+import memFs from &apos;mem-fs&apos;;
+import editor from &apos;mem-fs-editor&apos;;
+import { Subject } from &apos;rxjs&apos;;
+
+import { defaultUserGeneratorConfig, systemSeederTemplate } from &apos;../constants&apos;;
+import config from &apos;../config&apos;;
+
+import InstallerError from &apos;./installer-error&apos;;
+
+/**
+ * mongoose-data-seed installer
+ *
+ * @example
+ * // create installer
+ * const installer = new Installer({ seedersFolder: &apos;./seeders&apos; });
+ *
+ * // run seeders
+ * const observable = installer.install();
+ *
+ * // subscribe logger
+ * observable.subscribe({
+ *   next({ type, payload }) {
+ *     switch (type) {
+ *       case Installer.operations.START:
+ *         console.log(&apos;Installer started!&apos;);
+ *         break;
+ *       case Installer.operations.SUCCESS:
+ *         console.log(&apos;Installer finished successfully!&apos;);
+ *         break;
+ *     }
+ *   },
+ *   error({ type, payload }) {
+ *     console.error(`Error: ${type}`);
+ *     console.error(payload.error);
+ *   }
+ * });
+ */
+export default class Installer {
+  /**
+   * @typedef {Object} InstallerConfig
+   * @property {string}  seedersFolder        Relative path to your seeders-folder.
+   * @property {?string} customSeederTemplate Relative path to your seeder-template
+   *                                          if you would like to use your own seeders-template
+   */
+
+  /**
+   * Installer operations constants
+   * @type {Object}
+   * @property {string} START        Installation starts.
+   * @property {string} SUCCESS      Installation succeed.
+   * @property {string} ERROR        Installation finished with an error.
+   */
+  static operations = {
+    START: &apos;START&apos;,
+    SUCCESS: &apos;SUCCESS&apos;,
+    ERROR: &apos;ERROR&apos;,
+
+    WRITE_USER_GENERETOR_CONFIG_START: &apos;WRITE_USER_GENERETOR_CONFIG_START&apos;,
+    WRITE_USER_GENERETOR_CONFIG_SUCCESS: &apos;WRITE_USER_GENERETOR_CONFIG_SUCCESS&apos;,
+    WRITE_USER_GENERETOR_CONFIG_ERROR: &apos;WRITE_USER_GENERETOR_CONFIG_ERROR&apos;,
+
+    CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_START:
+      &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_START&apos;,
+    CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS:
+      &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS&apos;,
+    CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_ERROR:
+      &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_ERROR&apos;,
+    CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS:
+      &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS&apos;,
+    CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM:
+      &apos;CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM&apos;,
+
+    CREATE_SEEDERS_FOLDER_START: &apos;CREATE_SEEDERS_FOLDER_START&apos;,
+    CREATE_SEEDERS_FOLDER_SUCCESS: &apos;CREATE_SEEDERS_FOLDER_SUCCESS&apos;,
+    CREATE_SEEDERS_FOLDER_ERROR: &apos;CREATE_SEEDERS_FOLDER_ERROR&apos;,
+    CREATE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS:
+      &apos;CREATE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS&apos;,
+
+    WRITE_USER_CONFIG_START: &apos;WRITE_USER_CONFIG_START&apos;,
+    WRITE_USER_CONFIG_SUCCESS: &apos;WRITE_USER_CONFIG_SUCCESS&apos;,
+    WRITE_USER_CONFIG_ERROR: &apos;WRITE_USER_CONFIG_ERROR&apos;,
+    WRITE_USER_CONFIG_SKIP_FILE_EXISTS: &apos;WRITE_USER_CONFIG_SKIP_FILE_EXISTS&apos;,
+  };
+
+  /**
+   * Creates mongoose-data-seed installer
+   * @param {InstallerConfig} [config] Generator config
+   */
+  constructor({
+    seedersFolder,
+    customSeederTemplate,
+  } = defaultUserGeneratorConfig) {
+    this._subject = new Subject();
+    this._initConfig({ seedersFolder, customSeederTemplate });
+    this._initMemFs();
+  }
+
+  /**
+   * Run installer - install `mongoose-data-seeder`
+   * @return {Observable}
+   * @see https://rxjs-dev.firebaseapp.com/api/index/class/Observable
+   */
+  install() {
+    this._install();
+
+    return this._subject.asObservable();
+  }
+
+  /**
+   * get the config that should be written into the `package.json`
+   * @return {InstallerConfig} generator config
+   */
+  getGeneratorConfig() {
+    const {
+      userSeedersFolderName: seedersFolder,
+      customSeederTemplateFilename: customSeederTemplate,
+    } = this.config;
+
+    const generatorConfig = { seedersFolder };
+
+    if (customSeederTemplate) {
+      generatorConfig.customSeederTemplate = customSeederTemplate;
+    }
+
+    return generatorConfig;
+  }
+
+  /*
+    Private methods
+   */
+
+  /**
+   * Initiate this.config
+   * @param {InstallerConfig} config generator config
+   */
+  _initConfig({ seedersFolder, customSeederTemplate }) {
+    /**
+     * Full configuration object
+     * @type {Object}
+     * @property {string}  userPackageJsonPath path to the user package.json file.
+     * @property {?string} customSeederTemplateFilename custom seeder template filename.
+     * @property {?string} customSeederTemplatePath custom seeder template path.
+     * @property {string}  userSeedersFolderName seeders folder name.
+     * @property {string}  userSeedersFolderPath seeders folder path.
+     * @property {boolean} userConfigExists user has a config file?.
+     * @property {?string} userConfigFilename config file name.
+     * @property {?string} userConfigFilepath config file path.
+     * @property {string}  configTemplatePath config template path.
+     */
+    this.config = {
+      userPackageJsonPath: path.join(config.projectRoot, &apos;./package.json&apos;),
+      customSeederTemplateFilename: customSeederTemplate &amp;&amp; customSeederTemplate,
+      customSeederTemplatePath:
+        customSeederTemplate &amp;&amp;
+        path.join(config.projectRoot, customSeederTemplate),
+      userSeedersFolderName: seedersFolder,
+      userSeedersFolderPath: path.join(config.projectRoot, seedersFolder),
+      userConfigExists: config.userConfigExists,
+      userConfigFilename: config.userConfigFilename,
+      userConfigFilepath: config.userConfigFilepath,
+      configTemplatePath: config.configTemplate,
+    };
+  }
+
+  /**
+   * Initiate the in-memory file-system
+   */
+  _initMemFs() {
+    const store = memFs.create();
+    this._memFsEditor = editor.create(store);
+  }
+
+  /**
+   * Run the installation process
+   * @return {Promise}
+   */
+  async _install() {
+    const { START, SUCCESS, ERROR } = Installer.operations;
+
+    try {
+      this._subject.next({ type: START });
+
+      await this._createCustomSeederTemplate();
+      await this._writeUserGeneratorConfigToPackageJson();
+      await this._createSeedersFolder();
+      await this._writeUserConfig();
+
+      this._subject.next({ type: SUCCESS });
+
+      this._subject.complete();
+    } catch (error) {
+      const { type = ERROR, payload = { error } } = error;
+
+      this._subject.error({ type, payload });
+    }
+  }
+
+  /**
+   * Commit the in-memory file changes
+   * @return {Promise}
+   */
+  async _commitMemFsChanges() {
+    return new Promise(resolve =&gt; {
+      this._memFsEditor.commit(() =&gt; {
+        resolve();
+      });
+    });
+  }
+
+  /**
+   * Copy the package seeder-template to the user desired
+   * custom-seeder-template path if the user wants to use his own seeder-template
+   * @return {Promise} [description]
+   */
+  async _createCustomSeederTemplate() {
+    const {
+      CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_START,
+      CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS,
+      CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_ERROR,
+      CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS,
+      CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM,
+    } = Installer.operations;
+
+    const {
+      customSeederTemplateFilename,
+      customSeederTemplatePath,
+    } = this.config;
+
+    const payload = { customSeederTemplateFilename, customSeederTemplatePath };
+
+    const notify = type =&gt; this._subject.next({ type, payload });
+
+    try {
+      notify(CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_START);
+
+      if (!customSeederTemplatePath) {
+        return notify(CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_NO_CUSTOM);
+      }
+
+      if (fs.existsSync(customSeederTemplatePath)) {
+        notify(CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SKIP_FILE_EXISTS);
+      } else {
+        // copy template
+        this._memFsEditor.copy(systemSeederTemplate, customSeederTemplatePath);
+        // commit changes
+        await this._commitMemFsChanges();
+
+        notify(CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_SUCCESS);
+      }
+    } catch (error) {
+      throw new InstallerError({
+        type: CREATE_CUSTOM_SEEDER_TEMPLATE_FILE_ERROR,
+        payload,
+        error,
+      });
+    }
+  }
+
+  /**
+   * Write the config into the user package.json
+   */
+  async _writeUserGeneratorConfigToPackageJson() {
+    const {
+      WRITE_USER_GENERETOR_CONFIG_START,
+      WRITE_USER_GENERETOR_CONFIG_SUCCESS,
+      WRITE_USER_GENERETOR_CONFIG_ERROR,
+    } = Installer.operations;
+
+    const { userPackageJsonPath: packageJsonPath } = this.config;
+
+    const payload = { packageJsonPath };
+
+    try {
+      this._subject.next({ type: WRITE_USER_GENERETOR_CONFIG_START, payload });
+
+      const packageJson = require(packageJsonPath);
+      packageJson.mdSeed = this.getGeneratorConfig();
+
+      this._memFsEditor.writeJSON(packageJsonPath, packageJson);
+
+      await this._commitMemFsChanges();
+
+      this._subject.next({
+        type: WRITE_USER_GENERETOR_CONFIG_SUCCESS,
+        payload,
+      });
+    } catch (error) {
+      throw new InstallerError({
+        type: WRITE_USER_GENERETOR_CONFIG_ERROR,
+        payload,
+        error,
+      });
+    }
+  }
+
+  /**
+   * Create the seeders folder
+   */
+  async _createSeedersFolder() {
+    const {
+      CREATE_SEEDERS_FOLDER_START,
+      CREATE_SEEDERS_FOLDER_SUCCESS,
+      CREATE_SEEDERS_FOLDER_ERROR,
+      CREATE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS,
+    } = Installer.operations;
+
+    const {
+      userSeedersFolderPath: folderpath,
+      userSeedersFolderName: foldername,
+    } = this.config;
+
+    const payload = { folderpath, foldername };
+
+    try {
+      this._subject.next({ type: CREATE_SEEDERS_FOLDER_START, payload });
+
+      if (fs.existsSync(folderpath)) {
+        this._subject.next({
+          type: CREATE_SEEDERS_FOLDER_SKIP_FOLDER_EXISTS,
+          payload,
+        });
+      } else {
+        fs.mkdirSync(folderpath);
+
+        this._subject.next({ type: CREATE_SEEDERS_FOLDER_SUCCESS, payload });
+      }
+    } catch (error) {
+      throw new InstallerError({
+        type: CREATE_SEEDERS_FOLDER_ERROR,
+        payload,
+        error,
+      });
+    }
+  }
+
+  /**
+   * Write the `md-seed-config.js` into the root folder
+   */
+  async _writeUserConfig() {
+    const {
+      WRITE_USER_CONFIG_START,
+      WRITE_USER_CONFIG_SUCCESS,
+      WRITE_USER_CONFIG_ERROR,
+      WRITE_USER_CONFIG_SKIP_FILE_EXISTS,
+    } = Installer.operations;
+
+    const {
+      userConfigExists: fileExists,
+      userConfigFilename: filename,
+      userConfigFilepath: filepath,
+      configTemplatePath,
+    } = this.config;
+
+    const payload = { fileExists, filename, filepath };
+
+    try {
+      this._subject.next({ type: WRITE_USER_CONFIG_START, payload });
+
+      if (fileExists === true) {
+        this._subject.next({
+          type: WRITE_USER_CONFIG_SKIP_FILE_EXISTS,
+          payload,
+        });
+      } else {
+        // copy template
+        this._memFsEditor.copy(configTemplatePath, filepath);
+        // commit changes
+        await this._commitMemFsChanges();
+
+        this._subject.next({ type: WRITE_USER_CONFIG_SUCCESS, payload });
+      }
+    } catch (error) {
+      throw new InstallerError({
+        type: WRITE_USER_CONFIG_ERROR,
+        payload,
+        error,
+      });
+    }
+  }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

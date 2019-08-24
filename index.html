@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl">
+  <title data-ice="title">Home | mongoose-data-seed</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Seed mongodb with data using mongoose models"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="mongoose-data-seed"><meta property="twitter:description" content="Seed mongodb with data using mongoose models"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/sharvit/mongoose-data-seed"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib">lib</a><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-config">config</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-configFilename">configFilename</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultUserGeneratorConfig">defaultUserGeneratorConfig</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-systemConfigTemplate">systemConfigTemplate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-systemSeederTemplate">systemSeederTemplate</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands">lib/commands</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-aliasToCommand">aliasToCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-commandToFunction">commandToFunction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCommandAndArgvFromCli">getCommandAndArgvFromCli</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isAlias">isAlias</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-runCommand">runCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-aliases">aliases</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-availableCommandsList">availableCommandsList</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-commands">commands</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-commandsMap">commandsMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultCommand">defaultCommand</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-generate">lib/commands/generate</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateSeeder">generateSeeder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-index">index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOptions">getOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateOptions">validateOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-optionDefinitions">optionDefinitions</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-help">lib/commands/help</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-usageGuide">usageGuide</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-init">lib/commands/init</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/commands/init/installer-logger.js~InstallerLogger.html">InstallerLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-index">index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOptions">getOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-promptMissingOptions">promptMissingOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-runinstaller">runinstaller</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-optionDefinitions">optionDefinitions</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-run">lib/commands/run</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/commands/run/run-logger.js~RunLogger.html">RunLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-index">index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOptions">getOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-run">run</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-optionDefinitions">optionDefinitions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-usageGuide">usageGuide</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-core">lib/core</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/installer-error.js~InstallerError.html">InstallerError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/installer.js~Installer.html">Installer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/md-seed-runner-error.js~MdSeedRunnerError.html">MdSeedRunnerError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/md-seed-runner.js~MdSeedRunner.html">MdSeedRunner</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/seeder-generator.js~SeederGenerator.html">SeederGenerator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InstallerConfig">InstallerConfig</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-utils">lib/utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/utils/base-logger.js~BaseLogger.html">BaseLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/utils/seeder.js~Seeder.html">Seeder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-exit">exit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getFolderNameFromPath">getFolderNameFromPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getObjectWithSelectedKeys">getObjectWithSelectedKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalizeSeederFileName">normalizeSeederFileName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalizeSeederName">normalizeSeederName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateSeederTemplatePath">validateSeederTemplatePath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateSeedersFolderName">validateSeedersFolderName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateUserConfig">validateUserConfig</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ExitCodes">ExitCodes</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><p><a href="https://www.npmjs.com/package/mongoose-data-seed"><img src="https://img.shields.io/npm/v/mongoose-data-seed.svg?style=flat-square" alt="Package Version"></a>
+<a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release"></a>
+<a href="https://npm-stat.com/charts.html?package=mongoose-data-seed&amp;from=2016-04-01"><img src="https://img.shields.io/npm/dm/mongoose-data-seed.svg?style=flat-square" alt="Downloads Status"></a>
+<a href="https://travis-ci.org/sharvit/mongoose-data-seed"><img src="https://img.shields.io/travis/sharvit/mongoose-data-seed/master.svg?style=flat-square" alt="Build Status: Linux"></a>
+<a href="https://coveralls.io/github/sharvit/mongoose-data-seed?branch=master"><img src="https://coveralls.io/repos/github/sharvit/mongoose-data-seed/badge.svg?branch=master" alt="Coverage Status"></a>
+<a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"></a>
+<a href="https://david-dm.org/sharvit/mongoose-data-seed"><img src="https://david-dm.org/sharvit/mongoose-data-seed/status.svg" alt="dependencies Status"></a>
+<a href="https://david-dm.org/sharvit/mongoose-data-seed?type=dev"><img src="https://david-dm.org/sharvit/mongoose-data-seed/dev-status.svg" alt="devDependencies Status"></a>
+<a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/sharvit/mongoose-data-seed.svg" alt="Greenkeeper badge"></a>
+<a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square" alt="code style: prettier"></a>
+<a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fsharvit%2Fmongoose-data-seed?ref=badge_shield"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsharvit%2Fmongoose-data-seed.svg?type=shield" alt="FOSSA Status"></a>
+<a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/npm/l/stack-overflow-copy-paste.svg?style=flat-square" alt="MIT License"></a></p>
+<h1 id="mongoose-data-seed">mongoose-data-seed</h1><p>Seed mongodb with data using mongoose models</p>
+<p><img src="md-seed-run-example.gif" alt="cli example using md-seed run"></p>
+<h2 id="install">Install</h2><pre><code class="lang-shell"><code class="source-code prettyprint">npm install --save mongoose-data-seed
+md-seed init</code>
+</code></pre>
+<p><code>md-seed init</code> will ask you to choose a folder for your seeders.</p>
+<p><code>md-seed init</code> will create the <code>seeders</code> folder, generate <code>md-seed-config.js</code> and update your <code>package.json</code>.</p>
+<h2 id="use">Use</h2><p>Generate seeder file</p>
+<pre><code class="lang-shell"><code class="source-code prettyprint">md-seed g users</code>
+</code></pre>
+<p>Run all seeders</p>
+<pre><code class="lang-shell"><code class="source-code prettyprint">md-seed run</code>
+</code></pre>
+<p>Or run specific seeders</p>
+<pre><code class="lang-shell"><code class="source-code prettyprint">md-seed run users posts comments</code>
+</code></pre>
+<h2 id="options">Options</h2><p>Drop the database before seeding</p>
+<pre><code class="lang-shell"><code class="source-code prettyprint">md-seed run --dropdb</code>
+</code></pre>
+<h2 id="seeder-example">Seeder Example</h2><pre><code class="lang-javascript"><code class="source-code prettyprint">import { Seeder } from &apos;mongoose-data-seed&apos;;
+import { User } from &apos;../server/models&apos;;
+
+const data = [
+  {
+    email: &apos;user1@gmail.com&apos;,
+    password: &apos;123123&apos;,
+    passwordConfirmation: &apos;123123&apos;,
+    isAdmin: true
+  },
+  {
+    email: &apos;user2@gmail.com&apos;,
+    password: &apos;123123&apos;,
+    passwordConfirmation: &apos;123123&apos;,
+    isAdmin: false
+  }
+];
+
+class UsersSeeder extends Seeder {
+  async shouldRun() {
+    return User.countDocuments()
+      .exec()
+      .then(count =&gt; count === 0);
+  }
+
+  async run() {
+    return User.create(data);
+  }
+}
+
+export default UsersSeeder;
+</code>
+</code></pre>
+<h3 id="md-seed-config-js">md-seed-config.js</h3><p><code>md-seed</code> excepting to get 3 values from <code>md-seed-config.js</code></p>
+<ol>
+<li><code>seedersList</code> - A key/value list of all your seeders,
+<code>md-seed</code> will run your seeders as they ordered in the list.</li>
+<li><code>connect</code> - Connect to mongodb implementation (should return promise).</li>
+<li><code>dropdb</code> - Drop/Clear the database implementation (should return promise).</li>
+</ol>
+<h4 id="example">Example</h4><pre><code class="lang-javascript"><code class="source-code prettyprint">import mongoose from &apos;mongoose&apos;;
+
+import Users from &apos;./seeders/users.seeder&apos;;
+import Posts from &apos;./seeders/posts.seeder&apos;;
+import Comments from &apos;./seeders/comments.seeder&apos;;
+
+const mongoURL = process.env.MONGO_URL || &apos;mongodb://localhost:27017/dbname&apos;;
+
+/**
+ * Seeders List
+ * order is important
+ * @type {Object}
+ */
+export const seedersList = {
+  Users,
+  Posts,
+  Comments,
+};
+/**
+ * Connect to mongodb implementation
+ * @return {Promise}
+ */
+export const connect = async () =&gt; await mongoose.connect(mongoURL, { useNewUrlParser: true });
+/**
+ * Drop/Clear the database implementation
+ * @return {Promise}
+ */
+export const dropdb = async () =&gt; mongoose.connection.db.dropDatabase();
+</code>
+</code></pre>
+<h3 id="configurations">Configurations</h3><p><code>mongoose-data-seed</code> configurations will get loaded from the <code>mdSeed</code> field in your <code>package.json</code> file.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>seedersFolder</code></td>
+<td><code>&apos;./seeders&apos;</code></td>
+<td>Path for your seeders-folder, seeders will be generated into this folder.</td>
+</tr>
+<tr>
+<td><code>customSeederTemplate</code></td>
+<td><code>undefined</code></td>
+<td>Path to a custom template file to generate your seeders from.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="examples">Examples</h2><ol>
+<li><a href="https://github.com/sharvit/mongoose-data-seed/tree/master/examples/md-seed-example">md-seed-example</a></li>
+</ol>
+<h2 id="license">License</h2><p>MIT</p>
+<p><a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fsharvit%2Fmongoose-data-seed?ref=badge_shield"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsharvit%2Fmongoose-data-seed.svg?type=shield" alt="FOSSA Status"></a>
+<a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/npm/l/stack-overflow-copy-paste.svg?style=flat-square" alt="MIT License"></a></p>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

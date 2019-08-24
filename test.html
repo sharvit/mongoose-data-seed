@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href>
+  <title data-ice="title">Test | mongoose-data-seed</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Seed mongodb with data using mongoose models"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="mongoose-data-seed"><meta property="twitter:description" content="Seed mongodb with data using mongoose models"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/sharvit/mongoose-data-seed"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib">lib</a><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-config">config</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-configFilename">configFilename</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultUserGeneratorConfig">defaultUserGeneratorConfig</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-systemConfigTemplate">systemConfigTemplate</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-systemSeederTemplate">systemSeederTemplate</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands">lib/commands</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-aliasToCommand">aliasToCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-commandToFunction">commandToFunction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getCommandAndArgvFromCli">getCommandAndArgvFromCli</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-isAlias">isAlias</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-runCommand">runCommand</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-aliases">aliases</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-availableCommandsList">availableCommandsList</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-commands">commands</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-commandsMap">commandsMap</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defaultCommand">defaultCommand</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-generate">lib/commands/generate</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-generateSeeder">generateSeeder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-index">index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOptions">getOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateOptions">validateOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-optionDefinitions">optionDefinitions</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-help">lib/commands/help</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-usageGuide">usageGuide</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-init">lib/commands/init</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/commands/init/installer-logger.js~InstallerLogger.html">InstallerLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-index">index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOptions">getOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-promptMissingOptions">promptMissingOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-runinstaller">runinstaller</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-optionDefinitions">optionDefinitions</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-commands-run">lib/commands/run</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/commands/run/run-logger.js~RunLogger.html">RunLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-help">help</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-index">index</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getOptions">getOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-run">run</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-optionDefinitions">optionDefinitions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-usageGuide">usageGuide</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-core">lib/core</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/installer-error.js~InstallerError.html">InstallerError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/installer.js~Installer.html">Installer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/md-seed-runner-error.js~MdSeedRunnerError.html">MdSeedRunnerError</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/md-seed-runner.js~MdSeedRunner.html">MdSeedRunner</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/core/seeder-generator.js~SeederGenerator.html">SeederGenerator</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-InstallerConfig">InstallerConfig</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#lib-utils">lib/utils</a><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/utils/base-logger.js~BaseLogger.html">BaseLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/lib/utils/seeder.js~Seeder.html">Seeder</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-exit">exit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getFolderNameFromPath">getFolderNameFromPath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-getObjectWithSelectedKeys">getObjectWithSelectedKeys</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalizeSeederFileName">normalizeSeederFileName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-normalizeSeederName">normalizeSeederName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateSeederTemplatePath">validateSeederTemplatePath</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateSeedersFolderName">validateSeedersFolderName</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-validateUserConfig">validateUserConfig</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ExitCodes">ExitCodes</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1>Test</h1>
+<table class="test-summary">
+  <thead>
+    <tr>
+      <td class="test-description">Description</td>
+      <td class="test-target">Identifier</td>
+    </tr>
+  </thead>
+
+  <tbody data-ice="tests"><tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/commands/generate/generate-seeder.test.js.html#lineNumber44"><p>should generate a seeder</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/commands/generate/help.test.js.html#lineNumber6"><p>show show help</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/commands/generate/options.test.js.html#lineNumber16"><p>should get user options from the cli</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/commands/generate/options.test.js.html#lineNumber44"><p>should validate given options</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/commands/help/help.test.js.html#lineNumber7"><p>help command should print the usage guide</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/commands/init/help.test.js.html#lineNumber6"><p>show show help</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/commands/init/options.test.js.html#lineNumber39"><p>should get user options from the cli</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/commands/run/help.test.js.html#lineNumber6"><p>show show help</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/commands/run/options.test.js.html#lineNumber32"><p>should get user options from the cli</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer-error.test.js.html#lineNumber5"><p>should create error</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer-error.test.js.html#lineNumber13"><p>should create error with type</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer-error.test.js.html#lineNumber22"><p>should create error with payload</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer-error.test.js.html#lineNumber31"><p>should create error with inner error</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber58"><p>Should create a installer instance</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber78"><p>Should create a installer instance with args</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber93"><p>Should _initConfig</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber102"><p>Should _initConfig without customSeederTemplate</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber114"><p>Should _initMemFs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber127"><p>Should install</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber140"><p>Should getGeneratorConfig</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber158"><p>Should getGeneratorConfig with customSeederTemplate</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber178"><p>Should _install and success</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber204"><p>Should _install and fail</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber233"><p>Should _install and fail with InstallerError</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber269"><p>Should _commitMemFsChanges</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber282"><p>Should _createCustomSeederTemplate and success</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber334"><p>Should _createCustomSeederTemplate and skip because no custom seeder choosed</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber381"><p>Should _createCustomSeederTemplate and skip because no the seeder template already exists</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber428"><p>Should _createCustomSeederTemplate and fail</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber480"><p>Should _writeUserGeneratorConfigToPackageJson and success</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber525"><p>Should _writeUserGeneratorConfigToPackageJson and fail</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber571"><p>Should _createSeedersFolder and success</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber610"><p>Should _createSeedersFolder and skip</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber649"><p>Should _createSeedersFolder and fail</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber693"><p>Should _writeUserConfig and success</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber743"><p>Should _writeUserConfig and skip</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/installer.test.js.html#lineNumber788"><p>Should _writeUserConfig and fail</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner-error.test.js.html#lineNumber5"><p>should create error</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner-error.test.js.html#lineNumber13"><p>should create error with type</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner-error.test.js.html#lineNumber22"><p>should create error with payload</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner-error.test.js.html#lineNumber31"><p>should create error with inner error</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner.test.js.html#lineNumber39"><p>Should create a run-logger instance</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner.test.js.html#lineNumber48"><p>Should run</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner.test.js.html#lineNumber61"><p>Should run with args</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner.test.js.html#lineNumber75"><p>Should _run</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner.test.js.html#lineNumber100"><p>Should _run and drop database</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner.test.js.html#lineNumber125"><p>Should _run and fail</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner.test.js.html#lineNumber150"><p>Should _run and fail with type and payload</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner.test.js.html#lineNumber181"><p>Should _connectToMongodb</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner.test.js.html#lineNumber199"><p>Should _connectToMongodb and fail</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner.test.js.html#lineNumber226"><p>Should _dropDatabase</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner.test.js.html#lineNumber244"><p>Should _dropDatabase and fail</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner.test.js.html#lineNumber271"><p>Should _runSeeders</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner.test.js.html#lineNumber298"><p>Should _runSeeder</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner.test.js.html#lineNumber321"><p>Should _runSeeder and fail</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner.test.js.html#lineNumber348"><p>should _loadSelectedSeeders with no args</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner.test.js.html#lineNumber356"><p>should _loadSelectedSeeders with empty array</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/md-seed-runner.test.js.html#lineNumber364"><p>should _loadSelectedSeeders</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/seeder-generator.test.js.html#lineNumber20"><p>should create a new instance of SeederGenerator</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/seeder-generator.test.js.html#lineNumber54"><p>should generate Seeder</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/seeder-generator.test.js.html#lineNumber73"><p>should init options</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/seeder-generator.test.js.html#lineNumber113"><p>should init memFs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/seeder-generator.test.js.html#lineNumber147"><p>should init name</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/seeder-generator.test.js.html#lineNumber176"><p>_validateSeederFileNotExists should throw error when seeder file are already exists</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/seeder-generator.test.js.html#lineNumber188"><p>_validateSeederFileNotExists should not throw error when seeder file are not exists</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/seeder-generator.test.js.html#lineNumber199"><p>should commit memFs changes</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/core/seeder-generator.test.js.html#lineNumber209"><p>should copy seeder template</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/base-logger.test.js.html#lineNumber6"><p>Should create a installer-logger instance</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/base-logger.test.js.html#lineNumber16"><p>Should return observer</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/helpers.test.js.html#lineNumber15"><p>should get folder name from path</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/helpers.test.js.html#lineNumber19"><p>should get similar object with the selected keys</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/helpers.test.js.html#lineNumber32"><p>should validate seeders folder name</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/helpers.test.js.html#lineNumber40"><p>should validate seeder template path</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/helpers.test.js.html#lineNumber48"><p>should not throw error if user config exists</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/helpers.test.js.html#lineNumber56"><p>should throw error if user config not exists</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/helpers.test.js.html#lineNumber64"><p>should exit with success code</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/helpers.test.js.html#lineNumber77"><p>should exit with error code when passing error</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/seeder.test.js.html#lineNumber6"><p>should throw error when trying to create new instance of Seeder</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/seeder.test.js.html#lineNumber10"><p>should throw error if not implementing run method</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/seeder.test.js.html#lineNumber16"><p>should throw error when running the base run method</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/seeder.test.js.html#lineNumber20"><p>async shouldRun method need to return true</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/seeder.test.js.html#lineNumber24"><p>async beforeRun need to return promise</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/seeder.test.js.html#lineNumber29"><p>getStats should return empty stats when not providing results args</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/seeder.test.js.html#lineNumber36"><p>getStats should return stats when providing results args</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/seeder.test.js.html#lineNumber44"><p>static extend method should create a new class based on the Seeder class with the given methods</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/seeder.test.js.html#lineNumber56"><p>static extend method should create a new class based on the Seeder class without methods</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/seeder.test.js.html#lineNumber68"><p>seed method should run seeder if shouldRun returns true</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span><a href="file/src/lib/utils/seeder.test.js.html#lineNumber91"><p>seed method should not run seeder if shouldRun returns false</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
