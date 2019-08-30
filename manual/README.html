@@ -2,14 +2,14 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="./">
+  <base data-ice="baseUrl" href="../">
   <title data-ice="title">Manual | mongoose-data-seed</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
 <meta name="description" content="Seed mongodb with data using mongoose models"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="mongoose-data-seed"><meta property="twitter:description" content="Seed mongodb with data using mongoose models"></head>
-<body class="layout-container manual-root manual-index" data-ice="rootContainer">
+<body class="layout-container manual-root" data-ice="rootContainer">
 
 <header>
   <a href="./">Home</a>
@@ -28,6 +28,21 @@
 
 <nav class="navigation" data-ice="nav"><div class="manual-toc-root">
   
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.html"><a href="manual/README.html" data-ice="link">mongoose-data-seed</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.html"><a href="manual/README.html#install" data-ice="link">Install</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.html"><a href="manual/README.html#use" data-ice="link">Use</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.html"><a href="manual/README.html#options" data-ice="link">Options</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.html"><a href="manual/README.html#seeder-example" data-ice="link">Seeder Example</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.html"><a href="manual/README.html#md-seed-config-js" data-ice="link">md-seed-config.js</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/README.html"><a href="manual/README.html#example" data-ice="link">Example</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.html"><a href="manual/README.html#configurations" data-ice="link">Configurations</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.html"><a href="manual/README.html#examples" data-ice="link">Examples</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.html"><a href="manual/README.html#license" data-ice="link">License</a></li>
+</ul>
+  </div>
 <div data-ice="manual">
     <ul class="manual-toc">
       
@@ -50,11 +65,15 @@
 <li data-ice="manualNav" class="indent-h2" data-link="manual/CODE_OF_CONDUCT.html"><a href="manual/CODE_OF_CONDUCT.html#attribution" data-ice="link">Attribution</a></li>
 </ul>
   </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    </ul>
+  </div>
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown">
-  <div class="manual-user-index" data-ice="manualUserIndex"><p><a href="https://www.npmjs.com/package/mongoose-data-seed"><img src="https://img.shields.io/npm/v/mongoose-data-seed.svg?style=flat-square" alt="Package Version"></a>
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><p><a href="https://www.npmjs.com/package/mongoose-data-seed"><img src="https://img.shields.io/npm/v/mongoose-data-seed.svg?style=flat-square" alt="Package Version"></a>
 <a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release"></a>
 <a href="https://npm-stat.com/charts.html?package=mongoose-data-seed&amp;from=2016-04-01"><img src="https://img.shields.io/npm/dm/mongoose-data-seed.svg?style=flat-square" alt="Downloads Status"></a>
 <a href="https://travis-ci.org/sharvit/mongoose-data-seed"><img src="https://img.shields.io/travis/sharvit/mongoose-data-seed/master.svg?style=flat-square" alt="Build Status: Linux"></a>
@@ -183,53 +202,6 @@ export const dropdb = async () =&gt; mongoose.connection.db.dropDatabase();
 <h2 id="license">License</h2><p>MIT</p>
 <p><a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fsharvit%2Fmongoose-data-seed?ref=badge_shield"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsharvit%2Fmongoose-data-seed.svg?type=shield" alt="FOSSA Status"></a>
 <a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/npm/l/stack-overflow-copy-paste.svg?style=flat-square" alt="MIT License"></a></p>
-</div>
-
-  
-
-  <div class="manual-cards">
-    
-  <div class="manual-card-wrap" data-ice="cards">
-      <div class="manual-card">
-        <div data-ice="card"><h1>Contributing</h1><p>Contributions are always welcome, no matter how large or small.</p><p><strong>Working on your first Pull Request?</strong> You can learn how from this <em>free</em> series <a href="https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github">How to Contribute to an Open Source Project on GitHub</a></p><h2>Code of Conduct</h2><p>By participating, you are expected to uphold this <a href="./manual/./CODE_OF_CONDUCT.md">Contributor Covenant Code of Conduct</a>. Please report unacceptable behavior to <a href="./manual/mailto:sharvita@gmail.com">sharvita@gmail.com</a>.</p><h2>Project setup</h2><p>First, <a href="https://guides.github.com/activities/forking">fork</a> then clone the repo:</p><pre><code class="lang-sh"><code class="source-code prettyprint">git clone https://github.com/your-username/mongoose-data-seed
-cd mongoose-data-seed
-git remote add upstream https://github.com/sharvit/mongoose-data-seed</code>
-</code></pre><p>Install dependencies:</p><pre><code class="lang-sh"><code class="source-code prettyprint">yarn</code>
-</code></pre><p>Run test suits to validate the project is working:</p><pre><code class="lang-sh"><code class="source-code prettyprint">yarn test</code>
-</code></pre><p>Run linter to validate the project code:</p><pre><code class="lang-sh"><code class="source-code prettyprint">yarn lint
-# to fix linting errors
-yarn lint --fix</code>
-</code></pre><p>Run linter to validate your commit message:</p><pre><code class="lang-sh"><code class="source-code prettyprint">yarn lint:commit</code>
-</code></pre><h2>Committing and Pushing changes</h2><p>Create a branch and start hacking:</p><pre><code class="lang-sh"><code class="source-code prettyprint">git checkout -b my-branch</code>
-</code></pre><p>Commit and push your changes:</p><p><code>generator-node-mdl</code> uses <a href="https://github.com/commitizen/cz-cli">commitizen</a> to create commit messages so <a href="https://github.com/semantic-release/semantic-release">semantic-release</a> can automatically create releases.</p><pre><code class="lang-sh"><code class="source-code prettyprint">git add .
-
-yarn commit
-# answer the questions
-
-git push origin my-branch</code>
-</code></pre><p>Open this project on <a href="https://github.com/sharvit/generator-node-mdl">GitHub</a>, then click &#x201C;Compare &amp; pull request&#x201D;.</p><h2>Help needed</h2><p>Please watch the repo and respond to questions/bug reports/feature requests, Thanks!</p></div>
-        <a data-ice="link" href="manual/CONTRIBUTING.html"></a>
-      </div>
-    </div>
-<div class="manual-card-wrap" data-ice="cards">
-      <div class="manual-card">
-        <div data-ice="card"><h1>Contributor Covenant Code of Conduct</h1><h2>Our Pledge</h2><p>In the interest of fostering an open and welcoming environment, we as contributors and maintainers pledge to making participation in our project and our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.</p><h2>Our Standards</h2><p>Examples of behavior that contributes to creating a positive environment include:</p><ul>
-<li>Using welcoming and inclusive language</li>
-<li>Being respectful of differing viewpoints and experiences</li>
-<li>Gracefully accepting constructive criticism</li>
-<li>Focusing on what is best for the community</li>
-<li>Showing empathy towards other community members</li>
-</ul><p>Examples of unacceptable behavior by participants include:</p><ul>
-<li>The use of sexualized language or imagery and unwelcome sexual attention or advances</li>
-<li>Trolling, insulting/derogatory comments, and personal or political attacks</li>
-<li>Public or private harassment</li>
-<li>Publishing others&#x2018; private information, such as a physical or electronic address, without explicit permission</li>
-<li>Other conduct which could reasonably be considered inappropriate in a professional setting</li>
-</ul><h2>Our Responsibilities</h2><p>Project maintainers are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.</p><p>Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.</p><h2>Scope</h2><p>This Code of Conduct applies both within project spaces and in public spaces when an individual is representing the project or its community. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by project maintainers.</p><h2>Enforcement</h2><p>Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team at <a href="./manual/mailto:sharvita@gmail.com">sharvita@gmail.com</a>. All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. The project team is obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.</p><p>Project maintainers who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project&#x2018;s leadership.</p><h2>Attribution</h2><p>This Code of Conduct is adapted from the <a href="http://contributor-covenant.org">Contributor Covenant</a>, version 1.4, available at <a href="http://contributor-covenant.org/version/1/4/">http://contributor-covenant.org/version/1/4</a></p></div>
-        <a data-ice="link" href="manual/CODE_OF_CONDUCT.html"></a>
-      </div>
-    </div>
-</div>
 </div>
 </div>
 

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../">
+  <title data-ice="title">Manual | mongoose-data-seed</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Seed mongodb with data using mongoose models"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="mongoose-data-seed"><meta property="twitter:description" content="Seed mongodb with data using mongoose models"></head>
+<body class="layout-container manual-root" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/sharvit/mongoose-data-seed"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div class="manual-toc-root">
+  
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html" data-ice="link">Contributing</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html#code-of-conduct" data-ice="link">Code of Conduct</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html#project-setup" data-ice="link">Project setup</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html#committing-and-pushing-changes" data-ice="link">Committing and Pushing changes</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html#help-needed" data-ice="link">Help needed</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/CODE_OF_CONDUCT.html"><a href="manual/CODE_OF_CONDUCT.html" data-ice="link">Contributor Covenant Code of Conduct</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CODE_OF_CONDUCT.html"><a href="manual/CODE_OF_CONDUCT.html#our-pledge" data-ice="link">Our Pledge</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CODE_OF_CONDUCT.html"><a href="manual/CODE_OF_CONDUCT.html#our-standards" data-ice="link">Our Standards</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CODE_OF_CONDUCT.html"><a href="manual/CODE_OF_CONDUCT.html#our-responsibilities" data-ice="link">Our Responsibilities</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CODE_OF_CONDUCT.html"><a href="manual/CODE_OF_CONDUCT.html#scope" data-ice="link">Scope</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CODE_OF_CONDUCT.html"><a href="manual/CODE_OF_CONDUCT.html#enforcement" data-ice="link">Enforcement</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CODE_OF_CONDUCT.html"><a href="manual/CODE_OF_CONDUCT.html#attribution" data-ice="link">Attribution</a></li>
+</ul>
+  </div>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="contributing">Contributing</h1><p>Contributions are always welcome, no matter how large or small.</p>
+<p><strong>Working on your first Pull Request?</strong> You can learn how from this <em>free</em> series <a href="https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github">How to Contribute to an Open Source Project on GitHub</a></p>
+<h2 id="code-of-conduct">Code of Conduct</h2><p>By participating, you are expected to uphold this <a href="./manual/./CODE_OF_CONDUCT.md">Contributor Covenant Code of Conduct</a>. Please report unacceptable behavior to <a href="./manual/mailto:sharvita@gmail.com">sharvita@gmail.com</a>.</p>
+<h2 id="project-setup">Project setup</h2><p>First, <a href="https://guides.github.com/activities/forking">fork</a> then clone the repo:</p>
+<pre><code class="lang-sh"><code class="source-code prettyprint">git clone https://github.com/your-username/mongoose-data-seed
+cd mongoose-data-seed
+git remote add upstream https://github.com/sharvit/mongoose-data-seed</code>
+</code></pre>
+<p>Install dependencies:</p>
+<pre><code class="lang-sh"><code class="source-code prettyprint">yarn</code>
+</code></pre>
+<p>Run test suits to validate the project is working:</p>
+<pre><code class="lang-sh"><code class="source-code prettyprint">yarn test</code>
+</code></pre>
+<p>Run linter to validate the project code:</p>
+<pre><code class="lang-sh"><code class="source-code prettyprint">yarn lint
+# to fix linting errors
+yarn lint --fix</code>
+</code></pre>
+<p>Run linter to validate your commit message:</p>
+<pre><code class="lang-sh"><code class="source-code prettyprint">yarn lint:commit</code>
+</code></pre>
+<h2 id="committing-and-pushing-changes">Committing and Pushing changes</h2><p>Create a branch and start hacking:</p>
+<pre><code class="lang-sh"><code class="source-code prettyprint">git checkout -b my-branch</code>
+</code></pre>
+<p>Commit and push your changes:</p>
+<p><code>generator-node-mdl</code> uses <a href="https://github.com/commitizen/cz-cli">commitizen</a> to create commit messages so <a href="https://github.com/semantic-release/semantic-release">semantic-release</a> can automatically create releases.</p>
+<pre><code class="lang-sh"><code class="source-code prettyprint">git add .
+
+yarn commit
+# answer the questions
+
+git push origin my-branch</code>
+</code></pre>
+<p>Open this project on <a href="https://github.com/sharvit/generator-node-mdl">GitHub</a>, then click &#x201C;Compare &amp; pull request&#x201D;.</p>
+<h2 id="help-needed">Help needed</h2><p>Please watch the repo and respond to questions/bug reports/feature requests, Thanks!</p>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
