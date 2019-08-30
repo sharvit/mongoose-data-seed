@@ -31,6 +31,21 @@
 <div data-ice="manual">
     <ul class="manual-toc">
       
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/README.html"><a href="manual/README.html" data-ice="link">mongoose-data-seed</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.html"><a href="manual/README.html#install" data-ice="link">Install</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.html"><a href="manual/README.html#use" data-ice="link">Use</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.html"><a href="manual/README.html#options" data-ice="link">Options</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.html"><a href="manual/README.html#seeder-example" data-ice="link">Seeder Example</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.html"><a href="manual/README.html#md-seed-config-js" data-ice="link">md-seed-config.js</a></li>
+<li data-ice="manualNav" class="indent-h4" data-link="manual/README.html"><a href="manual/README.html#example" data-ice="link">Example</a></li>
+<li data-ice="manualNav" class="indent-h3" data-link="manual/README.html"><a href="manual/README.html#configurations" data-ice="link">Configurations</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.html"><a href="manual/README.html#examples" data-ice="link">Examples</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/README.html"><a href="manual/README.html#license" data-ice="link">License</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
     <li data-ice="manualNav" class="indent-h1" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html" data-ice="link">Contributing</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html#code-of-conduct" data-ice="link">Code of Conduct</a></li>
 <li data-ice="manualNav" class="indent-h2" data-link="manual/CONTRIBUTING.html"><a href="manual/CONTRIBUTING.html#project-setup" data-ice="link">Project setup</a></li>
@@ -190,6 +205,107 @@ export const dropdb = async () =&gt; mongoose.connection.db.dropDatabase();
   <div class="manual-cards">
     
   <div class="manual-card-wrap" data-ice="cards">
+      <div class="manual-card">
+        <div data-ice="card"><h1>mongoose-data-seed</h1><p>Seed mongodb with data using mongoose models</p><p><img src="https://raw.githubusercontent.com/sharvit/mongoose-data-seed/master/md-seed-run-example.gif" alt="cli example using md-seed run"></p><h2>Install</h2><pre><code class="lang-shell"><code class="source-code prettyprint">npm install --save mongoose-data-seed
+md-seed init</code>
+</code></pre><p><code>md-seed init</code> will ask you to choose a folder for your seeders.</p><p><code>md-seed init</code> will create the <code>seeders</code> folder, generate <code>md-seed-config.js</code> and update your <code>package.json</code>.</p><h2>Use</h2><p>Generate seeder file</p><pre><code class="lang-shell"><code class="source-code prettyprint">md-seed g users</code>
+</code></pre><p>Run all seeders</p><pre><code class="lang-shell"><code class="source-code prettyprint">md-seed run</code>
+</code></pre><p>Or run specific seeders</p><pre><code class="lang-shell"><code class="source-code prettyprint">md-seed run users posts comments</code>
+</code></pre><h2>Options</h2><p>Drop the database before seeding</p><pre><code class="lang-shell"><code class="source-code prettyprint">md-seed run --dropdb</code>
+</code></pre><h2>Seeder Example</h2><pre><code class="lang-javascript"><code class="source-code prettyprint">import { Seeder } from &apos;mongoose-data-seed&apos;;
+import { User } from &apos;../server/models&apos;;
+
+const data = [
+  {
+    email: &apos;user1@gmail.com&apos;,
+    password: &apos;123123&apos;,
+    passwordConfirmation: &apos;123123&apos;,
+    isAdmin: true
+  },
+  {
+    email: &apos;user2@gmail.com&apos;,
+    password: &apos;123123&apos;,
+    passwordConfirmation: &apos;123123&apos;,
+    isAdmin: false
+  }
+];
+
+class UsersSeeder extends Seeder {
+  async shouldRun() {
+    return User.countDocuments()
+      .exec()
+      .then(count =&gt; count === 0);
+  }
+
+  async run() {
+    return User.create(data);
+  }
+}
+
+export default UsersSeeder;
+</code>
+</code></pre><h3>md-seed-config.js</h3><p><code>md-seed</code> excepting to get 3 values from <code>md-seed-config.js</code></p><ol>
+<li><code>seedersList</code> - A key/value list of all your seeders,
+<code>md-seed</code> will run your seeders as they ordered in the list.</li>
+<li><code>connect</code> - Connect to mongodb implementation (should return promise).</li>
+<li><code>dropdb</code> - Drop/Clear the database implementation (should return promise).</li>
+</ol><h4>Example</h4><pre><code class="lang-javascript"><code class="source-code prettyprint">import mongoose from &apos;mongoose&apos;;
+
+import Users from &apos;./seeders/users.seeder&apos;;
+import Posts from &apos;./seeders/posts.seeder&apos;;
+import Comments from &apos;./seeders/comments.seeder&apos;;
+
+const mongoURL = process.env.MONGO_URL || &apos;mongodb://localhost:27017/dbname&apos;;
+
+/**
+ * Seeders List
+ * order is important
+ * @type {Object}
+ */
+export const seedersList = {
+  Users,
+  Posts,
+  Comments,
+};
+/**
+ * Connect to mongodb implementation
+ * @return {Promise}
+ */
+export const connect = async () =&gt; await mongoose.connect(mongoURL, { useNewUrlParser: true });
+/**
+ * Drop/Clear the database implementation
+ * @return {Promise}
+ */
+export const dropdb = async () =&gt; mongoose.connection.db.dropDatabase();
+</code>
+</code></pre><h3>Configurations</h3><p><code>mongoose-data-seed</code> configurations will get loaded from the <code>mdSeed</code> field in your <code>package.json</code> file.</p><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>seedersFolder</code></td>
+<td><code>&apos;./seeders&apos;</code></td>
+<td>Path for your seeders-folder, seeders will be generated into this folder.</td>
+</tr>
+<tr>
+<td><code>customSeederTemplate</code></td>
+<td><code>undefined</code></td>
+<td>Path to a custom template file to generate your seeders from.</td>
+</tr>
+</tbody>
+</table><h2>Examples</h2><ol>
+<li><a href="https://github.com/sharvit/mongoose-data-seed/tree/master/examples/md-seed-example">md-seed-example</a></li>
+</ol><h2>License</h2><p>MIT</p><p><a href="https://app.fossa.io/projects/git%2Bgithub.com%2Fsharvit%2Fmongoose-data-seed?ref=badge_shield"><img src="https://app.fossa.io/api/projects/git%2Bgithub.com%2Fsharvit%2Fmongoose-data-seed.svg?type=shield" alt="FOSSA Status"></a>
+<a href="http://opensource.org/licenses/MIT"><img src="https://img.shields.io/npm/l/stack-overflow-copy-paste.svg?style=flat-square" alt="MIT License"></a></p></div>
+        <a data-ice="link" href="manual/README.html"></a>
+      </div>
+    </div>
+<div class="manual-card-wrap" data-ice="cards">
       <div class="manual-card">
         <div data-ice="card"><h1>Contributing</h1><p>Contributions are always welcome, no matter how large or small.</p><p><strong>Working on your first Pull Request?</strong> You can learn how from this <em>free</em> series <a href="https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github">How to Contribute to an Open Source Project on GitHub</a></p><h2>Code of Conduct</h2><p>By participating, you are expected to uphold this <a href="./manual/./CODE_OF_CONDUCT.md">Contributor Covenant Code of Conduct</a>. Please report unacceptable behavior to <a href="./manual/mailto:sharvita@gmail.com">sharvita@gmail.com</a>.</p><h2>Project setup</h2><p>First, <a href="https://guides.github.com/activities/forking">fork</a> then clone the repo:</p><pre><code class="lang-sh"><code class="source-code prettyprint">git clone https://github.com/your-username/mongoose-data-seed
 cd mongoose-data-seed
