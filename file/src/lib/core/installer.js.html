@@ -241,7 +241,8 @@ export default class Installer {
      */
     this.config = {
       userPackageJsonPath: path.join(config.projectRoot, &apos;./package.json&apos;),
-      customSeederTemplateFilename: customSeederTemplate &amp;&amp; customSeederTemplate,
+      customSeederTemplateFilename:
+        customSeederTemplate &amp;&amp; customSeederTemplate,
       customSeederTemplatePath:
         customSeederTemplate &amp;&amp;
         path.join(config.projectRoot, customSeederTemplate),

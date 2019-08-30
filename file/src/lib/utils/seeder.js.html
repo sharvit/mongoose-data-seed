@@ -144,6 +144,7 @@ class Seeder {
       throw new TypeError(&apos;Please implement abstract method run.&apos;);
     }
   }
+
   /**
    * Seed the data.
    * @return {Promise} Stats about the save.
@@ -159,6 +160,7 @@ class Seeder {
 
     return this.getStats(results);
   }
+
   /**
    * Should run
    * @return {Promise&lt;boolean&gt;} Indication if should run
@@ -167,6 +169,7 @@ class Seeder {
   async shouldRun() {
     return true;
   }
+
   /**
    * To perform before run.
    * @return {Promise}
@@ -183,6 +186,7 @@ class Seeder {
       `Need to implement ${this.constructor.name} async run() function`
     );
   }
+
   /**
    * Get stats from seed results.
    * @param  {Array} [results] Seed results.
@@ -197,6 +201,7 @@ class Seeder {
 
     return { run: false, created: 0 };
   }
+
   /**
    * Creates a new seeder by extending the base seeder.
    * Useful when not using old javascript
