@@ -83,7 +83,7 @@
     "chalk": "^2.0.1",
     "clui": "^0.3.1",
     "command-line-args": "^5.0.2",
-    "command-line-commands": "^2.0.1",
+    "command-line-commands": "^3.0.0",
     "command-line-usage": "^6.0.2",
     "core-js": "^3.1.4",
     "find-root": "^1.0.0",
