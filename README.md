@@ -95,7 +95,7 @@ export default UsersSeeder;
 
 ### md-seed-config.js
 
-`md-seed` excepting to get 3 values from `md-seed-config.js`
+`md-seed` expecting to get 3 values from `md-seed-config.js`
 
 1. `seedersList` - A key/value list of all your seeders,
    `md-seed` will run your seeders as they ordered in the list.
