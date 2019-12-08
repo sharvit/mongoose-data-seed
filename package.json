@@ -78,7 +78,7 @@
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/plugin-proposal-object-rest-spread": "^7.7.4",
     "@babel/preset-env": "^7.7.6",
-    "@babel/register": "^7.5.0",
+    "@babel/register": "^7.7.4",
     "@babel/runtime": "^7.5.0",
     "chalk": "^2.0.1",
     "clui": "^0.3.1",
