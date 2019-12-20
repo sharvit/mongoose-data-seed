@@ -103,10 +103,10 @@ import optionDefinitions from &apos;./option-definitions&apos;;
  * @property {boolean}  helpWanted
  */
 export const getOptions = argv =&gt; {
-  const { name: seederName, help: helpWanted } = commandLineArgs(
-    optionDefinitions,
-    { argv }
-  );
+  const {
+    name: seederName,
+    help: helpWanted,
+  } = commandLineArgs(optionDefinitions, { argv });
 
   const options = { seederName, helpWanted };
 
