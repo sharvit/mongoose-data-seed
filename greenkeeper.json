@@ -2,17 +2,6 @@
   "groups": {
     "main": {
       "packages": ["package.json"]
-    },
-    "examples": {
-      "packages": ["examples/md-seed-example/package.json"],
-      "ignore": ["mongoose", "babel"]
-    },
-    "testing": {
-      "packages": [
-        "src/e2e/generate-sandboxes/sandbox-1/package.json",
-        "src/e2e/generate-sandboxes/sandbox-2/package.json",
-        "src/e2e/run-sandboxes/sandbox-1/package.json"
-      ]
     }
   }
 }
