@@ -128,7 +128,7 @@
     "prettier": "^1.19.1",
     "prettier-eslint": "^9.0.0",
     "rimraf": "^3.0.0",
-    "semantic-release": "^16.0.0",
+    "semantic-release": "^17.0.3",
     "sinon": "^8.0.1",
     "watch": "^1.0.2"
   },
