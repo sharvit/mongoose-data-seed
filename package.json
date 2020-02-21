@@ -122,7 +122,7 @@
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "mongoose": "^5.3.11",
+    "mongoose": "^5.9.2",
     "ncp": "^2.0.0",
     "nyc": "^15.0.0",
     "prettier": "^1.19.1",
