@@ -102,7 +102,7 @@
     "@commitlint/cli": "^8.1.0",
     "@commitlint/config-conventional": "^8.1.0",
     "@commitlint/travis-cli": "^8.1.0",
-    "ava": "^2.0.0",
+    "ava": "^3.5.2",
     "babel-eslint": "^10.0.3",
     "babel-plugin-add-module-exports": "^1.0.0",
     "babel-plugin-istanbul": "^6.0.0",
